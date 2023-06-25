@@ -1,13 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --monkeez-blue: #89d8f7;
+  --monkeez-blue-rgb: rgb(114, 209, 242);
+  --monkeez-light: white;
+  --monkeez-dark: black;
+  --monkeez-accent-tan: #eeca51;
+  --monkeez-accent-red: #d6303c;
+  --monkeez-yellow: #fff186;
+  /* background-image: url("./images/banana-background.png"); */
+}
+
+* {
+  font-family: "Fuzzy Bubbles", cursive;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Fuzzy Bubbles", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  border: solid black;
+}
+
+a {
+  text-decoration: none;
 }

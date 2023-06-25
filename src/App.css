@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: var(--monkeez-blue);
 }
 
 .App-logo {
@@ -34,5 +35,49 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.home-bg {
+  background-image: url("./images/item-background.png");
+  background-size: contain;
+}
+
+.text-shadow-custom {
+  text-shadow: 4px 4px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+@media screen and (max-width: 640px) {
+  .home-bg {
+    background-image: none;
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    left: 0;
+  }
+  to {
+    left: var(--percentage-num, 100%);
+  }
+}
+
+@-webkit-keyframes slide-right {
+  from {
+    left: 0;
+  }
+  to {
+    left: var(--percentage-num, 100%);
   }
 }

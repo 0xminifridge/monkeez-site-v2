@@ -1,0 +1,268 @@
+export const ZOOG_ENERGY_STORE_CONTRACT_ABI = [
+  { inputs: [], stateMutability: "nonpayable", type: "constructor" },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint8",
+        name: "energyAdded",
+        type: "uint8",
+      },
+    ],
+    name: "EnergyAdded",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint8",
+        name: "energyRemoved",
+        type: "uint8",
+      },
+    ],
+    name: "EnergyRemoved",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      { indexed: false, internalType: "uint8", name: "energy", type: "uint8" },
+    ],
+    name: "EnergySet",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "bytes32", name: "role", type: "bytes32" },
+      {
+        indexed: true,
+        internalType: "bytes32",
+        name: "previousAdminRole",
+        type: "bytes32",
+      },
+      {
+        indexed: true,
+        internalType: "bytes32",
+        name: "newAdminRole",
+        type: "bytes32",
+      },
+    ],
+    name: "RoleAdminChanged",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "bytes32", name: "role", type: "bytes32" },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "sender",
+        type: "address",
+      },
+    ],
+    name: "RoleGranted",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "bytes32", name: "role", type: "bytes32" },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "sender",
+        type: "address",
+      },
+    ],
+    name: "RoleRevoked",
+    type: "event",
+  },
+  {
+    inputs: [],
+    name: "DEFAULT_ADMIN_ROLE",
+    outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "ENERGY_WRITER_ROLE",
+    outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+      { internalType: "uint8", name: "energyCount", type: "uint8" },
+    ],
+    name: "addZoogEnergy",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "energyCap",
+    outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "energyTimerReset",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "bytes32", name: "role", type: "bytes32" }],
+    name: "getRoleAdmin",
+    outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
+    name: "getZoogEnergy",
+    outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "bytes32", name: "role", type: "bytes32" },
+      { internalType: "address", name: "account", type: "address" },
+    ],
+    name: "grantRole",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "bytes32", name: "role", type: "bytes32" },
+      { internalType: "address", name: "account", type: "address" },
+    ],
+    name: "hasRole",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+      { internalType: "uint8", name: "energyCost", type: "uint8" },
+    ],
+    name: "isZoogUpForChallenge",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+      { internalType: "uint8", name: "energyCount", type: "uint8" },
+    ],
+    name: "removeZoogEnergy",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "bytes32", name: "role", type: "bytes32" },
+      { internalType: "address", name: "account", type: "address" },
+    ],
+    name: "renounceRole",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "bytes32", name: "role", type: "bytes32" },
+      { internalType: "address", name: "account", type: "address" },
+    ],
+    name: "revokeRole",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint8", name: "energy", type: "uint8" }],
+    name: "setEnergyCap",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "time", type: "uint256" }],
+    name: "setEnergyTimerReset",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+      { internalType: "uint8", name: "energyCount", type: "uint8" },
+    ],
+    name: "setZoogEnergy",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "bytes4", name: "interfaceId", type: "bytes4" }],
+    name: "supportsInterface",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "zoogEnergy",
+    outputs: [
+      { internalType: "uint32", name: "lastTs", type: "uint32" },
+      { internalType: "uint8", name: "energy", type: "uint8" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+];
