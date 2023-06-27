@@ -75,7 +75,7 @@ export default function ClaimButton({
   return (
     <>
       <div
-        class={`flex flex-row items-center rounded-full bg-mnkz-wobo pr-2 py-1 border-2 border-solid border-black my-4 ${
+        class={`flex flex-row items-center rounded-full bg-mnkz-wobo pr-2 py-1 border-2 border-solid border-black my-4 box-shadow-custom ${
           account ? "" : "invisible"
         }`}
       >
@@ -109,7 +109,7 @@ export default function ClaimButton({
           <button
             data-tooltip-target="claim-balance-tooltip"
             data-tooltip-placement="bottom"
-            class="rounded-full bg-mnkz-tan text-black border-2 border-solid border-black px-2 hover:text-white hover:bg-gray-900 hover:cursor-pointer disabled:hover:cursor-default disabled:bg-gray-300 disabled:text-gray-400 duration-150 transition"
+            class="rounded-full  bg-mnkz-tan text-black border-2 border-solid border-black px-2 hover:text-white hover:bg-gray-900 hover:cursor-pointer disabled:hover:cursor-default disabled:bg-gray-300 disabled:text-gray-400 duration-150 transition"
             disabled={disabled || isMining || claimableBalance === 0}
             onClick={() => claimTokens(monkeezIds)}
           >

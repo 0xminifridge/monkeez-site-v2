@@ -11,7 +11,7 @@ export default function NFTActions({ isOwner, contractAddress, id, signer }) {
             <button
               data-tooltip-target="update-pfp-tooltip"
               data-tooltip-placement="right"
-              class={`p-2 md:p-4 rounded-lg bg-mnkz-blue hover:bg-gray-900 hover:text-white my-1`}
+              class={`box-shadow-custom p-2 md:p-4 rounded-lg bg-mnkz-blue hover:bg-gray-900 hover:text-white my-1`}
               onClick={() => updateProfileImage(signer, contractAddress, id)}
             >
               <ImageIcon />

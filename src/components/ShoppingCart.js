@@ -93,7 +93,14 @@ export default function ShopCart({}) {
               </button>
               <div class="mx-2">
                 <h3 class="m-auto">
-                  Total: <span class="text-mnkz-red">${100}</span>
+                  Total:{" "}
+                  <span class="text-mnkz-red">
+                    $
+                    {cartItems.reduce(
+                      (sum, obj) => sum + obj.price * obj.amount,
+                      0
+                    )}
+                  </span>
                 </h3>
               </div>
             </div>

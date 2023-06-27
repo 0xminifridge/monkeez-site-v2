@@ -18,7 +18,7 @@ export default function ZoogBattleHistory({
       <div
         class={`${
           TYPE_MAPPINGS[tribe?.toLowerCase()]
-        } max-h-[400px] overflow-y-auto flex flex-col border-black border-solid border-4 rounded-lg p-4 my-2 md:my-4 overflow-hidden`}
+        } max-h-[400px] overflow-y-auto flex flex-col border-black border-solid border-4 rounded-lg p-4 my-2 md:my-4 overflow-hidden box-shadow-custom`}
       >
         <div
           class="flex flex-row justify-between items-center py-2  hover:cursor-pointer"

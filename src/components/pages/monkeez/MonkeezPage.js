@@ -75,7 +75,7 @@ export default function MonkeezPage() {
                 />
               </div>
               {/* right column */}
-              <div class="overflow-y-auto mx-2 md:mx-4 max-w-[36rem]">
+              <div class="overflow-y-auto px-2 md:px-4 max-w-[36rem]">
                 <div class="flex flex-col justify-center text-start">
                   <h2 class="text-[35px] font-bold">Monkeez #{id}</h2>
                   <MarketListContainer
@@ -102,7 +102,7 @@ export default function MonkeezPage() {
                       <button
                         class={`${isOwner ? "visible" : "invisible"} ${
                           TYPE_MAPPINGS[data?.tribe.toLowerCase()]
-                        } w-full md:w-auto bottom-6 hover:bg-mnkz-tan w-70 border-2 px-4 py-2 rounded-xl text-lg hover:text-white hover:cursor-pointer right-0 disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400`}
+                        } box-shadow-custom w-full md:w-auto bottom-6 hover:bg-mnkz-tan w-70 border-2 px-4 py-2 rounded-xl text-lg hover:text-white hover:cursor-pointer right-0 disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400`}
                         //   onClick={() => claim(id)}
                         //   disabled={transactionProcessing}
                       >

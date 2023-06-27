@@ -8,9 +8,8 @@ export default function AlertSpinner({ type }) {
     <>
       <div class="flex justify-center items-center h-full">
         <div class="flex flex-col items-center justify-center">
-          {/* <img src="./images/sad-monkee.png" class="w-[260px] m-auto" /> */}
           <svg
-            class={`m-auto bg-transparent block aspect-square w-[25px] md:w-[50px] ${ENUM_TYPE_COLORS[type]}`}
+            class={`m-auto bg-transparent block aspect-square w-[50px] md:w-[70px] ${ENUM_TYPE_COLORS[type]}`}
             // width="50px"
             // height="50px"
             viewBox="0 0 100 100"
@@ -21,8 +20,8 @@ export default function AlertSpinner({ type }) {
               cy="50"
               fill="none"
               stroke="currentColor"
-              strokeWidth="10"
-              r="35"
+              strokeWidth="20"
+              r="50"
               strokeDasharray="164.93361431346415 56.97787143782138"
             >
               <animateTransform

@@ -32,7 +32,7 @@ export default function Collections({ title }) {
       <div class="flex flex-col justify-center">
         {collections.map((item, index) => {
           return (
-            <div class="p-4 bg-white my-4 mx-2 border-black border-4 rounded-lg border-solid overflow-y-auto overflow-x-clip">
+            <div class="p-4 bg-white my-4 mx-2 border-black border-4 rounded-lg border-solid overflow-y-auto overflow-x-clip box-shadow-custom">
               <div key={index} class="flex flex-col md:flex-row items-center ">
                 {/* image */}
                 <div class="md:mr-10 px-4 py-2 m-auto">

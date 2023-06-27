@@ -85,7 +85,7 @@ export default function MonkeezCard({ item }) {
       </div>
       <div class="pb-5 px-5 flex flex-col">
         <div class="overflow-hidden max-h-[35px]">
-          <span class="text-sm sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-bold  overflow-y-hidden">
+          <span class="text-xs sm:text-sm md:text-xl lg:text-2xl 2xl:text-3xl font-bold  overflow-y-hidden">
             Monkeez #{item.id}
           </span>
         </div>
@@ -94,7 +94,7 @@ export default function MonkeezCard({ item }) {
           onClick={(e) => e.stopPropagation()}
         >
           <span
-            class="hover:cursor-pointer hover:text-white"
+            class="hover:cursor-pointer hover:text-white text-xs sm:text-base"
             disabled={stakingMining || unstakeMining}
             onClick={() => unstakeMonkeez([item?.id])}
           >
@@ -110,7 +110,12 @@ export default function MonkeezCard({ item }) {
               onClick={() => claimTokens([item?.id])}
             >
               {tokensClaimable > 0 ? (
-                <span>Claim {tokensClaimable} $MNKZ</span>
+                <>
+                  <span class="block sm:hidden">Claim {tokensClaimable}</span>
+                  <span class="hidden sm:block">
+                    Claim {tokensClaimable} $MNKZ
+                  </span>
+                </>
               ) : (
                 <>
                   {loadingStaked && (

@@ -36,18 +36,20 @@ export default function Alert() {
   if (show) {
     return (
       <div
-        class="bg-white border-black border-solid border-2 z-[200] w-auto fixed bottom-1 sm:bottom-4 left-0 right-0 mx-1 sm:left-7 sm:right-auto"
-        style={{ "border-radius": "50px 15px 15px 50px" }}
+        class="bg-white border-black border-solid border-4 z-[200] w-auto fixed bottom-1 sm:bottom-4 left-0 right-0 mx-1 sm:left-7 sm:right-auto"
+        style={{ "border-radius": "60px 20px 20px 60px" }}
       >
-        <div class="flex flex-row justify-left px-2 py-4">
-          <div class="flex">{ENUM_STATUS_TYPES[alert?.type]}</div>
-          <div class="flex flex-col items-center left-0 overflow-hidden text-left relative">
-            <div
-              class="absolute top-0 right-0 hover:cursor-pointer hover:text-mnkz-tan duration-150 transition"
-              onClick={() => onClose()}
-            >
-              <XWithCircle color={"#000"} />
-            </div>
+        <div class="flex flex-row items-center px-2 py-4 relative">
+          <div class="flex bg-monkeez-img rounded-full overflow-hidden mr-2">
+            {ENUM_STATUS_TYPES[alert?.type]}
+          </div>
+          <div
+            class="absolute top-1 right-1 hover:cursor-pointer hover:text-mnkz-tan duration-150 transition"
+            onClick={() => onClose()}
+          >
+            <XWithCircle color={"#000"} />
+          </div>
+          <div class="flex flex-col items-center right-0 overflow-hidden text-left relative">
             <div class="flex flex-col items-center left-0 sm:max-w-[250px] max-h-[50px] h-full w-full text-wrap">
               {alert?.type === "processing" && (
                 <div class="flex flex-col text-xs">

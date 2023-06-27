@@ -125,7 +125,7 @@ export default function ZoogzPage() {
                 />
               </div>
               {/* right column */}
-              <div class="overflow-y-auto mx-2 md:mx-4 max-w-[36rem]">
+              <div class="overflow-y-auto px-2 md:px-4 max-w-[36rem]">
                 <div class="flex flex-col justify-center text-start">
                   <h2 class="text-[35px] font-bold">Zoogz #{id}</h2>
                   <MarketListContainer marketData={ZOOGZ_MARKET_DATA} id={id} />

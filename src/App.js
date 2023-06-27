@@ -24,7 +24,6 @@ import store from "./store";
 import { Provider } from "react-redux";
 
 const projectId = process.env.REACT_APP_WALLET_CONNECT_PROJECT_ID;
-console.log("projectId", projectId);
 
 const { chains, publicClient } = configureChains(
   [

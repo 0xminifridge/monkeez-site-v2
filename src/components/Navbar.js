@@ -18,8 +18,14 @@ import { useClaimableBalance } from "../hooks/useMnkz";
 import ClaimButton from "./ClaimButton";
 import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
+import { Button, Navbar, Dropdown } from "flowbite-react";
+import NavLink from "./NavLink";
+import { WalletAvatar } from "./WalletAvatar";
+import { parseHash } from "../utils/wallet";
+import { ChevronDownIcon } from "./icons/ChevronDown";
+import RainbowKitCustomConnectButtonMobile from "./RainbowKitCustomConnectButtonMobile";
 
-export function Navbar() {
+export function SiteNavbar() {
   const NavLinks = [
     {
       title: "Home",
@@ -85,65 +91,72 @@ export function Navbar() {
 
   return (
     <>
-      <nav class="bg-mnkz-blue sticky w-full z-[11] top-0 left-0 border-b-4 border-black ">
-        <div class="flex flex-wrap items-center justify-between mx-auto px-2 container">
-          <div class="flex flex-row">
-            <Link to="home">
-              <img
-                src={`${process.env.PUBLIC_URL}/images/logos/monkeez-logo.png`}
-                alt="Monkeez"
-                class="w-20 aspect-square block"
+      <nav class="bg-mnkz-blue sticky w-full z-[11] top-0 left-0 border-b-4 border-black px-4 md:px-0">
+        <div class="container m-auto">
+          <div class="flex flex-wrap items-center justify-between mx-auto">
+            <div class="flex flex-row">
+              <Link to="home">
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/logos/monkeez-logo.png`}
+                  alt="Monkeez"
+                  class="w-20 aspect-square block"
+                />
+              </Link>
+              <ClaimButton
+                account={connectedAccount?.address}
+                mnkzBalance={mnkzBalance}
+                claimableBalance={tokensClaimable}
+                disabled={isLoading}
+                monkeezIds={monkeezIds}
               />
-            </Link>
-            <ClaimButton
-              account={connectedAccount?.address}
-              mnkzBalance={mnkzBalance}
-              claimableBalance={tokensClaimable}
-              disabled={isLoading}
-              monkeezIds={monkeezIds}
-            />
-          </div>
-
-          <div class="flex lg:order-2">
-            <div class="hidden lg:flex">
-              <RainbowKitCustomConnectButton profileImage={profileImage} />
             </div>
 
-            <button
-              data-collapse-toggle="navbar-sticky"
-              type="button"
-              class="inline-flex items-center p-2 text-sm text-black rounded-lg lg:hidden hover:bg-black hover:text-white my-4"
-              aria-controls="navbar-sticky"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Open main menu</span>
-              <HamburgerMenuIcon />
-            </button>
-          </div>
-          <div
-            class="items-center justify-center hidden w-full lg:flex lg:w-auto lg:order-1 flex-grow duration-500"
-            id="navbar-sticky"
-          >
-            <ul class="flex flex-col p-4 mt-4 rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium list-none">
-              {NavLinks.map((item, index) => {
-                return (
-                  <li key={index}>
-                    <Link
-                      target={item.target}
-                      to={item.path}
-                      class="group block py-2 pr-4 pl-3 text-black font-bold text-xl rounded lg:rounded-none lg:bg-transparent lg:p-0 hover:text-white"
-                      aria-current="page"
-                      onClick={() => toggleCollapse()}
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                );
-              })}
-              <div class="flex lg:hidden">
-                <RainbowKitCustomConnectButton />
+            <div class="flex lg:order-2 items-center">
+              <div class="hidden md:flex">
+                <RainbowKitCustomConnectButton profileImage={profileImage} />
               </div>
-            </ul>
+
+              <button
+                // data-collapse-toggle="navbar-sticky"
+                type="button"
+                class="box-shadow-custom ml-2 inline-flex items-center p-2 text-sm text-black rounded-lg lg:hidden hover:border-white hover:text-white "
+                // aria-controls="navbar-sticky"
+                aria-expanded="false"
+                onClick={() => toggleCollapse()}
+              >
+                <span class="sr-only">Open main menu</span>
+                <HamburgerMenuIcon />
+              </button>
+            </div>
+            <div
+              class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+              id="navbar-sticky"
+            >
+              {/* <ul class="flex flex-col p-4 mt-4 rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium list-none"> */}
+
+              <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium lg:flex-row md:mt-0 ">
+                {NavLinks.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <Link
+                        target={item.target}
+                        to={item.path}
+                        class="group block py-2 pr-4 pl-3 text-black font-bold text-xl rounded lg:rounded-none lg:bg-transparent hover:text-white"
+                        aria-current="page"
+                        onClick={() => toggleCollapse()}
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+                <div class="flex md:hidden">
+                  <RainbowKitCustomConnectButtonMobile
+                    profileImage={profileImage}
+                  />
+                </div>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>

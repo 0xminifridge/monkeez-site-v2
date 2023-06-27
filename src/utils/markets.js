@@ -92,3 +92,12 @@ export const MARKET_LIST = [
   "Kalao",
   "OpenSea",
 ];
+
+export const MARKET_PROFILE_LINK = {
+  Joepegs: "https://joepegs.com/profile",
+  Campfire: "https://campfire.exchange/accounts",
+  Salvor: "https://salvor.io",
+  NFTrade: "https://nftrade.com/users/avalanche",
+  Kalao: "https://marketplace.kalao.io/profile",
+  OpenSea: "https://opensea.io",
+};

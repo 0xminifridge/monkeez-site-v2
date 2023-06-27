@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRouteError } from "react-router-dom";
-import { Navbar } from "./Navbar";
+import { SiteNavbar as Navbar } from "./Navbar";
 import Footer from "./Footer";
 
 export default function PageNotFound(props) {
@@ -8,13 +8,14 @@ export default function PageNotFound(props) {
   console.error(error);
   useEffect(() => {
     document.title = props.title;
+    window.scroll(0, 0);
   }, []);
 
   return (
     <>
       <Navbar />
       <div class="bg-mnkz-blue home-bg w-full px-16 md:px-0 h-screen flex items-center justify-center">
-        <div class="bg-white border-black border-solid border-4 flex flex-col items-center justify-center px-4 md:px-8 lg:px-24 py-8 rounded-lg text-center">
+        <div class="bg-white border-black border-solid border-4 flex flex-col items-center justify-center px-4 md:px-8 lg:px-24 py-8 rounded-lg text-center box-shadow-custom">
           <p class="text-mnkz-blue text-shadow-custom text-6xl md:text-7xl lg:text-9xl font-bold tracking-wider">
             404
           </p>
@@ -26,7 +27,7 @@ export default function PageNotFound(props) {
           </p>
           <a
             href="/home"
-            class="border-2 border-black border-solidflex items-center space-x-2 bg-mnkz-tan hover:bg-black text-black hover:text-white px-4 py-2 mt-6 rounded duration-150 transition"
+            class="box-shadow-custom border-2 border-black border-solidflex items-center space-x-2 bg-mnkz-tan hover:bg-black text-black hover:text-white px-4 py-2 mt-6 rounded duration-150 transition"
             title="Return Home"
           >
             {/* <svg

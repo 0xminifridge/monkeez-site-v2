@@ -112,7 +112,6 @@ export function useZoogForId(id) {
       const result = await getZoogForId(id);
 
       const { data: energyInfo } = await getEnergyInfo(id);
-      console.log(energyInfo);
 
       if (energyInfo) {
         result["energy"] = energyInfo?.energy;
@@ -306,8 +305,6 @@ export function useUpgradeZoog() {
 
       const contract = await getZoogLevelerContract(signer);
       let tx, hash;
-
-      console.log(statName);
 
       switch (statName?.toLowerCase()) {
         case "aggression":

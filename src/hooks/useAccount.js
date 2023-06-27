@@ -1,7 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { BrowserProvider } from "ethers";
-import { getDocumentForAddress } from "../utils/firebase";
+import {
+  getDocumentForAddress,
+  getMaxZungleScore,
+  getRankForZungleScore,
+} from "../utils/firebase";
 import { getTargetNetwork } from "../utils/networks";
 import { MONKEEZ_IMAGE_URL, ZOOGZ_IMAGE_URL } from "../utils/metadata";
 import { lookupDotAvax, lookupDotFire } from "../utils/wallet";
@@ -125,4 +129,81 @@ export function useParsedAddress(address) {
   }, [address]);
 
   return parsedAddress;
+}
+
+export function useZungleScore(address) {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchData = async (address) => {
+    try {
+      setIsLoading(true);
+      const accountDoc = await getDocumentForAddress(address.toLowerCase());
+      if (accountDoc && accountDoc.zScore) {
+        setData(accountDoc.zScore);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (address) {
+      fetchData(address);
+    }
+  }, [address]);
+
+  return { data, isLoading };
+}
+
+export function useMaxZungleScore() {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const score = await getMaxZungleScore();
+      setData(score);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return { data, isLoading };
+}
+
+export function useZungleScoreRank(score) {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchData = async (score) => {
+    try {
+      setIsLoading(true);
+      const rank = await getRankForZungleScore(score);
+      if (rank) {
+        setData(rank);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (score !== undefined && score !== null) {
+      fetchData(score);
+    }
+  }, [score]);
+
+  return { data, isLoading };
 }

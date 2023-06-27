@@ -234,7 +234,7 @@ export default function ZoogProgressBars({
                   <button
                     class={`${isOwner ? "visible" : "hidden"} ${
                       TYPE_MAPPINGS[data?.type?.toLowerCase()]
-                    } ml-3 h-8 px-3 py-1 rounded-lg text-sm sm:text-xl font-bold hover:bg-mnkz-tan hover:cursor-pointer hover:text-white`}
+                    } ml-3 h-8 px-3 py-1 rounded-lg text-sm sm:text-xl font-bold hover:bg-mnkz-tan hover:cursor-pointer hover:text-white box-shadow-custom`}
                     onClick={() => setUpgrading(stat?.toLowerCase())}
                     disabled={isMining}
                   >

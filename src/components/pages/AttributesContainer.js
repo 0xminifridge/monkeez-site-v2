@@ -15,7 +15,7 @@ export default function AttributesContainer({
     <div
       class={`${
         opacity ? TYPE_MAPPINGS[tribe] + "/" + opacity : TYPE_MAPPINGS[tribe]
-      } flex flex-col border-black border-solid border-4 rounded-lg p-4 my-2 md:my-4 overflow-hidden`}
+      } flex flex-col border-black border-solid border-4 rounded-lg p-4 my-2 md:my-4 overflow-hidden box-shadow-custom`}
     >
       <div
         class="flex flex-row justify-between items-center py-2  hover:cursor-pointer"

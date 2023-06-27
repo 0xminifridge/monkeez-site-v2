@@ -5,7 +5,7 @@ export default function Authenticate() {
     <>
       <div class="p-8 sm:p-48 text-center h-[90vh]">
         <div class="w-80 inline-flex justify-center">
-          <div class="border-4 border-solid border-black rounded-xl bg-white p-4 flex justify-center flex-col">
+          <div class="border-4 border-solid border-black rounded-xl bg-white p-4 flex justify-center flex-col box-shadow-custom">
             <div class="overflow-hidden rounded-full w-40 h-40 border-solid border-black border-2 m-auto bg-mnkz-blue">
               <img
                 src="./images/sad-monkee.png"

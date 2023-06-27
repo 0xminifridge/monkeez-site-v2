@@ -101,17 +101,18 @@ export default function ZungleNav({ title }) {
     <>
       <div class="sm:h-[95vh] flex items-center justify-center flex-wrap sm:flex-nowrap">
         {/* Desktop Nav */}
-        <div class="bg-white h-[90vh] w-[25vw] border-4 border-black border-solid border-l-0 rounded-r-2xl items-center flex-col hidden sm:flex py-4">
+        <div class="box-shadow-custom bg-white h-[90vh] w-[25vw] border-4 border-black border-solid border-l-0 rounded-r-2xl items-center flex-col hidden sm:flex py-4">
           {NavItems.map((item, index) => {
             return (
               <Tooltip
                 content={item?.name}
                 placement="right"
-                class="block lg:hidden"
+                trigger="hover"
+                className="lg:hidden"
               >
                 <div
                   key={index}
-                  class={`h-[6vh] w-[12vw] mt-[0.5vh] overflow-hidden border-4 border-black border-solid rounded-2xl text-center flex items-center flex-col justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white ${
+                  class={`box-shadow-custom h-[6vh] w-[12vw] my-1 overflow-hidden border-4 border-black border-solid rounded-2xl text-center flex items-center flex-col justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white ${
                     item?.color
                   } ${
                     item?.name?.toLowerCase() === activeTab?.toLowerCase()
@@ -140,7 +141,7 @@ export default function ZungleNav({ title }) {
           })}
         </div>
         {/* Mobile Nav */}
-        <div class="bg-white overflow-x-auto overflow-y-clip w-[90vw] h-[10vh] mt-4 border-4 border-black border-solid rounded-2xl flex items-center justify-start flex-row sm:hidden mb-4">
+        <div class="box-shadow-custom bg-white overflow-x-auto overflow-y-clip w-[90vw] h-[10vh] mt-4 border-4 border-black border-solid rounded-2xl flex items-center justify-start flex-row sm:hidden mb-4">
           {NavItems.map((item, index) => {
             return (
               <Tooltip content={item?.name} placement="bottom">
@@ -167,7 +168,7 @@ export default function ZungleNav({ title }) {
             );
           })}
         </div>
-        <div class="pb-[25px] md:pb-0 mx-1 sm:mx-4 h-[90vh] md:h-[90vh] w-[90vw] bg-white border-4 border-solid border-black rounded-2xl m-auto overflow-hidden">
+        <div class="box-shadow-custom pb-[25px] md:pb-0 mx-1 sm:mx-4 h-[90vh] md:h-[90vh] w-[90vw] bg-white border-4 border-solid border-black rounded-2xl m-auto overflow-hidden">
           {renderSwitch(activeTab)}
         </div>
       </div>

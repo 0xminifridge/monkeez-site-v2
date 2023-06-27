@@ -10,6 +10,8 @@ import {
   startAfter,
   getDoc,
   where,
+  getCountFromServer,
+  endAt,
 } from "firebase/firestore";
 import { log } from "../helpers/console-logger";
 
@@ -250,4 +252,38 @@ export async function queryZoogLeaderboardDescending(field, lastVisibleId) {
   });
 
   return { list: zoogzList, lastVisibleId: zoogzList[zoogzList.length - 1].id };
+}
+
+export async function getMaxZungleScore() {
+  let maxScore = 0;
+  try {
+    const q = query(
+      collection(db, "accounts"),
+      orderBy("zScore", "desc"),
+      limit(1)
+    );
+    let querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      maxScore = doc.data().zScore;
+    });
+  } catch (err) {
+    console.error(err);
+  }
+  return maxScore;
+}
+
+export async function getRankForZungleScore(score) {
+  let rank = 0;
+  try {
+    const q = query(
+      collection(db, "accounts"),
+      orderBy("zScore", "desc"),
+      endAt(score)
+    );
+    const snapshot = await getCountFromServer(q);
+    rank = snapshot.data().count;
+  } catch (err) {
+    console.error(err);
+  }
+  return rank;
 }
