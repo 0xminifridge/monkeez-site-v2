@@ -1,5 +1,30 @@
 import { Link } from "react-router-dom";
+import {
+  firstSet,
+  fifthSet,
+  fourthSet,
+  secondSet,
+  thirdSet,
+} from "../utils/collection-data";
+import { useEffect } from "react";
+import { MONKEEZ_THUMBNAIL_URL_SMALL } from "../utils/metadata";
+
 export default function Landing() {
+  async function preCacheImages(set) {
+    for (const id of set) {
+      const img = new Image();
+      img.src = `${MONKEEZ_THUMBNAIL_URL_SMALL}/${id}.png`;
+    }
+  }
+
+  useEffect(() => {
+    preCacheImages(firstSet);
+    preCacheImages(secondSet);
+    preCacheImages(thirdSet);
+    preCacheImages(fourthSet);
+    preCacheImages(fifthSet);
+  }, []);
+
   return (
     <>
       <div class="w-[100vw] h-[100vh] bg-[#72D1F2]">
