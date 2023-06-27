@@ -16,7 +16,7 @@ export default function FeatureCard({ item }) {
             <img
               src={item?.image}
               alt={item?.name}
-              class="aspect-square w-[300px]"
+              class="aspect-square w-[350px]"
             />
           </div>
           <div class="flex flex-col justify-center items-center mt-2">

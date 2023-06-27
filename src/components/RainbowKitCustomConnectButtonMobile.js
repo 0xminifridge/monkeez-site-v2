@@ -117,7 +117,7 @@ export default function RainbowKitCustomConnectButtonMobile({
 
                   <div
                     id="dropdown-sticky-mobile"
-                    class="absolute hidden top-[75px] z-10 bg-mnkz-tan divide-y border-black border-2 border-solid divide-black rounded w-[90%]"
+                    class="box-shadow-custom absolute hidden top-[75px] z-10 bg-mnkz-tan divide-y border-black border-2 border-solid divide-black rounded w-[90%]"
                   >
                     <ul
                       class="text-xl font-bold text-black"

@@ -22,6 +22,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./components/routes";
 import store from "./store";
 import { Provider } from "react-redux";
+import { coreWallet } from "./components/wallets/core";
 
 const projectId = process.env.REACT_APP_WALLET_CONNECT_PROJECT_ID;
 
@@ -39,6 +40,7 @@ const connectors = connectorsForWallets([
     wallets: [
       injectedWallet({ chains }),
       metaMaskWallet({ projectId, chains }),
+      coreWallet({ projectId, chains }),
     ],
   },
   {

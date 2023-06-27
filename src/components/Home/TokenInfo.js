@@ -1,27 +1,17 @@
+import { Tooltip } from "flowbite-react";
 export default function TokenInfo() {
   const tokenList = [
     {
       name: "MNKZ",
-      description: (
-        <span>
-          An ecosystem token powering anything and everything in the Zungle
-          gained by staking Monkeez or battling Zoogz. MNKZ is used for{" "}
-          <strong>buying</strong> items, <strong>unlocking</strong> land tiles,{" "}
-          <strong>building</strong> structures, and much much more. As the
-          Zungle grows, so does the use cases for MNKZ.
-        </span>
-      ),
+      description:
+        "An ecosystem token powering anything and everything in the Zungle gained by staking Monkeez or battling Zoogz. MNKZ is used for buying items, unlocking land tiles, building structures, and much much more. As the Zungle grows, so does the use cases for MNKZ.",
+      link: "https://monkeez.gitbook.io/monkeez/monkeez/usdmnkz",
     },
     {
       name: "GEMZ",
-      description: (
-        <span>
-          A secondary token launched with the land expansion of the Zungle and
-          obtained through Zoog Battlez. GEMZ is used for avoiding cooldowns in
-          the land sector of the Zungle, skipping wait times for tile unlocks
-          and upgrades.
-        </span>
-      ),
+      description:
+        "A secondary token launched with the land expansion of the Zungle and obtained through Zoog Battlez. GEMZ is used for avoiding cooldowns in the land sector of the Zungle, skipping wait times for tile unlocks and upgrades.",
+      link: "https://monkeez.gitbook.io/monkeez/monkeez/usdmnkz",
     },
   ];
   return (
@@ -44,11 +34,89 @@ export default function TokenInfo() {
                       }/images/${item?.name?.toLowerCase()}-token.png`}
                       class="aspect-square w-40"
                     />
-                    <span class="text-black text-4xl px-4 py-2 rounded-full bg-mnkz-blue border-4 border-solid border-black box-shadow-custom">
-                      ${item?.name}
-                    </span>
+                    <a
+                      href={item?.link}
+                      target="_blank"
+                      class=" text-black text-4xl px-4 py-2 rounded-full bg-mnkz-blue border-4 border-solid border-black box-shadow-custom hover:bg-mnkz-tan hover:cursor-pointer"
+                    >
+                      <span>${item?.name}</span>
+                    </a>
+                    <div class="ml-2 mb-2 flex overflow-hidden rounded-full hover:cursor-pointer items-center">
+                      <Tooltip content={item.description}>
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/tooltip.png`}
+                          class="w-full max-w-[25px] aspect-square"
+                        />
+                      </Tooltip>
+                    </div>
                   </div>
-                  <div class="p-2 text-center text-xl">{item?.description}</div>
+                  {/* <div class="p-2 text-center text-lg md:text-xl font-bold">
+                    {item?.description}
+                  </div> */}
+                  {item?.name === "MNKZ" && (
+                    <div class="text-base md:text-lg w-full md:w-[75%] m-auto border-black border-4 border-solid rounded-xl p-2 my-2">
+                      <div class="flex flex-row items-center justify-between bg-gray-200 p-4 rounded-xl my-1">
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/item-shop.png`}
+                          class="w-full max-w-[100px] aspect-square"
+                        />
+                        <span>Buy NFTs</span>
+                      </div>
+                      <div class="flex flex-row items-center justify-between bg-gray-200 p-4 rounded-xl my-1">
+                        <div class="flex flex-row">
+                          <img
+                            src={`${process.env.PUBLIC_URL}/images/zoogz/types/glow.png`}
+                            class="w-full max-w-[75px] aspect-square"
+                          />
+                          <img
+                            src={`${process.env.PUBLIC_URL}/images/zoogz/types/drip.png`}
+                            class="w-full max-w-[75px] aspect-square"
+                          />
+                        </div>
+
+                        <span>Battle Zoogz</span>
+                      </div>
+                      <div class="flex flex-row items-center justify-between bg-gray-200 p-4 rounded-xl my-1">
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/hut.png`}
+                          class="w-full max-w-[100px] aspect-square"
+                        />
+                        <span>Build structures</span>
+                      </div>
+                    </div>
+                  )}
+                  {item?.name === "GEMZ" && (
+                    <div class="text-base md:text-lg w-full md:w-[75%] m-auto border-black border-4 border-solid rounded-xl p-2 my-2">
+                      <div class="flex flex-row items-center justify-between bg-gray-200 p-4 rounded-xl my-1">
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/zoogz/stats/clock.png`}
+                          class="w-full max-w-[50px] aspect-square"
+                        />
+                        <span>Skip cooldowns</span>
+                      </div>
+                      <div class="flex flex-row items-center justify-between bg-gray-200 p-4 rounded-xl my-1">
+                        <div class="flex flex-row">
+                          <img
+                            src={`${process.env.PUBLIC_URL}/images/zoogz/types/glow.png`}
+                            class="w-full max-w-[75px] aspect-square"
+                          />
+                          <img
+                            src={`${process.env.PUBLIC_URL}/images/zoogz/types/drip.png`}
+                            class="w-full max-w-[75px] aspect-square"
+                          />
+                        </div>
+
+                        <span>Battle Zoogz</span>
+                      </div>
+                      <div class="flex flex-row items-center justify-between bg-gray-200 p-4 rounded-xl my-1">
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/hut.png`}
+                          class="w-full max-w-[100px] aspect-square"
+                        />
+                        <span>Build structures</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}

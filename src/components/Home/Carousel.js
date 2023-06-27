@@ -42,7 +42,7 @@ export default function Carousel({ speed, direction, images }) {
           pauseOnHover={true}
         >
           {images.map((item, index) => {
-            return <CarouselImage item={item} />;
+            return <CarouselImage item={item} key={index} />;
           })}
         </Marquee>
       </div>

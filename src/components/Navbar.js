@@ -134,7 +134,7 @@ export function SiteNavbar() {
             >
               {/* <ul class="flex flex-col p-4 mt-4 rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium list-none"> */}
 
-              <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium lg:flex-row md:mt-0 ">
+              <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium lg:flex-row md:mt-0">
                 {NavLinks.map((item, index) => {
                   return (
                     <li key={index}>

@@ -107,8 +107,6 @@ export default function ClaimButton({
 
         <Tooltip content={`Claim: ${nFormatter(claimableBalance, 1)}`}>
           <button
-            data-tooltip-target="claim-balance-tooltip"
-            data-tooltip-placement="bottom"
             class="rounded-full  bg-mnkz-tan text-black border-2 border-solid border-black px-2 hover:text-white hover:bg-gray-900 hover:cursor-pointer disabled:hover:cursor-default disabled:bg-gray-300 disabled:text-gray-400 duration-150 transition"
             disabled={disabled || isMining || claimableBalance === 0}
             onClick={() => claimTokens(monkeezIds)}

@@ -3,6 +3,7 @@ import { ZUNGLE_ITEM_SHOP_IMAGE_URL } from "../../../utils/metadata";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../reducers/itemShopReducer";
 import { usePurchaseItems } from "../../../hooks/useItemShop";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function ShopItemCard({ item }) {
   const [hovering, setHovering] = useState(false);
@@ -22,6 +23,10 @@ export default function ShopItemCard({ item }) {
     }
   };
 
+  const handleSelectChange = (value) => {
+    setAmount(value);
+  };
+
   const addItem = (item, amount) => {
     if (item) {
       let shallow = Object.assign({}, item);
@@ -35,6 +40,11 @@ export default function ShopItemCard({ item }) {
       await buyItemsFromShop([item?.id], [amount]);
     }
   };
+
+  const options = Array.from({ length: 100 }, (_, i) => ({
+    value: i + 1,
+    label: (i + 1).toString(),
+  }));
 
   return (
     <div
@@ -68,9 +78,27 @@ export default function ShopItemCard({ item }) {
             {item.name}
           </span>
         </div>
-        <div class="flex flex-row justify-between items-end pb-5 ">
-          <div>
-            <button
+        <div class="flex flex-col justify-center items-cente ">
+          <div class="flex justify-center items-center w-full">
+            <select
+              id="countries"
+              // value="Select Quantity"
+              class="border-white hover:border-mnkz-tan hover:text-mnkz-tan hover:cursor-pointer border-2 border-solid bg-transparent rounded-xl text-lg w-full p-2.5 focus:ring-mnkz-tan focus:border-mnkz-tan"
+              onChange={(e) => handleSelectChange(e.target.value)}
+            >
+              <option disabled hidden selected>
+                Select Quantity
+              </option>
+              {options?.map((item, index) => {
+                return (
+                  <option key={index} value={item?.label}>
+                    {item?.value}
+                  </option>
+                );
+              })}
+            </select>
+
+            {/* <button
               class="hover:border-mnkz-red border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-red hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"
               onClick={() => decrease()}
             >
@@ -82,24 +110,60 @@ export default function ShopItemCard({ item }) {
               onClick={() => increase()}
             >
               +
-            </button>
+            </button> */}
           </div>
 
-          <div class="flex flex-col justify-center items-center">
+          <div class="flex flex-row justify-center items-center w-full h-full">
             <button
-              class="w-full my-1 hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default "
+              class="w-full  mr-1 hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default "
               onClick={() => buyNow()}
               disabled={isMining}
             >
               Buy {amount}
             </button>
             <button
+              class="w-full my-1 ml-1 hover:border-mnkz-tan border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-tan hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"
+              onClick={() => addItem(item, amount)}
+            >
+              <div class="flex flex-row justify-center items-center">
+                <span>Add</span>
+                <FaShoppingCart class="text-lg w-10" />
+              </div>
+            </button>
+          </div>
+          {/* <div class="flex flex-row justify-center items-center w-full">
+            <div class="flex flex-col justify-between items-start pb-5 ">
+              <div class="flex flex-row justify-between items-center">
+                <button
+                  class="hover:border-mnkz-red border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-red hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"
+                  onClick={() => decrease()}
+                >
+                  -
+                </button>
+                <span class="text-lg m-1">{amount}</span>
+                <button
+                  class="hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"
+                  onClick={() => increase()}
+                >
+                  +
+                </button>
+              </div>
+              <button
+                class="w-full my-1 hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default "
+                onClick={() => buyNow()}
+                disabled={isMining}
+              >
+                Buy {amount}
+              </button>
+            </div>
+
+            <button
               class="w-full hover:border-mnkz-tan border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-tan hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"
               onClick={() => addItem(item, amount)}
             >
               Add
             </button>
-          </div>
+          </div> */}
 
           {/* <button
             class=" hover:border-mnkz-tan border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-tan hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"

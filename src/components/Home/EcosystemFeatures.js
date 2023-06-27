@@ -11,7 +11,7 @@ export default function EcosystemFeatures() {
         "Battle your Zoogz against each other, PVP style for MNKZ and earn GEMZ along the way! Zoogz compete by comparing their leveled stats along with a 20 sided dice roll to determine a winner.",
     },
     {
-      name: "Item Shop",
+      name: "Shop",
       image: `${process.env.PUBLIC_URL}/images/item-shop.png`,
       background: "bg-mnkz-pelu",
       description:

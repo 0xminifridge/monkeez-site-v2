@@ -147,7 +147,7 @@ export default function ZungleNav({ title }) {
               <Tooltip content={item?.name} placement="bottom">
                 <div
                   key={index}
-                  class={`h-[6vh] w-[15vw] mx-1 border-4 border-black border-solid rounded-2xl text-center flex items-center flex-row justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white p-1 ${
+                  class={`box-shadow-custom h-[6vh] w-[15vw] mx-1 border-4 border-black border-solid rounded-2xl text-center flex items-center flex-row justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white p-1 ${
                     item?.color
                   } ${
                     item?.name?.toLowerCase() === activeTab?.toLowerCase()

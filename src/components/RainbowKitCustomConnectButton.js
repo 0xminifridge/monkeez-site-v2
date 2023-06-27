@@ -99,7 +99,6 @@ export default function RainbowKitCustomConnectButton({
                 <>
                   <button
                     id="dropdownDividerButton"
-                    data-dropdown-toggle="dropdownDivider"
                     class="bg-mnkz-tan box-shadow-custom w-full px-4 py-2 rounded-full text-lg hover:text-white hover:cursor-pointer hover:bg-black right-0 disabled:bg-gray-300 duration-150 transition"
                     type="button"
                     onClick={() => toggleCollapse()}
@@ -118,7 +117,7 @@ export default function RainbowKitCustomConnectButton({
 
                   <div
                     id="dropdown-sticky"
-                    class="absolute hidden top-[75px] z-10 bg-mnkz-tan divide-y border-black border-2 border-solid divide-black rounded w-full max-w-[200px]"
+                    class="box-shadow-custom absolute hidden top-[75px] z-10 bg-mnkz-tan divide-y border-black border-2 border-solid divide-black rounded w-full max-w-[200px]"
                     // style={{ transform: "translate3d(26.5px, 100px, 0px)" }}
                   >
                     <ul
@@ -127,7 +126,7 @@ export default function RainbowKitCustomConnectButton({
                     >
                       <li>
                         <Link
-                          // onClick={() => toggleCollapse()}
+                          onClick={() => toggleCollapse()}
                           to={`/zungle?selected=Monkeez`}
                           class="p-2 mx-1 text-black flex flex-row justify-center my-1 hover:bg-black hover:cursor-pointer hover:text-white rounded"
                         >
@@ -136,7 +135,7 @@ export default function RainbowKitCustomConnectButton({
                       </li>
                       <li>
                         <Link
-                          // onClick={() => toggleCollapse()}
+                          onClick={() => toggleCollapse()}
                           to={`/zungle?selected=Zoogz`}
                           class="p-2 mx-1 text-black flex flex-row justify-center my-1 hover:bg-black hover:cursor-pointer hover:text-white rounded"
                         >
@@ -145,7 +144,7 @@ export default function RainbowKitCustomConnectButton({
                       </li>
                       <li>
                         <Link
-                          // onClick={() => toggleCollapse()}
+                          onClick={() => toggleCollapse()}
                           to={`/accounts/${account.address}`}
                           class="p-2 mx-1 text-black flex flex-row justify-center my-1 hover:bg-black hover:cursor-pointer hover:text-white rounded"
                         >

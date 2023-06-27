@@ -50,7 +50,7 @@ export default function Alert() {
             <XWithCircle color={"#000"} />
           </div>
           <div class="flex flex-col items-center right-0 overflow-hidden text-left relative">
-            <div class="flex flex-col items-center left-0 sm:max-w-[250px] max-h-[50px] h-full w-full text-wrap">
+            <div class="flex flex-col items-center left-0 sm:max-w-[250px] max-h-[75px] h-full w-full text-wrap">
               {alert?.type === "processing" && (
                 <div class="flex flex-col text-xs">
                   <h3 class="text-mnkz-tan font-bold text-lg">Please Wait</h3>
