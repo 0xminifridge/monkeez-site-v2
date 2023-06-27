@@ -1,6 +1,6 @@
 export function TribeCard({ tribe }) {
   return (
-    <div class="w-[260px] h-[420px] p-[15px] m-[0.5rem] border-solid border-black border-[5px] bg-white rounded-3xl text-center overflow-hidden">
+    <div class="w-full max-w-[300px] p-[15px] m-[0.5rem] border-solid border-black border-[5px] bg-white rounded-3xl text-center overflow-hidden box-shadow-custom">
       <div class="inline-block w-fit overflow-hidden m-0">
         <img src={tribe.img} class="m-0 w-[260px] rounded-[20px]" />
       </div>
@@ -66,12 +66,12 @@ export default function MonkeezTribes() {
   ];
 
   return (
-    <div class="flex flex-col justify-center">
+    <div class="flex flex-col justify-center container m-auto">
       <span
         id="Tribes"
-        class="text-[4em] md:text-[100px] text-white text-shadow-custom m-auto font-bold mx-auto"
+        class="text-6xl md:text-[100px] text-white text-shadow-custom m-auto font-bold"
       >
-        MONKEEZ TRIBES
+        TRIBES
       </span>
       <div class="flex flex-wrap justify-center">
         {tribeData.map((tribe, index) => (

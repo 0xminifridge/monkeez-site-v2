@@ -25,10 +25,10 @@ export default function ZoogTypes() {
 
   return (
     <>
-      <div class="flex flex-col justify-center">
+      <div class="flex flex-col justify-center container m-auto">
         <span
           id="Types"
-          class="text-[4em] md:text-[100px] text-white text-shadow-custom m-auto font-bold"
+          class="text-6xl md:text-[100px] text-white text-shadow-custom m-auto font-bold"
         >
           ZOOG TYPES
         </span>
@@ -37,7 +37,7 @@ export default function ZoogTypes() {
             return (
               <div
                 key={index}
-                class="w-[260px] h-[450px] p-[15px] m-[0.5rem] border-[5px] border-solid border-black rounded-[25px] text-center overflow-hidden bg-[whitesmoke]"
+                class="w-full max-w-[300px] p-[15px] m-[0.5rem] border-[5px] border-solid border-black rounded-[25px] text-center overflow-hidden bg-[whitesmoke] box-shadow-custom"
               >
                 <div
                   class={`w-fit overflow-hidden inline-block bg-${item.color} w-full rounded-[20px]`}

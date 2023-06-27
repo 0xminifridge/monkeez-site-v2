@@ -18,6 +18,7 @@ import {
 } from "../../utils/collection-data";
 import TokenInfo from "./TokenInfo";
 import EcosystemFeatures from "./EcosystemFeatures";
+import { FAQ } from "./FAQ";
 
 // import TeamCardHolder from "../Team/TeamCardHolder";
 // import RoadMap from "../Roadmap/Roadmap";
@@ -74,15 +75,16 @@ export default function Home({ title }) {
       </div>
 
       <div>
-        <CollectionCards />
-        <TokenInfo />
-        <EcosystemFeatures />
-        <ResourceItems />
-        {/* <WelcomeToTheZungle />
+        {/* <CollectionCards /> */}
+        {/* <TokenInfo /> */}
+        {/* <EcosystemFeatures /> */}
+        {/* <ResourceItems /> */}
+        <WelcomeToTheZungle />
         <WhatAreMonkeez />
         <MonkeezTribes />
         <WhatAreZoogz />
-        <ZoogTypes /> */}
+        <ZoogTypes />
+        <FAQ />
         {/* <RoadMap /> */}
         {/* <TeamCardHolder /> */}
         {/* <FAQContainer /> */}

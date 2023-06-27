@@ -3,7 +3,7 @@ export default function WhatAreZoogz() {
     <>
       <div
         id="Zoogz"
-        class="flex flex-col md:flex-row h-auto min-h-[100vh] items-center mt-[10vh] "
+        class="flex flex-col md:flex-row h-auto min-h-[100vh] items-center mt-[10vh] container m-auto "
       >
         <div class="flex md:hidden float-left items-start ">
           <img
@@ -12,7 +12,7 @@ export default function WhatAreZoogz() {
           />
         </div>
         <div class="md:w-[50%] float-right md:float-left">
-          <div class="bg-mnkz-xeba mx-[10px] md:ml-[30px] md:mr-[0px] rounded-[7px] border-solid border-black border-4 p-[10px]">
+          <div class="bg-mnkz-xeba mx-[10px] md:ml-[30px] md:mr-[0px] rounded-[7px] border-solid border-black border-4 p-[10px] box-shadow-custom">
             <span class="text-[3em] pb-[0.3rem] pr-[0.3rem] text-white text-shadow-custom font-bold">
               What are Zoogz?
             </span>

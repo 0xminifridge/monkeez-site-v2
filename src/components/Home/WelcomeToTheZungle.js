@@ -1,7 +1,7 @@
 export default function WelcomeToTheZungle() {
   return (
     <>
-      <div class="h-auto min-h-[100vh] mt-[10vh] flex flex-col md:flex-row items-center">
+      <div class="h-auto min-h-[100vh] mt-[10vh] flex flex-col md:flex-row items-center container m-auto">
         <div class="float-left flex md:hidden justify-center md:w-[50%]">
           <img
             src={`${process.env.PUBLIC_URL}/images/home/zungle-map.png`}
@@ -9,7 +9,7 @@ export default function WelcomeToTheZungle() {
           />
         </div>
         <div class="md:w-[50%] float-right">
-          <div class="bg-mnkz-api mx-[10px] md:mr-[0px] md:ml-[30px] rounded-[7px] border-solid border-black border-4 p-[10px]">
+          <div class="bg-mnkz-api mx-[10px] md:mr-[0px] md:ml-[30px] rounded-[7px] border-solid border-black border-4 p-[10px] box-shadow-custom">
             <span class="text-[3em] pb-[0.3rem] pr-[0.3rem] text-white text-shadow-custom font-bold">
               Welcome to the Zungle!
             </span>

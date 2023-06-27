@@ -11,6 +11,9 @@ import { setZungleActiveTab } from "../../reducers/zungleReducer";
 import Cratez from "./cratez/Cratez";
 import { useAccount, useNetwork } from "wagmi";
 import { Tooltip } from "flowbite-react";
+import { BackpackIcon, CrateIcon } from "../icons/NavIcons";
+import CartIcon from "../icons/CartIcon";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function ZungleNav({ title }) {
   const dispatch = useDispatch();
@@ -25,31 +28,61 @@ export default function ZungleNav({ title }) {
       name: "Monkeez",
       color: "bg-mnkz-api",
       classes: "text-lg lg:text-2xl xl:text-3xl",
+      component: (
+        <img
+          src={`${process.env.PUBLIC_URL}/images/nav/nav-monkeez.png`}
+          alt="Monkeez"
+          class="w-6 sm:w-8 object-cover py-2 block"
+        />
+      ),
     },
     {
       name: "Zoogz",
       color: "bg-mnkz-wobo",
       classes: "text-lg lg:text-2xl xl:text-3xl",
+      component: (
+        <img
+          src={`${process.env.PUBLIC_URL}/images/nav/nav-zoogz.png`}
+          alt="Zoogz"
+          class="w-6 sm:w-8 object-cover py-2 block"
+        />
+      ),
     },
     {
       name: "Shop",
       color: "bg-mnkz-xeba",
       classes: "text-lg lg:text-2xl xl:text-3xl",
+      component: <FaShoppingCart class="text-2xl w-10 text-black" />,
     },
     {
       name: "Battlez",
       color: "bg-mnkz-pelu",
       classes: "text-lg lg:text-2xl xl:text-3xl",
+      component: (
+        <img
+          src={`${process.env.PUBLIC_URL}/images/nav/nav-battlez.png`}
+          alt="Battlez"
+          class="w-6 sm:w-8 object-cover py-2 block"
+        />
+      ),
     },
     {
       name: "Cratez",
       color: "bg-mnkz-blue",
       classes: "text-lg lg:text-2xl xl:text-3xl",
+      component: <CrateIcon class="text-2xl w-10 text-black" />,
     },
     {
       name: "Leaderboard",
       color: "bg-mnkz-api",
       classes: "text-sm lg:text-xl",
+      component: (
+        <img
+          src={`${process.env.PUBLIC_URL}/images/nav/nav-leaderboard.png`}
+          alt="Leaderboard"
+          class="w-6 sm:w-8 object-cover py-2 block"
+        />
+      ),
     },
   ];
 
@@ -127,13 +160,14 @@ export default function ZungleNav({ title }) {
                     >
                       {item.name}
                     </span>
-                    <img
+                    <div class="block lg:hidden">{item?.component}</div>
+                    {/* <img
                       src={`${
                         process.env.PUBLIC_URL
                       }/images/nav/nav-${item?.name?.toLowerCase()}.png`}
                       alt={`${item?.name?.toLowerCase()}`}
-                      class="w-8 object-cover block lg:hidden"
-                    />
+                      class="w-8 object-cover "
+                    /> */}
                   </div>
                 </div>
               </Tooltip>
@@ -156,13 +190,7 @@ export default function ZungleNav({ title }) {
                   }`}
                   onClick={() => clickTab(item?.name)}
                 >
-                  <img
-                    src={`${
-                      process.env.PUBLIC_URL
-                    }/images/nav/nav-${item?.name?.toLowerCase()}.png`}
-                    alt={`${item?.name?.toLowerCase()}`}
-                    class="w-6 sm:w-8 object-cover py-2 block"
-                  />
+                  <div>{item?.component}</div>
                 </div>
               </Tooltip>
             );
