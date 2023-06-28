@@ -31,7 +31,7 @@ export function useMnkzBalance(address) {
     isLoading,
   } = useBalance({
     address,
-    watch: true,
+    watch: false,
     token: getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
     chainId: getTargetNetwork().id,
   });
@@ -40,7 +40,8 @@ export function useMnkzBalance(address) {
     "err:",
     isError,
     getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
-    getTargetNetwork().id
+    getTargetNetwork().id,
+    fetchedBalanceData
   );
 
   useEffect(() => {
