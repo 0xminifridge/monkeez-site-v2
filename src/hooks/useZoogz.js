@@ -225,40 +225,34 @@ export function useZoogBattleHistory(id) {
 
 export function useZoogzLeaderboard() {
   const [isLoading, setIsLoading] = useState(false);
+  const [endReached, setEndReached] = useState(false);
 
   const dispatch = useDispatch();
 
   const items = useSelector((state) => state.zoogzLeaderboard.items);
   const direction = useSelector((state) => state.zoogzLeaderboard.direction);
-  const attribute = useSelector((state) => state.zoogzLeaderboard.filterStat);
+  const filterStat = useSelector((state) => state.zoogzLeaderboard.filterStat);
   const lastId = useSelector((state) => state.zoogzLeaderboard.lastVisibleId);
   const hasFetched = useSelector((state) => state.zoogzLeaderboard.hasFetched);
 
-  const clearAndStartOver = async () => {
-    setIsLoading(true);
-    dispatch(setItems([]));
-    dispatch(clearLastId());
-    await fetchData(null);
-  };
-
-  const fetchData = async (lastId) => {
-    console.log("last", lastId);
+  const fetchAndSet = async (lastId) => {
     try {
+      setEndReached(false);
       setIsLoading(true);
       if (direction === "up") {
-        const { list } = await queryZoogLeaderboardAscending(attribute, lastId);
-        dispatch(addItems(list));
-        dispatch(setLastId(list[list?.length - 1]?.id));
-        dispatch(setHasFetched(true));
-      } else {
-        const { list } = await queryZoogLeaderboardDescending(
-          attribute,
+        const { list } = await queryZoogLeaderboardAscending(
+          filterStat,
           lastId
         );
-        dispatch(addItems(list));
-
+        dispatch(setItems(list));
         dispatch(setLastId(list[list?.length - 1]?.id));
-        dispatch(setHasFetched(true));
+      } else {
+        const { list } = await queryZoogLeaderboardDescending(
+          filterStat,
+          lastId
+        );
+        dispatch(setItems(list));
+        dispatch(setLastId(list[list?.length - 1]?.id));
       }
     } catch (err) {
       console.error(err);
@@ -267,21 +261,40 @@ export function useZoogzLeaderboard() {
     }
   };
 
-  // useEffect(() => {
-  //   if (direction && attribute && !isLoading) {
-  //     console.log("clearing and starting over", direction, attribute, items);
-  //     clearAndStartOver();
-  //   }
-  // }, [direction, attribute]);
+  const fetchAndAdd = async (lastId) => {
+    try {
+      setIsLoading(true);
+      if (direction === "up") {
+        const { list } = await queryZoogLeaderboardAscending(
+          filterStat,
+          lastId
+        );
+        dispatch(addItems(list));
+        if (list && list?.length !== 0) {
+          dispatch(setLastId(list[list?.length - 1]?.id));
+        } else {
+          setEndReached(true);
+        }
+      } else {
+        const { list } = await queryZoogLeaderboardDescending(
+          filterStat,
+          lastId
+        );
+        dispatch(addItems(list));
+        if (list && list?.length !== 0) {
+          dispatch(setLastId(list[list?.length - 1]?.id));
+        } else {
+          setEndReached(true);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (!hasFetched && !isLoading) {
-  //     console.log("fetching", hasFetched, items);
-  //     fetchData();
-  //   }
-  // }, []);
-
-  return { data: items, isLoading, lastId: lastId, fetchData };
+  return { isLoading, endReached, lastId, fetchAndAdd, fetchAndSet };
 }
 
 export function useUpgradeZoog() {

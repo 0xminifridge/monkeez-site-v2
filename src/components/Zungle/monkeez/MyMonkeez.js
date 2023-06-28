@@ -27,7 +27,6 @@ export default function MyMonkeez() {
       ?.map(function (item) {
         return item.id;
       });
-    console.log(monkeezIds);
     if (monkeezIds.length > 0) {
       await stakeMonkeez(monkeezIds);
     }
@@ -39,7 +38,6 @@ export default function MyMonkeez() {
       ?.map(function (item) {
         return item.id;
       });
-    console.log(monkeezIds);
     if (monkeezIds.length > 0) {
       await unstakeMonkeez(monkeezIds);
     }

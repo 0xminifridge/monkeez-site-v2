@@ -36,13 +36,13 @@ export function useMnkzBalance(address) {
     chainId: getTargetNetwork().id,
   });
 
-  console.log(
-    "err:",
-    isError,
-    getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
-    getTargetNetwork().id,
-    fetchedBalanceData
-  );
+  // console.log(
+  //   "err:",
+  //   isError,
+  //   getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
+  //   getTargetNetwork().id,
+  //   fetchedBalanceData
+  // );
 
   useEffect(() => {
     if (fetchedBalanceData?.formatted) {

@@ -14,7 +14,7 @@ export default function ZoogzLeaderboardItem({ item }) {
 
   return (
     <Link class="text-black" target="_blank" to={`/zoogz/${item.id}`}>
-      <div class="my-2 md:my-4 border-black border-solid border-2 rounded-xl bg-gray-200 hover:cursor-pointer hover:bg-gray-300 flex justify-between items-center">
+      <div class="my-2 md:my-4 border-black border-solid border-2 sm:border-4 rounded-xl bg-gray-200 hover:cursor-pointer hover:bg-gray-300 flex justify-between items-center">
         <div class="flex flex-row justify-between items-center p-1 md:p-4 m-auto w-full px-2">
           <div class="relative flex items-center">
             <span class="top-2 left-2 absolute hidden lg:block rounded-lg bg-gray-300/50 px-2 py-1">

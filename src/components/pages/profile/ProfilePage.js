@@ -49,7 +49,7 @@ export default function ProfilePage() {
             {/* left column */}
             <div class="flex flex-col justify-center self-start md:justify-right md:sticky top-4 md:pr-[4rem] flex-shrink">
               <div class="rounded-lg relative overflow-hidden self-end">
-                {profileImage !== undefined ? (
+                {profileImage ? (
                   <img
                     src={profileImage}
                     alt={`${profile}`}

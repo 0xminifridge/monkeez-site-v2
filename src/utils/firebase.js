@@ -90,7 +90,7 @@ export async function getMonkeeForId(id) {
   let obj;
 
   if (docSnap.exists()) {
-    log("Document data:", docSnap.data());
+    log(("Document data:", docSnap.data()));
     obj = docSnap.data();
     obj.name = `Monkeez #${obj.id}`;
   } else {
@@ -108,7 +108,7 @@ export async function getZoogForId(id) {
   let zoogObj;
 
   if (docSnap.exists()) {
-    log("Document data:", docSnap.data());
+    log(("Document data:", docSnap.data()));
     zoogObj = docSnap.data();
     zoogObj.name = `Zoog #${zoogObj.id}`;
   } else {
@@ -126,7 +126,7 @@ export async function getDocumentForAddress(account) {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      log("Document data:", docSnap.data());
+      log(("Document data:", docSnap.data()));
       accountDoc = docSnap.data();
     }
   } catch (err) {
@@ -251,7 +251,7 @@ export async function queryZoogLeaderboardDescending(field, lastVisibleId) {
     zoogzList.push(zoogData);
   });
 
-  return { list: zoogzList, lastVisibleId: zoogzList[zoogzList.length - 1].id };
+  return { list: zoogzList };
 }
 
 export async function getMaxZungleScore() {
@@ -286,4 +286,38 @@ export async function getRankForZungleScore(score) {
     console.error(err);
   }
   return rank;
+}
+
+export async function queryZScore(lastVisibleId) {
+  let zscoreList = [];
+  const collectionRef = collection(db, "accounts");
+
+  let q;
+
+  if (lastVisibleId !== null && lastVisibleId !== undefined) {
+    const docRef = await getDoc(doc(collectionRef, `${lastVisibleId}`));
+    q = query(
+      collectionRef,
+      orderBy("zScore", "desc"),
+      limit(querySize),
+      startAfter(docRef)
+    );
+  } else {
+    q = query(collectionRef, orderBy("zScore", "desc"), limit(querySize));
+  }
+
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    let data = doc.data();
+
+    data["account"] = doc.id;
+
+    delete data.timestamp;
+    delete data.updated;
+
+    zscoreList.push(data);
+  });
+
+  return { data: zscoreList };
 }

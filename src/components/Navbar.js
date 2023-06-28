@@ -57,8 +57,7 @@ export function SiteNavbar() {
 
   const connectedAccount = useAccount();
   const { balance: mnkzBalance } = useMnkzBalance(connectedAccount?.address);
-  console.log("Connected account:", connectedAccount?.address);
-  console.log("Balance:", mnkzBalance);
+  const [open, setOpen] = useState(false);
 
   const { monkeez, isLoading: monkeezLoading } = useMonkeezForAddress(
     connectedAccount?.address
@@ -82,9 +81,10 @@ export function SiteNavbar() {
   );
 
   const toggleCollapse = () => {
-    const navBarTarget = document.getElementById("navbar-sticky");
-    navBarTarget.classList.toggle("hidden");
-    navBarTarget.classList.toggle("nav-transition");
+    setOpen(!open);
+    // const navBarTarget = document.getElementById("navbar-sticky");
+    // navBarTarget.classList.toggle("hidden");
+    // navBarTarget.classList.toggle("nav-transition");
   };
 
   const currentAddress = useSelector((state) => state.account.address);
@@ -96,7 +96,7 @@ export function SiteNavbar() {
       <nav class="bg-mnkz-blue sticky w-full z-[11] top-0 left-0 border-b-4 border-black px-4 md:px-0">
         <div class="container m-auto">
           <div class="flex flex-wrap items-center justify-between mx-auto">
-            <div class="flex flex-row">
+            <div class="flex flex-row relative">
               <Link to="home">
                 <img
                   src={`${process.env.PUBLIC_URL}/images/logos/monkeez-logo.png`}
@@ -110,6 +110,13 @@ export function SiteNavbar() {
                 claimableBalance={tokensClaimable}
                 disabled={isLoading}
                 monkeezIds={monkeezIds}
+              />
+              <img
+                src={`${process.env.PUBLIC_URL}/images/monkeez/octopus.png`}
+                alt="Monkeez"
+                class={`absolute ${
+                  open ? "-bottom-[325px] md:-bottom-[225px]" : "-bottom-[18px]"
+                } lg:-bottom-[18px] -right-16 w-16 aspect-square block`}
               />
             </div>
 
@@ -131,7 +138,9 @@ export function SiteNavbar() {
               </button>
             </div>
             <div
-              class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+              class={`${
+                open ? "" : "hidden"
+              } items-center justify-between w-full lg:flex lg:w-auto lg:order-1`}
               id="navbar-sticky"
             >
               {/* <ul class="flex flex-col p-4 mt-4 rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium list-none"> */}

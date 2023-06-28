@@ -5,11 +5,13 @@ import {
   getDocumentForAddress,
   getMaxZungleScore,
   getRankForZungleScore,
+  queryZScore,
 } from "../utils/firebase";
 import { getTargetNetwork } from "../utils/networks";
 import { MONKEEZ_IMAGE_URL, ZOOGZ_IMAGE_URL } from "../utils/metadata";
 import { lookupDotAvax, lookupDotFire } from "../utils/wallet";
 import { setProfilePfp } from "../reducers/zungleReducer";
+import { addItems, setItems, setLastId } from "../reducers/zscoreLeaderboard";
 
 export function useConnectedAccount() {
   return useSelector((state) => state.account);
@@ -42,7 +44,7 @@ export function useProfileImage(address) {
 
   const fetchData = async () => {
     if (profilePfps[address]) {
-      // setImageUrl(profilePfps[address]);
+      setImageUrl(profilePfps[address]);
     } else {
       let accountDoc = await getDocumentForAddress(address);
       if (accountDoc && accountDoc.profileImage) {
@@ -63,6 +65,8 @@ export function useProfileImage(address) {
           pfpUrl = `${ZOOGZ_IMAGE_URL}/${tokenId}.png`;
         }
 
+        setImageUrl(pfpUrl);
+
         if (pfpUrl) {
           setImageUrl(pfpUrl);
           dispatch(
@@ -82,7 +86,7 @@ export function useProfileImage(address) {
     }
   }, [address]);
 
-  return { profileImage: profilePfps[address] };
+  return { profileImage: imageUrl };
 }
 
 export function useDomain(address) {
@@ -206,4 +210,45 @@ export function useZungleScoreRank(score) {
   }, [score]);
 
   return { data, isLoading };
+}
+
+export function useZscoreLeaderboard() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const data = useSelector((state) => state.zscoreLeaderboard.items);
+  const lastId = useSelector((state) => state.zscoreLeaderboard.lastVisibleId);
+
+  const dispatch = useDispatch();
+
+  const fetchAndSet = async (lastId) => {
+    try {
+      setIsLoading(true);
+      const { data: scoreData } = await queryZScore(lastId);
+      if (scoreData) {
+        dispatch(setItems(scoreData));
+        dispatch(setLastId(scoreData[scoreData?.length - 1]?.account));
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchAndAdd = async (lastId) => {
+    try {
+      setIsLoading(true);
+      const { data: scoreData } = await queryZScore(lastId);
+      if (scoreData) {
+        dispatch(addItems(scoreData));
+        dispatch(setLastId(scoreData[scoreData?.length - 1]?.account));
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { isLoading, fetchAndSet, fetchAndAdd };
 }

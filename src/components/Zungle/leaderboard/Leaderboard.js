@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ZoogzLeaderboard from "./zoogz/ZoogzLeaderboard";
 import { useZoogzLeaderboard } from "../../../hooks/useZoogz";
+import ZScoreLeaderboard from "./zoogz/ZScoreLeaderboard";
 
 export default function Leaderboard() {
   const [activeTab, setActiveTab] = useState("Zoogz");
@@ -34,6 +35,7 @@ export default function Leaderboard() {
           })}
         </div>
         {activeTab === "Zoogz" && <ZoogzLeaderboard />}
+        {activeTab === "ZScore" && <ZScoreLeaderboard />}
       </div>
     </>
   );
