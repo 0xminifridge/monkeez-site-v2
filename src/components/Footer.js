@@ -26,7 +26,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer class="bg-mnkz-blue border-black border-0 md:border-t-4">
+    <footer class="bg-mnkz-blue border-black border-0 sm:border-t-4">
       <div class="mx-auto max-w-screen-lg p-4 py-6 lg:py-8 ">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0 mx-2">

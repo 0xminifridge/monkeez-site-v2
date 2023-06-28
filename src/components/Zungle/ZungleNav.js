@@ -14,6 +14,7 @@ import { Tooltip } from "flowbite-react";
 import { BackpackIcon, CrateIcon } from "../icons/NavIcons";
 import CartIcon from "../icons/CartIcon";
 import { FaShoppingCart } from "react-icons/fa";
+import { MdLeaderboard } from "react-icons/md";
 
 export default function ZungleNav({ title }) {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ export default function ZungleNav({ title }) {
         <img
           src={`${process.env.PUBLIC_URL}/images/nav/nav-battlez.png`}
           alt="Battlez"
-          class="w-6 sm:w-8 object-cover py-2 block"
+          class="w-10 object-cover py-2 block"
         />
       ),
     },
@@ -77,11 +78,12 @@ export default function ZungleNav({ title }) {
       color: "bg-mnkz-api",
       classes: "text-sm lg:text-xl",
       component: (
-        <img
-          src={`${process.env.PUBLIC_URL}/images/nav/nav-leaderboard.png`}
-          alt="Leaderboard"
-          class="w-6 sm:w-8 object-cover py-2 block"
-        />
+        <MdLeaderboard class="text-2xl w-10 text-black" />
+        // <img
+        //   src={`${process.env.PUBLIC_URL}/images/nav/nav-leaderboard.png`}
+        //   alt="Leaderboard"
+        //   class="w-6 sm:w-8 object-cover py-2 block"
+        // />
       ),
     },
   ];

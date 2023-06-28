@@ -13,9 +13,9 @@ export const ZungleConfig = {
   // It's recommended to store it in an env variable:
   // .env.local for local testing, and in the Vercel/system env config for live apps.
   // TODO: investigate and/or fix this
-  alchemyApiKey:
-    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY ||
-    "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF",
+  // alchemyApiKey:
+  //   process.env.NEXT_PUBLIC_ALCHEMY_API_KEY ||
+  //   "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF",
 
   /**
    * Auto connect:

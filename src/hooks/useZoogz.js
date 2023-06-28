@@ -242,6 +242,7 @@ export function useZoogzLeaderboard() {
   };
 
   const fetchData = async (lastId) => {
+    console.log("last", lastId);
     try {
       setIsLoading(true);
       if (direction === "up") {
@@ -266,17 +267,19 @@ export function useZoogzLeaderboard() {
     }
   };
 
-  useEffect(() => {
-    if (direction && attribute) {
-      clearAndStartOver();
-    }
-  }, [direction, attribute]);
+  // useEffect(() => {
+  //   if (direction && attribute && !isLoading) {
+  //     console.log("clearing and starting over", direction, attribute, items);
+  //     clearAndStartOver();
+  //   }
+  // }, [direction, attribute]);
 
-  useEffect(() => {
-    if (!hasFetched) {
-      fetchData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!hasFetched && !isLoading) {
+  //     console.log("fetching", hasFetched, items);
+  //     fetchData();
+  //   }
+  // }, []);
 
   return { data: items, isLoading, lastId: lastId, fetchData };
 }

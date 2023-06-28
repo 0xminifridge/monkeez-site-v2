@@ -13,6 +13,8 @@ import {
   setDirection,
   setFilterStat,
   setSnapshot,
+  setItems,
+  clearLastId,
 } from "../../../../reducers/zoogzLeaderboardReducer";
 
 export default function ZoogzLeaderboard({}) {
@@ -26,6 +28,7 @@ export default function ZoogzLeaderboard({}) {
   ];
 
   const { data, isLoading, fetchData } = useZoogzLeaderboard();
+  console.log("data", data);
 
   const direction = useSelector((state) => state.zoogzLeaderboard.direction);
   const filterStat = useSelector((state) => state.zoogzLeaderboard.filterStat);
@@ -50,6 +53,22 @@ export default function ZoogzLeaderboard({}) {
       fetchData(lastId);
     }
   };
+
+  useEffect(() => {
+    if (data?.length === 0) {
+      console.log("first time fetch");
+      fetchData();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (direction && filterStat) {
+      console.log("direction time fetch");
+      dispatch(setItems([]));
+      dispatch(clearLastId());
+      fetchData();
+    }
+  }, [direction, filterStat]);
 
   return (
     <>

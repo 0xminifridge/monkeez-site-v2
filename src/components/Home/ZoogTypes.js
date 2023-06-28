@@ -25,7 +25,7 @@ export default function ZoogTypes() {
 
   return (
     <>
-      <div class="flex flex-col justify-center container m-auto">
+      <div class="flex flex-col justify-center container m-auto ">
         <span
           id="Types"
           class="text-6xl md:text-[100px] text-white text-shadow-custom m-auto font-bold"
