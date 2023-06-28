@@ -48,7 +48,7 @@ export function useMnkzBalance(address) {
     if (fetchedBalanceData?.formatted) {
       setBalance(Number(fetchedBalanceData.formatted).toFixed(2));
     }
-  }, [fetchedBalanceData, address]);
+  }, [fetchedBalanceData]);
 
   return { balance, isError, isLoading };
 }
