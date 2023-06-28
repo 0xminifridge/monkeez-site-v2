@@ -56,7 +56,7 @@ export function SiteNavbar() {
   ];
 
   const connectedAccount = useAccount();
-  const { balance: mnkzBalance } = useAvaxBalance(connectedAccount?.address);
+  const { balance: mnkzBalance } = useMnkzBalance(connectedAccount?.address);
   const [open, setOpen] = useState(false);
 
   const { monkeez, isLoading: monkeezLoading } = useMonkeezForAddress(
