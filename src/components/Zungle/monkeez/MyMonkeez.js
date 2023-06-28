@@ -58,7 +58,11 @@ export default function MyMonkeez() {
             class="hover:cursor-pointer hover:text-mnkz-tan"
             onClick={() => setButtonsOpen(!buttonsOpen)}
           >
-            <ChevronDownIcon direction={buttonsOpen ? "up" : "down"} />
+            <ChevronDownIcon
+              direction={buttonsOpen ? "up" : "down"}
+              height={"50"}
+              width={"50"}
+            />
           </div>
         </div>
 

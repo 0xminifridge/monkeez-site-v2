@@ -43,7 +43,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <div class="w-screen h-[80vh] md:h-[88vh] bg-mnkz-blue flex justify-center items-center py-4">
+      <div class="w-screen h-[80vh] md:h-[88vh] flex justify-center items-center py-4">
         <div class="bg-white w-full h-full mx-4 md:mx-10 md:my-20 border-black border-4 rounded-lg border-solid overflow-y-auto">
           <div class="py-5 px-4 grid grid-cols-1 md:grid-cols-2">
             {/* left column */}
