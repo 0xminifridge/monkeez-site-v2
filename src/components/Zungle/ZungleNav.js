@@ -178,13 +178,13 @@ export default function ZungleNav({ title }) {
           })}
         </div>
         {/* Mobile Nav */}
-        <div class="box-shadow-custom bg-white overflow-x-auto overflow-y-clip w-[90vw] h-[10vh] mt-4 border-4 border-black border-solid rounded-2xl flex items-center justify-start flex-row sm:hidden mb-4">
+        <div class="box-shadow-custom bg-white overflow-x-auto overflow-y-clip w-[90vw] h-full min-h-[75px] mt-4 border-4 border-black border-solid rounded-2xl flex items-center justify-start flex-row sm:hidden mb-4">
           {NavItems.map((item, index) => {
             return (
               <Tooltip content={item?.name} placement="bottom">
                 <div
                   key={index}
-                  class={`sm:box-shadow-custom duration-150 h-[6vh] w-[15vw] mx-1 border-4 border-black border-solid rounded-2xl text-center flex items-center flex-row justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white p-1 ${
+                  class={`sm:box-shadow-custom duration-150 h-[50px] w-[15vw] mx-1 border-4 border-black border-solid rounded-2xl text-center flex items-center flex-row justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white p-1 ${
                     item?.color
                   } ${
                     item?.name?.toLowerCase() === activeTab?.toLowerCase()

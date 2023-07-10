@@ -44,7 +44,7 @@ export default function MonkeezCard({ item }) {
       class={`${
         "bg-mnkz-tan"
         // TYPE_MAPPINGS[item?.tribe.toLowerCase()]
-      } bg-gray-900 border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full h-full max-h-[450px] shadow-2xl`}
+      } bg-gray-900 border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full shadow-2xl`}
       onClick={() => navigate(`/monkeez/${item.id}`)}
       onMouseOver={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}

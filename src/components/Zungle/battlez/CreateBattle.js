@@ -121,7 +121,9 @@ export function SelectZoog({
   }
   return (
     <div class="flex flex-col">
-      <h2 className="text-2xl font-bold mb-4 m-auto">Select Zoog for Battle</h2>
+      <h2 className="text-lg md:text-2xl font-bold mb-4 m-auto">
+        Select Zoog for Battle
+      </h2>
       <div
         class={`grid grid-rows-1 grid-flow-col auto-cols-max gap-4 overflow-x-auto p-4 bg-gray-300 rounded-xl`}
       >
@@ -204,7 +206,7 @@ export function SelectWager({
       // approve mnkz
       setApproveMnkz(true);
     }
-    if (formData["isVRF"] && linkToPlay > parseFloat(linkAllowance)) {
+    if (!formData["isVRF"] && linkToPlay > parseFloat(linkAllowance)) {
       setApproveLink(true);
     }
   }, [formData]);
@@ -276,7 +278,9 @@ export function SelectWager({
   return (
     <>
       <div class="flex flex-col justify-center items-center p-4 bg-gray-200 rounded-xl">
-        <h2 className="text-2xl font-bold mb-4 m-auto">Select Token Wager</h2>
+        <h2 className="text-lg md:text-2xl font-bold mb-4 m-auto">
+          Select Token Wager
+        </h2>
         <div class="flex flex-row items-center">
           <img
             src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}

@@ -48,7 +48,7 @@ export default function ShopItemCard({ item }) {
 
   return (
     <div
-      class={`bg-black border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full h-full max-h-[470px]`}
+      class={`bg-black border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full `}
       //   onClick={() => navigate(`/monkeez/${item.id}`)}
       onMouseOver={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
@@ -78,12 +78,12 @@ export default function ShopItemCard({ item }) {
             {item.name}
           </span>
         </div>
-        <div class="flex flex-col justify-center items-cente ">
+        <div class="flex flex-col justify-center items-center ">
           <div class="flex justify-center items-center w-full">
             <select
-              id="countries"
+              id="quantity"
               // value="Select Quantity"
-              class="border-white hover:border-mnkz-tan hover:text-mnkz-tan hover:cursor-pointer border-2 border-solid bg-transparent rounded-xl text-lg w-full p-2.5 focus:ring-mnkz-tan focus:border-mnkz-tan"
+              class="border-white hover:border-mnkz-tan hover:text-mnkz-tan hover:cursor-pointer border-2 border-solid bg-transparent rounded-xl text-sm md:text-lg w-full p-2.5 focus:ring-mnkz-tan focus:border-mnkz-tan"
               onChange={(e) => handleSelectChange(e.target.value)}
             >
               <option disabled hidden selected>
@@ -113,16 +113,16 @@ export default function ShopItemCard({ item }) {
             </button> */}
           </div>
 
-          <div class="flex flex-row justify-center items-center w-full h-full">
+          <div class="flex flex-col md:flex-row justify-center items-center w-full h-full">
             <button
-              class="w-full  mr-1 hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default "
+              class="w-full mt-1 md:mr-1 hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-sm md:text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default "
               onClick={() => buyNow()}
               disabled={isMining}
             >
               Buy {amount}
             </button>
             <button
-              class="w-full my-1 ml-1 hover:border-mnkz-tan border-white border-2 px-4 py-2 rounded-xl text-lg hover:text-mnkz-tan hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"
+              class="w-full my-1 md:ml-1 hover:border-mnkz-tan border-white border-2 px-4 py-2 rounded-xl text-sm md:text-lg hover:text-mnkz-tan hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default disabled:hover:text-gray-400"
               onClick={() => addItem(item, amount)}
             >
               <div class="flex flex-row justify-center items-center">
