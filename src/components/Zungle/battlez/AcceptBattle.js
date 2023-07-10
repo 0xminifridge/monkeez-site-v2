@@ -304,14 +304,6 @@ export function BattlePrep({
         setApproveLink(false);
       }
 
-      console.log(
-        !approveMnkz,
-        !approveLink,
-        parseFloat(mnkzBalance) > selectedInstance?.tokenAmt,
-        selectedInstance?.isVRF,
-        parseFloat(linkBalance) > 0.02
-      );
-
       if (
         !approveMnkz &&
         !approveLink &&
@@ -341,7 +333,6 @@ export function BattlePrep({
             secondRoll,
             stat
           ) => {
-            console.log("draw case", Number(battleIndex));
             if (Number(battleIndex) === selectedInstance?.id) {
               const config = {
                 case: "draw",
@@ -388,7 +379,6 @@ export function BattlePrep({
             secondRoll,
             stat
           ) => {
-            console.log("win case", Number(battleIndex));
             if (Number(battleIndex) === selectedInstance?.id) {
               let resultCase;
               let challengerTokens;
@@ -455,7 +445,6 @@ export function BattlePrep({
 
   useEffect(() => {
     if (battleError) {
-      console.log("battle error:", battleError);
       handleClose();
     }
   }, [battleError]);

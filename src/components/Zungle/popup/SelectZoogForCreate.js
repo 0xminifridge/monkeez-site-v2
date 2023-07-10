@@ -10,13 +10,11 @@ export default function SelectZoogForCreate({
   data,
   setSelectedZoogId,
 }) {
-  console.log("data", data);
   const dispatch = useDispatch();
 
   const nextState = useSelector((state) => state.zunglePopup.nextState);
 
   const selectZoog = (id) => {
-    console.log("clicked");
     setSelectedZoogId(id);
     dispatch(setCurrentState(nextState));
   };
@@ -44,7 +42,6 @@ export default function SelectZoogForCreate({
         class={`grid grid-rows-1 grid-flow-col gap-4 overflow-x-auto p-4 bg-gray-300 rounded-xl`}
       >
         {data?.map((item, index) => {
-          console.log(item);
           return (
             <div key={index} class="flex" onClick={() => selectZoog(item?.id)}>
               <div class="overflow-hidden rounded-xl relative block border-4 border-solid border-black hover:border-mnkz-tan hover:cursor-pointer">

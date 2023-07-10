@@ -36,9 +36,6 @@ export default function BattleResults({
     }
   };
 
-  console.log("teset", parseUnits("1.0", "ether"));
-  console.log("teset", parseEther("1.0", "wei"));
-
   if (!resultConfig) {
     return null;
   }
@@ -150,7 +147,6 @@ export default function BattleResults({
 }
 
 function BattleDetails({ config, player, type, stat, textColor, resultCase }) {
-  console.log(config, resultCase);
   return (
     <div class="flex flex-col justify-center items-center">
       <span class="font-bold text-xl underline">{player}</span>

@@ -11,7 +11,6 @@ export function formatBattleMove(type, moveNumber, isPlayer) {
   const verbs = ["unleashed", "used", "performed", "tried", "fired"];
 
   const randVerb = Math.floor((randNum / 2) * verbs?.length);
-  console.log(randVerb);
 
   if (isPlayer) {
     return `You ${verbs[randVerb]} ${

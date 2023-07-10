@@ -87,6 +87,10 @@ export default function ZoogProgressBars({
     setSelectedItems([]);
   };
 
+  if (!xpData) {
+    return null;
+  }
+
   if (upgrading) {
     if (isLoading) {
       return (
@@ -120,17 +124,17 @@ export default function ZoogProgressBars({
     return (
       <>
         <div class="flex flex-col justify-center">
-          <div class="flex flex-row justify-between w-[100%] md:w-[80%] m-auto py-2 text-xs md:text-sm lg:text-lg">
+          <div class="flex flex-row justify-between w-[100%] md:w-[80%] m-auto p-1 my-2 text-xs md:text-sm lg:text-lg text-center">
             {/* <span>Selected: {selectedItems?.length}</span> */}
-            <span>
+            <span class="px-2 text-black bg-mnkz-tan box-shadow-custom rounded-lg border-2 border-solid border-black">
               Selected XP: {selectedItems.reduce((sum, obj) => sum + obj.xp, 0)}
             </span>
             {maxAllowed > 0 ? (
-              <span class="px-1 text-mnkz-wobo">
+              <span class="px-2 text-black bg-mnkz-wobo box-shadow-custom rounded-lg border-2 border-solid border-black mx-2">
                 Remaining: {maxAllowed - selectedItems?.length}
               </span>
             ) : (
-              <span class="text-mnkz-red">
+              <span class="px-2 text-black bg-mnkz-red box-shadow-custom rounded-lg border-2 border-solid border-black mx-2">
                 <CountdownTimer
                   epochTime={
                     xpData?.lastUpgradedTs * 1000 + 24 * 60 * 60 * 1000
@@ -142,7 +146,7 @@ export default function ZoogProgressBars({
               //   Next upgrade: {24 - claimableIn} hours
               // </span>
             )}
-            <span>
+            <span class="text-black bg-mnkz-tan box-shadow-custom rounded-lg border-2 border-solid border-black">
               XP to {data[upgrading?.toLowerCase()] + 1}:{" "}
               {parseInt(data[upgrading?.toLowerCase()]) === 99
                 ? 0

@@ -7,8 +7,6 @@ export default function BattleHistory() {
   const { data, lastId, isLoading, fetchAndSet, fetchAndAdd } =
     useBattleHistory();
 
-  console.log("data:", data);
-
   const handleScroll = (e) => {
     const bottom =
       parseInt(e.target.scrollHeight - e.target.scrollTop) ===

@@ -15,7 +15,6 @@ export default function ZScoreLeaderboard() {
       parseInt(e.target.scrollHeight - e.target.scrollTop) ===
       e.target.clientHeight;
     if (bottom && !isLoading) {
-      console.log("at bottom");
       fetchAndAdd(lastId);
     }
   };

@@ -67,7 +67,7 @@ export default function ZoogzPage() {
     return <Loading />;
   }
   if (!data) {
-    navigate("/home");
+    navigate("/404");
   } else {
     return (
       <>

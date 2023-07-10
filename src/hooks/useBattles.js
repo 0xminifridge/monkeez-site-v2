@@ -111,9 +111,6 @@ export function useCreateBattle() {
       setIsMining(true);
 
       const contract = await getZoogBattlerContract(signer);
-      console.log("zoogId", zoogId);
-      console.log("tokens", tokens);
-      console.log("isVRF", isVrf);
       let tx = await contract.createBattle(zoogId, tokens, isVrf);
 
       let hash = tx.hash;
@@ -199,16 +196,13 @@ export function useAcceptBattle() {
       let tx;
       const gasLimit = 400000;
       if (isVrf) {
-        console.log("processing vrf");
         tx = await contract.acceptBattleWithVRF(zoogId, battleInstanceId, {
           gasLimit: gasLimit,
         });
       } else {
-        console.log("processing");
         tx = await contract.acceptBattle(zoogId, battleInstanceId, {
           gasLimit: gasLimit,
         });
-        console.log("tx:", tx);
       }
 
       let hash = tx.hash;

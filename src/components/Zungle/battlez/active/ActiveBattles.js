@@ -45,7 +45,6 @@ export default function ActiveBattles({ clickActiveInstance, setCreateOpen }) {
       {data?.length > 0 ? (
         <>
           {data?.map((item, index) => {
-            console.log(item);
             return (
               <ActiveBattleItem
                 key={index}

@@ -73,7 +73,7 @@ export function useMonkeezForAddress(address) {
 }
 
 export function useMonkeeForId(id) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {

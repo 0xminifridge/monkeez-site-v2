@@ -57,7 +57,6 @@ export function SiteNavbar() {
 
   const connectedAccount = useAccount();
   const { balance: mnkzBalance } = useMnkzBalance(connectedAccount?.address);
-  console.log(connectedAccount?.address, mnkzBalance);
   const [open, setOpen] = useState(false);
 
   const { monkeez, isLoading: monkeezLoading } = useMonkeezForAddress(

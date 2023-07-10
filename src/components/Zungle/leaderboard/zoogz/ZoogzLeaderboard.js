@@ -103,7 +103,6 @@ export default function ZoogzLeaderboard({}) {
 
   const handleUserInput = async (e) => {
     let targetId = e.target.value;
-    console.log("targetId", targetId);
     setSearchedZoogId(targetId);
   };
 

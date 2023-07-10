@@ -102,7 +102,7 @@ export function useZoogz(address) {
 }
 
 export function useZoogForId(id) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async (id) => {

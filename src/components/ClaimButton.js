@@ -72,8 +72,6 @@ export default function ClaimButton({
       : "0";
   };
 
-  console.log("mnkz balance:", mnkzBalance);
-
   return (
     <>
       <div

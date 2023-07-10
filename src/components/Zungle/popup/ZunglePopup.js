@@ -30,12 +30,7 @@ export default function ZunglePopup({
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("current:", currentScreen);
-  }, [currentScreen]);
-
   const { data, isLoading, fetchData } = useZoogz(account);
-  console.log(data, account);
 
   const handleNextScreen = () => {
     dispatch(setCurrentState(nextState));
@@ -49,8 +44,6 @@ export default function ZunglePopup({
   const handleClose = () => {
     dispatch(setCurrentState(null));
   };
-
-  console.log("returning", currentScreen);
 
   return (
     <div

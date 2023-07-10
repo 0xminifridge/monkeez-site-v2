@@ -48,15 +48,6 @@ export function useMnkzBalance(address) {
     chainId: getTargetNetwork().id,
   });
 
-  console.log(
-    "err:",
-    isError,
-    error,
-    getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
-    getTargetNetwork().id,
-    fetchedBalanceData
-  );
-
   useEffect(() => {
     if (fetchedBalanceData?.formatted) {
       setBalance(Number(fetchedBalanceData.formatted).toFixed(2));
