@@ -116,7 +116,9 @@ export function SiteNavbar() {
                 src={`${process.env.PUBLIC_URL}/images/monkeez/octopus.png`}
                 alt="Monkeez"
                 class={`absolute ${
-                  open ? "-bottom-[325px] md:-bottom-[20px]" : "-bottom-[18px]"
+                  open
+                    ? "-bottom-[327px] md:-bottom-[227px] lg:-bottom-[18px]"
+                    : "-bottom-[18px]"
                 } lg:-bottom-[18px] -right-16 w-16 aspect-square block`}
               />
             </div>

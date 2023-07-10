@@ -129,7 +129,7 @@ export default function ZoogzLeaderboard({}) {
             <MagnifyingGlassIcon />
             <input
               type="text"
-              class="w-[75px] md:w-[120px] h-[20px] py-1 px-2 xl:px-6 xl:py-1 outline-0 border-0 border-black rounded-lg focus:ring-0 focus:border-0"
+              class="w-[75px] md:w-[120px] h-[50px] py-1 px-2 xl:px-6 xl:py-1 outline-0 border-0 border-black rounded-lg focus:ring-0 focus:border-0"
               placeholder="zoog id"
               // value={filterId}
               onChange={(event) => handleUserInput(event)}

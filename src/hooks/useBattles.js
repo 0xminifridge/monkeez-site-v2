@@ -214,7 +214,7 @@ export function useAcceptBattle() {
       let hash = tx.hash;
       dispatch(createProcessing(hash));
       await tx.wait();
-      dispatch(createSuccess("Battle submitted"));
+      dispatch(createSuccess("Battle completed"));
     } catch (err) {
       console.error(err);
       setIsError(true);
