@@ -39,6 +39,7 @@ export function useMnkzBalance(address) {
     data: fetchedBalanceData,
     isError,
     isLoading,
+    error,
   } = useBalance({
     address,
     watch: false,
@@ -50,6 +51,7 @@ export function useMnkzBalance(address) {
   console.log(
     "err:",
     isError,
+    error,
     getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
     getTargetNetwork().id,
     fetchedBalanceData
