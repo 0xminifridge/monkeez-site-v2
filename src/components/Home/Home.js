@@ -75,10 +75,10 @@ export default function Home({ title }) {
       </div>
 
       <div>
-        {/* <CollectionCards /> */}
-        {/* <TokenInfo /> */}
-        {/* <EcosystemFeatures /> */}
-        {/* <ResourceItems /> */}
+        {/* <CollectionCards />
+        <TokenInfo />
+        <EcosystemFeatures />
+        <ResourceItems /> */}
         <WelcomeToTheZungle />
         <WhatAreMonkeez />
         <MonkeezTribes />

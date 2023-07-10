@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { BrowserProvider } from "ethers";
+import { ethers } from "ethers";
 import {
   getDocumentForAddress,
   getMaxZungleScore,
@@ -21,7 +21,7 @@ export function useSigner() {
   const [signer, setSigner] = useState(null);
 
   const fetchSigner = async () => {
-    const provider = new BrowserProvider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const injectedSigner = await provider.getSigner();
     setSigner(injectedSigner);
   };

@@ -16,6 +16,12 @@ export const zoogzSlice = createSlice({
     setItems: (state, action) => {
       state.items = action.payload;
     },
+    updateItem: (state, action) => {
+      let updatedItem = action.payload;
+      state.items.map((item) =>
+        item?.id === updatedItem?.id ? updatedItem : item
+      );
+    },
     setHasFetched: (state, action) => {
       state.hasFetched = action.payload;
     },
@@ -26,7 +32,7 @@ export const zoogzSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { replaceAll, setItems, setHasFetched, setAddress } =
+export const { replaceAll, setItems, setHasFetched, setAddress, updateItem } =
   zoogzSlice.actions;
 
 export default zoogzSlice.reducer;

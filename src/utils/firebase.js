@@ -108,7 +108,7 @@ export async function getZoogForId(id) {
   let zoogObj;
 
   if (docSnap.exists()) {
-    log(("Document data:", docSnap.data()));
+    log("Document data:", docSnap.data());
     zoogObj = docSnap.data();
     zoogObj.name = `Zoog #${zoogObj.id}`;
   } else {
@@ -320,4 +320,97 @@ export async function queryZScore(lastVisibleId) {
   });
 
   return { data: zscoreList };
+}
+
+export async function getLatestActiveBattles(field, lastVisibleId) {
+  log("entering getLatestActiveBattles", field, lastVisibleId);
+
+  let objList = [];
+  const battleRef = collection(db, "zoog-battles");
+
+  let q;
+
+  if (lastVisibleId !== null && lastVisibleId !== undefined) {
+    const docRef = await getDoc(doc(battleRef, `${lastVisibleId}`));
+    q = query(
+      battleRef,
+      orderBy(field),
+      limit(querySize),
+      startAfter(docRef),
+      where("active", "==", true)
+    );
+  } else {
+    q = query(
+      battleRef,
+      orderBy(field),
+      limit(querySize),
+      where("active", "==", true)
+    );
+  }
+
+  const querySnapshot = await getDocs(q);
+
+  const docs = querySnapshot.docs.map((doc) => doc.data());
+  for (var doc of docs) {
+    // get each zoog for id
+    let zoogData = await getZoogForId(doc?.zoogId);
+
+    // TODO: remove on go live
+    // need to use zoog db
+
+    let zoogObj = {
+      type: zoogData?.type,
+      owner: zoogData?.owner,
+      aggression: doc?.aggression,
+      toughness: doc?.toughness,
+      smarts: doc?.smarts,
+      vitality: doc?.vitality,
+      name: `Zoog #${doc?.zoogId}`,
+      wins: zoogData?.wins || 0,
+      id: doc?.zoogId,
+    };
+
+    doc.zoog = zoogObj;
+
+    objList.push(doc);
+  }
+
+  log("obj list:", objList);
+
+  return { battles: objList, snapshot: querySnapshot };
+}
+
+export async function queryZoogBattleLog(lastVisibleId) {
+  let battleList = [];
+  const collectionRef = collection(db, "zoog-battles");
+
+  let q;
+
+  if (lastVisibleId !== null && lastVisibleId !== undefined) {
+    const docRef = await getDoc(doc(collectionRef, `${lastVisibleId}`));
+    q = query(
+      collectionRef,
+      orderBy("id", "desc"),
+      where("active", "==", false),
+      limit(querySize),
+      startAfter(docRef)
+    );
+  } else {
+    q = query(
+      collectionRef,
+      orderBy("id", "desc"),
+      where("active", "==", false),
+      limit(querySize)
+    );
+  }
+
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    let data = doc.data();
+
+    battleList.push(data);
+  });
+
+  return { data: battleList };
 }

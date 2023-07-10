@@ -104,12 +104,12 @@ export function BattleDrawHistoryItem({ item, opponentId }) {
             {" "}
             <img
               src={`${ZOOGZ_THUMBNAIL_URL_SMALL}/${opponentId}.png`}
-              class="w-10 rounded-full mr-2"
+              class="w-10 rounded-full mr-2 hover:opacity-80"
             />
           </a>
         </div>
-        <div class="flex flex-row justify-center items-center">
-          <span class="text-mnkz-tan">{item.tokenAmt}</span>
+        <div class="flex flex-row justify-center items-center bg-mnkz-tan mx-2 px-1 md:px-2 py-1 rounded-lg border-black border-2 border-solid box-shadow-custom text-xs sm:text-sm">
+          <span class="text-black">{item.tokenAmt}</span>
           <img
             src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}
             class="w-5"
@@ -139,12 +139,12 @@ export function BattleLossHistoryItem({ item, opponentId }) {
           <a href={`/zoogz/${opponentId}`}>
             <img
               src={`${ZOOGZ_THUMBNAIL_URL_SMALL}/${opponentId}.png`}
-              class="w-10 rounded-full mr-2"
+              class="w-10 rounded-full mr-2 hover:opacity-80"
             />
           </a>
         </div>
-        <div class="flex flex-row justify-center items-center">
-          <span class="text-mnkz-red">-{item.tokenAmt}</span>
+        <div class="flex flex-row justify-center items-center bg-mnkz-red mx-2 px-1 md:px-2 py-1 rounded-lg border-black border-2 border-solid box-shadow-custom text-xs sm:text-sm">
+          <span class="text-black">-{item.tokenAmt}</span>
           <img
             src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}
             class="w-5"
@@ -174,12 +174,12 @@ export function BattleWinHistoryItem({ item, opponentId }) {
           <a href={`/zoogz/${opponentId}`}>
             <img
               src={`${ZOOGZ_THUMBNAIL_URL_SMALL}/${opponentId}.png`}
-              class="w-10 rounded-full mr-2"
+              class="w-10 rounded-full mr-2 hover:opacity-80"
             />
           </a>
         </div>
-        <div class="flex flex-row justify-center items-center">
-          <span class="text-mnkz-wobo">+{item.tokenAmt * 0.98}</span>
+        <div class="flex flex-row justify-center items-center bg-mnkz-wobo mx-2 px-1 md:px-2 py-1 rounded-lg border-black border-2 border-solid box-shadow-custom text-xs sm:text-sm">
+          <span class="text-black">+{item.tokenAmt * 0.98}</span>
           <img
             src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}
             class="w-5"

@@ -19,6 +19,7 @@ import {
   setLastId,
 } from "../../../../reducers/zoogzLeaderboardReducer";
 import {
+  getZoogForId,
   queryZoogLeaderboardAscending,
   queryZoogLeaderboardDescending,
 } from "../../../../utils/firebase";
@@ -43,6 +44,8 @@ export default function ZoogzLeaderboard({}) {
   // const [endReached, setEndReached] = useState(false);
 
   const [firstRender, setFirstRender] = useState(false);
+  const [searchedZoogId, setSearchedZoogId] = useState(null);
+  const [singleRecord, setSingleRecord] = useState(null);
 
   const data = useSelector((state) => state.zoogzLeaderboard.items);
 
@@ -98,10 +101,30 @@ export default function ZoogzLeaderboard({}) {
     }
   }, []);
 
+  const handleUserInput = async (e) => {
+    let targetId = e.target.value;
+    console.log("targetId", targetId);
+    setSearchedZoogId(targetId);
+  };
+
+  useEffect(() => {
+    const fetchZoog = async () => {
+      if (searchedZoogId) {
+        const zoogItem = await getZoogForId(searchedZoogId);
+        if (zoogItem) {
+          setSingleRecord(zoogItem);
+        }
+      } else {
+        setSingleRecord(null);
+      }
+    };
+    fetchZoog();
+  }, [searchedZoogId]);
+
   return (
     <>
-      <div class="flex flex-col justify-between md:w-full md:m-auto border-0 border-b-2 md:border-b-4 border-black border-solid">
-        <div class="flex flex-row justify-between border-0 border-b-2 md:border-b-4 border-solid border-black">
+      <div class="flex flex-col justify-between md:w-full md:m-auto border-0 border-b-4 border-black border-solid">
+        <div class="flex flex-row justify-between border-0 border-b-4 border-solid border-black">
           <div class="flex flex-row items-center justify-center ">
             <MagnifyingGlassIcon />
             <input
@@ -109,7 +132,7 @@ export default function ZoogzLeaderboard({}) {
               class="w-[75px] md:w-[120px] h-[20px] py-1 px-2 xl:px-6 xl:py-1 outline-0 border-0 border-black rounded-lg focus:ring-0 focus:border-0"
               placeholder="zoog id"
               // value={filterId}
-              // onChange={(event) => handleUserInput(event)}
+              onChange={(event) => handleUserInput(event)}
             />
           </div>
           {stats.map((stat, index) => {
@@ -131,11 +154,15 @@ export default function ZoogzLeaderboard({}) {
           onScroll={(e) => handleScroll(e)}
           ref={containerRef}
         >
-          {data?.map((item, index) => {
-            if (item) {
-              return <ZoogzLeaderboardItem key={index} item={item} />;
-            }
-          })}
+          {singleRecord && <ZoogzLeaderboardItem item={singleRecord} />}
+          {!singleRecord &&
+            data?.map((item, index) => {
+              if (item) {
+                return (
+                  <ZoogzLeaderboardItem key={index} item={item} index={index} />
+                );
+              }
+            })}
           {isLoading && !endReached && (
             <div class="flex justify-center items-center">
               <LoadingSpinner />

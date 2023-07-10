@@ -1,12 +1,16 @@
 export default function AlertSpinner({ type }) {
   const ENUM_TYPE_COLORS = {
-    success: "text-mnkz-wobo",
-    processing: "text-mnkz-tan",
-    error: "text-mnkz-red",
+    success: "#77E0A7",
+    processing: "#eeca51",
+    error: "#d6303c",
   };
   return (
     <>
-      <div class="flex justify-center items-center h-full">
+      <div
+        class={`loader__spinner`}
+        style={{ borderLeft: `10px solid ${ENUM_TYPE_COLORS[type]}` }}
+      ></div>
+      {/* <div class="flex justify-center items-center h-full">
         <div class="flex flex-col items-center justify-center">
           <svg
             class={`m-auto bg-transparent block aspect-square w-[50px] md:w-[70px] ${ENUM_TYPE_COLORS[type]}`}
@@ -23,6 +27,7 @@ export default function AlertSpinner({ type }) {
               strokeWidth="20"
               r="50"
               strokeDasharray="164.93361431346415 56.97787143782138"
+              class="border-2 border-solid border-black"
             >
               <animateTransform
                 attributeName="transform"
@@ -35,7 +40,7 @@ export default function AlertSpinner({ type }) {
             </circle>
           </svg>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -117,7 +117,7 @@ export default function RainbowKitCustomConnectButton({
 
                   <div
                     id="dropdown-sticky"
-                    class="box-shadow-custom absolute hidden top-[75px] z-10 bg-mnkz-tan divide-y border-black border-2 border-solid divide-black rounded w-full max-w-[200px]"
+                    class="box-shadow-custom absolute hidden top-[75px] ml-1 z-10 bg-mnkz-tan divide-y border-black border-2 border-solid divide-black rounded w-full max-w-[200px]"
                     // style={{ transform: "translate3d(26.5px, 100px, 0px)" }}
                   >
                     <ul

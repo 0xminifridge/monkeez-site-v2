@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 export async function getItemDetails(typeId) {
   try {
     const contract = await getZungleItemShopContract(
-      new ethers.JsonRpcProvider(getTargetNetwork().RPC_URL)
+      new ethers.providers.JsonRpcProvider(getTargetNetwork().RPC_URL)
     );
     if (await contract.validItemTypes(typeId)) {
       const itemDetails = await contract.typeToItem(typeId);

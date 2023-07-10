@@ -57,6 +57,7 @@ export function SiteNavbar() {
 
   const connectedAccount = useAccount();
   const { balance: mnkzBalance } = useMnkzBalance(connectedAccount?.address);
+  console.log(connectedAccount?.address, mnkzBalance);
   const [open, setOpen] = useState(false);
 
   const { monkeez, isLoading: monkeezLoading } = useMonkeezForAddress(
@@ -101,7 +102,7 @@ export function SiteNavbar() {
                 <img
                   src={`${process.env.PUBLIC_URL}/images/logos/monkeez-logo.png`}
                   alt="Monkeez"
-                  class="w-20 aspect-square block"
+                  class="w-20 aspect-square block hover:opacity-80"
                 />
               </Link>
               <ClaimButton
@@ -115,7 +116,7 @@ export function SiteNavbar() {
                 src={`${process.env.PUBLIC_URL}/images/monkeez/octopus.png`}
                 alt="Monkeez"
                 class={`absolute ${
-                  open ? "-bottom-[325px] md:-bottom-[225px]" : "-bottom-[18px]"
+                  open ? "-bottom-[325px] md:-bottom-[20px]" : "-bottom-[18px]"
                 } lg:-bottom-[18px] -right-16 w-16 aspect-square block`}
               />
             </div>

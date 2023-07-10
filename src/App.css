@@ -39,7 +39,7 @@
 }
 
 .home-bg {
-  background-image: url("./images/banana-background.png");
+  background-image: url("./images/item-background.png");
   background-size: contain;
   background-repeat: repeat;
   background-position: center;
@@ -56,10 +56,37 @@
 }
 
 .bg-monkeez-img {
-  background-image: url("./images/monkeez-logo-with-bg.png");
+  background-image: url("./images/octopus-with-bg.png");
+  background-color: #89d8f7;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.slanted-right:after {
+  z-index: 49;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: inherit;
+  border: 1px solid maroon;
+  -webkit-transform: skewX(-10deg);
+  -moz-transform: skewX(-10deg);
+  -ms-transform: skewX(-10deg);
+  transform: skewX(-10deg);
+}
+
+.flip-h {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+/* Override default class from typewriter-example since we cannot stop cursor blink once its done*/
+.Typewriter__cursor {
+  display: none;
 }
 
 @media screen and (max-width: 640px) {
@@ -133,5 +160,26 @@
   .marquee-img {
     height: 105px;
     width: 105px;
+  }
+}
+
+.loader__spinner {
+  border: 10px solid rgba(0, 0, 0, 0.25);
+  transform: translateZ(0);
+  animation: spinner 1.1s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }

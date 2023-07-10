@@ -20,7 +20,7 @@ export async function getContract(address, abi, signer) {
       return new Contract(
         address,
         abi,
-        new ethers.JsonRpcProvider(getTargetNetwork().RPC_URL)
+        new ethers.providers.JsonRpcProvider(getTargetNetwork().RPC_URL)
       );
     }
   }

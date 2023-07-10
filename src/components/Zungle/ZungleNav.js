@@ -15,6 +15,7 @@ import { BackpackIcon, CrateIcon } from "../icons/NavIcons";
 import CartIcon from "../icons/CartIcon";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
+import Battlez from "./battlez/Battlez";
 
 export default function ZungleNav({ title }) {
   const dispatch = useDispatch();
@@ -118,7 +119,7 @@ export default function ZungleNav({ title }) {
         return <ZungleItemShop />;
 
       case "Battlez":
-        return <h1>Coming soon...</h1>;
+        return <Battlez />;
 
       case "Cratez":
         return <Cratez />;
@@ -134,7 +135,7 @@ export default function ZungleNav({ title }) {
 
   return (
     <>
-      <div class="sm:h-[95vh] flex items-center justify-center flex-wrap sm:flex-nowrap">
+      <div class="sm:h-[100vh] flex items-center justify-center flex-wrap sm:flex-nowrap">
         {/* Desktop Nav */}
         <div class="box-shadow-custom bg-white h-[90vh] w-[25vw] border-4 border-black border-solid border-l-0 rounded-r-2xl items-center flex-col hidden sm:flex py-4">
           {NavItems.map((item, index) => {
@@ -147,7 +148,7 @@ export default function ZungleNav({ title }) {
               >
                 <div
                   key={index}
-                  class={`box-shadow-custom h-[6vh] w-[12vw] my-1 overflow-hidden border-4 border-black border-solid rounded-2xl text-center flex items-center flex-col justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white ${
+                  class={`box-shadow-custom duration-150 h-[6vh] w-[12vw] my-1 overflow-hidden border-4 border-black border-solid rounded-2xl text-center flex items-center flex-col justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white ${
                     item?.color
                   } ${
                     item?.name?.toLowerCase() === activeTab?.toLowerCase()
@@ -183,7 +184,7 @@ export default function ZungleNav({ title }) {
               <Tooltip content={item?.name} placement="bottom">
                 <div
                   key={index}
-                  class={`sm:box-shadow-custom h-[6vh] w-[15vw] mx-1 border-4 border-black border-solid rounded-2xl text-center flex items-center flex-row justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white p-1 ${
+                  class={`sm:box-shadow-custom duration-150 h-[6vh] w-[15vw] mx-1 border-4 border-black border-solid rounded-2xl text-center flex items-center flex-row justify-center hover:bg-mnkz-tan hover:cursor-pointer hover:text-white p-1 ${
                     item?.color
                   } ${
                     item?.name?.toLowerCase() === activeTab?.toLowerCase()

@@ -26,7 +26,7 @@ export default function ZScoreLeaderboard() {
 
   return (
     <div
-      class="overflow-y-auto py-2 h-[71vh] border-0 border-black border-solid border-b-2 md:border-b-4"
+      class="overflow-y-auto py-2 h-[71vh] border-0 border-black border-solid border-b-4"
       onScroll={(event) => handleScroll(event)}
     >
       {data?.map((item, index) => {

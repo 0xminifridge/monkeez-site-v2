@@ -7,7 +7,8 @@ export default function MyZoogz() {
   const connectedAccount = useAccount();
   const { data, isLoading } = useZoogz(connectedAccount?.address);
 
-  if (isLoading && !data?.length) {
+  if (isLoading) {
+    console.log("here");
     return <LoadingSpinner />;
   }
 

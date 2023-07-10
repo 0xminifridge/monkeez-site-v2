@@ -72,6 +72,8 @@ export default function ClaimButton({
       : "0";
   };
 
+  console.log("mnkz balance:", mnkzBalance);
+
   return (
     <>
       <div
@@ -102,6 +104,7 @@ export default function ClaimButton({
         </div> */}
 
         <span class="text-black text-sm sm:text-lg px-1">
+          {/* {mnkzBalance} */}
           {nFormatter(mnkzBalance, 1)}
         </span>
 

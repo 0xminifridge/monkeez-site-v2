@@ -36,7 +36,7 @@ export default function Alert() {
   if (show) {
     return (
       <div
-        class="bg-white border-black border-solid border-4 z-[200] w-auto fixed bottom-1 sm:bottom-4 left-0 right-0 mx-1 sm:left-7 sm:right-auto"
+        class="bg-white border-black border-solid border-4 z-[200] fixed bottom-1 sm:bottom-4 left-0 right-0 mx-1 sm:left-7 sm:right-auto w-full max-w-[365px] min-w-[200px]"
         style={{ "border-radius": "60px 20px 20px 60px" }}
       >
         <div class="flex flex-row items-center px-2 py-4 relative">

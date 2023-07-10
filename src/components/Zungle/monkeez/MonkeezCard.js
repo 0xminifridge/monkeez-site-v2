@@ -42,8 +42,9 @@ export default function MonkeezCard({ item }) {
   return (
     <div
       class={`${
-        TYPE_MAPPINGS[item?.tribe.toLowerCase()]
-      } bg-gray-900 border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full h-full max-h-[450px]`}
+        "bg-mnkz-tan"
+        // TYPE_MAPPINGS[item?.tribe.toLowerCase()]
+      } bg-gray-900 border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full h-full max-h-[450px] shadow-2xl`}
       onClick={() => navigate(`/monkeez/${item.id}`)}
       onMouseOver={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
@@ -105,7 +106,7 @@ export default function MonkeezCard({ item }) {
         {stakedTimestamp > 0 ? (
           <div class="w-full h-full" onClick={(e) => e.stopPropagation()}>
             <button
-              class="max-h-[48px] overflow-hidden bg-mnkz-tan border-2 px-4 py-2 rounded-xl text-sm sm:text-lg hover:text-white hover:bg-gray-900 hover:cursor-pointer right-0 w-full disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400"
+              class="max-h-[48px] overflow-hidden bg-mnkz-wobo border-2 px-4 py-2 rounded-xl text-sm sm:text-lg hover:text-white hover:bg-gray-900 hover:cursor-pointer right-0 w-full disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400 box-shadow-custom"
               disabled={tokensClaimable === 0}
               onClick={() => claimTokens([item?.id])}
             >
@@ -157,7 +158,7 @@ export default function MonkeezCard({ item }) {
         ) : (
           <div class="w-full h-full" onClick={(e) => e.stopPropagation()}>
             <button
-              class="max-h-[48px] overflow-hidden bg-mnkz-tan border-2 px-4 py-2 rounded-xl text-sm sm:text-lg hover:text-white hover:bg-gray-900 hover:cursor-pointer right-0 w-full disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400"
+              class="max-h-[48px] overflow-hidden bg-mnkz-blue border-2 px-4 py-2 rounded-xl text-sm sm:text-lg hover:text-white hover:bg-gray-900 hover:cursor-pointer right-0 w-full disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400 box-shadow-custom"
               disabled={stakingMining || unstakeMining}
               onClick={() => stakeMonkeez([item?.id])}
             >

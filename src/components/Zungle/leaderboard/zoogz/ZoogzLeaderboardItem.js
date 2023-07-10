@@ -6,15 +6,15 @@ import {
   useParsedAddress,
   useProfileImage,
 } from "../../../../hooks/useAccount";
+import { parseHash } from "../../../../utils/wallet";
 
-export default function ZoogzLeaderboardItem({ item }) {
+export default function ZoogzLeaderboardItem({ item, index }) {
   const { domain } = useDomain(item?.owner);
-  const parsedAddress = useParsedAddress(item?.owner);
   const { profileImage } = useProfileImage(item?.owner);
 
   return (
     <Link class="text-black" target="_blank" to={`/zoogz/${item.id}`}>
-      <div class="my-2 md:my-4 border-black border-solid border-2 sm:border-4 rounded-xl bg-gray-200 hover:cursor-pointer hover:bg-gray-300 flex justify-between items-center">
+      <div class="my-2 md:my-4 border-black border-solid border-4 rounded-xl bg-gray-200 hover:cursor-pointer hover:bg-gray-300 flex justify-between items-center">
         <div class="flex flex-row justify-between items-center p-1 md:p-4 m-auto w-full px-2">
           <div class="relative flex items-center">
             <span class="top-2 left-2 absolute hidden lg:block rounded-lg bg-gray-300/50 px-2 py-1">
@@ -27,27 +27,26 @@ export default function ZoogzLeaderboardItem({ item }) {
             />
           </div>
 
-          {/* {medalIds.includes(item.id) && (
-            <div class="flex-col justify-center flex text-center">
-              <img
-                src={`./images/medal_${medalIds.indexOf(item.id) + 1}.png`}
-                alt="Medal"
-                class="w-5 md:w-10"
-              />
-            </div>
+          {index !== null && index !== undefined && (
+            <>
+              {index < 3 ? (
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/icons/medal_${
+                    index + 1
+                  }.png`}
+                  alt="Medal"
+                  class=" w-full max-w-[30px] sm:max-w-[35px] md:max-w-[50px] mx-2 bg-mnkz-wobo px-1 md:px-2 py-1 box-shadow-custom rounded-lg border-black border-2 border-solid"
+                />
+              ) : (
+                <span class=" bg-mnkz-tan mx-2 px-1 md:px-2 py-1 rounded-lg border-black border-2 border-solid box-shadow-custom text-xs sm:text-sm md:text-lg">
+                  {" "}
+                  #{index + 1}
+                </span>
+              )}
+            </>
           )}
 
-          {!medalIds.includes(item.id) && (
-            <div class="flex-col justify-center text-center invisible">
-              <img
-                src="./images/medal_3.png"
-                alt="No medal"
-                class="w-5 md:w-10"
-              />
-            </div>
-          )} */}
-
-          <div class="flex-col justify-center flex text-center text-xs md:text-lg items-center font-bold">
+          <div class="hidden sm:flex flex-col justify-center text-center text-xs md:text-lg items-center font-bold">
             <span class="text-sm md:text-xl">{item.name}</span>
             <div class="flex flex-row justify-between items-center">
               <img
@@ -57,9 +56,14 @@ export default function ZoogzLeaderboardItem({ item }) {
                 }
                 class="w-8 aspect-square rounded-full mx-2 hidden md:block"
               />
-              <span class="text-sm">
-                {domain?.startsWith("0x") ? parsedAddress : domain}
-              </span>
+
+              <Link
+                class="text-sm hover:text-gray-500"
+                target="_blank"
+                to={`/accounts/${item?.owner}`}
+              >
+                {domain?.startsWith("0x") ? parseHash(item?.owner) : domain}
+              </Link>
             </div>
           </div>
 

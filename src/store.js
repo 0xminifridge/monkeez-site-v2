@@ -10,6 +10,7 @@ import zungleItemReducer from "./reducers/zungleItemReducer";
 import cratezReducer from "./reducers/cratezReducer";
 import alertReducer from "./reducers/alertReducer";
 import zscoreLeaderboardReducer from "./reducers/zscoreLeaderboard";
+import popupReducer from "./reducers/popupReducer";
 
 export default configureStore({
   reducer: {
@@ -24,5 +25,6 @@ export default configureStore({
     cratez: cratezReducer,
     alerts: alertReducer,
     zscoreLeaderboard: zscoreLeaderboardReducer,
+    zunglePopup: popupReducer,
   },
 });

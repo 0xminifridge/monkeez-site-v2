@@ -21,7 +21,7 @@ export default function ZoogzCard({ item }) {
     <div
       class={`${
         TYPE_MAPPINGS[item?.type?.toLowerCase()]
-      } bg-gray-900 border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full h-full max-h-[450px]`}
+      } bg-gray-900 border-4 relative rounded-2xl border-solid border-black hover:border-mnkz-tan hover:cursor-pointer w-full h-full max-h-[450px] shadow-2xl`}
       onClick={() => navigate(`/zoogz/${item?.id}`)}
       onMouseOver={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
