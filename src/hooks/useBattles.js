@@ -197,7 +197,7 @@ export function useAcceptBattle() {
 
       const contract = await getZoogBattlerContract(signer);
       let tx;
-      const gasLimit = 4000;
+      const gasLimit = 400000;
       if (isVrf) {
         console.log("processing vrf");
         tx = await contract.acceptBattleWithVRF(zoogId, battleInstanceId, {
