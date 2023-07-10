@@ -42,7 +42,8 @@ export function useMnkzBalance(address) {
   } = useBalance({
     address,
     watch: false,
-    token: getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
+    token: "0xeFdD9a1B91f164Ea5Ca973eFCe0096fE3f97645a",
+    // token: getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
     chainId: getTargetNetwork().id,
   });
 
