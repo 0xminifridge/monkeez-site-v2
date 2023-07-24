@@ -40,8 +40,8 @@ export function FAQ() {
   };
 
   return (
-    <div className="container m-auto w-[95%] sm:w-full min-h-[100vh]">
-      <div class="flex flex-col justify-center">
+    <div className="flex flex-col h-auto min-h-[100vh] items-center mt-[10vh] container m-auto ">
+      <div class="m-auto flex flex-col justify-center w-full">
         <span
           id="Tribes"
           class="text-6xl md:text-[100px] text-white text-shadow-custom m-auto font-bold"
