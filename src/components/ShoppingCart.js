@@ -39,53 +39,56 @@ export default function ShopCart({}) {
     <>
       <div class="z-20 bottom-4 right-6 w-auto fixed ">
         {open && (
-          <div class="bg-white w-80 h-96 z-[90] rounded-xl rounded-br-[40px] border-black border-solid border-4 bottom-6 right-8">
+          <div class="bg-white w-[325px] h-96 z-[90] rounded-xl rounded-br-[40px] border-black border-solid border-4 bottom-6 right-8">
             <div class="overflow-scroll h-[307px]">
               {cartItems.map((item, index) => {
                 const itemTotal = item.price * item.amount;
                 return (
                   <div
-                    class="flex flex-row items-center rounded m-1 mx-2"
+                    class="flex flex-row justify-between items-center rounded m-1 mx-2"
                     key={index}
                   >
-                    <div
-                      class="hover:cursor-pointer"
-                      onClick={() => dispatch(removeFromCart(index))}
-                    >
-                      <XWithCircle color={"#d6303c"} />
-                    </div>
+                    <div class="flex flex-row justify-center items-center">
+                      <div
+                        class="hover:cursor-pointer"
+                        onClick={() => dispatch(removeFromCart(index))}
+                      >
+                        <XWithCircle color={"#d6303c"} />
+                      </div>
 
-                    <div class="flex flex-row ml-2">
-                      <img
-                        src={`${ZUNGLE_ITEM_SHOP_IMAGE_URL}/${item.id}.png`}
-                        class="w-10 aspect-square rounded"
-                      />
-                      <div class="flex flex-col mx-1">
-                        <h3>{item.name}</h3>
+                      <div class="flex flex-row justify-center ml-2">
+                        <img
+                          src={`${ZUNGLE_ITEM_SHOP_IMAGE_URL}/${item.id}.png`}
+                          class="h-full max-h-[50px] aspect-square rounded"
+                        />
+                        <div class="flex flex-col justify-center items-center mx-1 overflow-hidden">
+                          {/* <h3 class="overflow-hidden break-normal">
+                          {item.name}
+                        </h3> */}
 
-                        <div class="flex flex-row items-center">
-                          <img
-                            class="w-4"
-                            src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}
-                          />
-                          <h6>{item.price}</h6>
+                          <div class="flex flex-row items-center">
+                            <img
+                              class="w-4"
+                              src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}
+                            />
+                            <h6>{item.price}</h6>
+                          </div>
                         </div>
                       </div>
+                      <h4>x {item.amount}</h4>
                     </div>
-                    <h4>x {item.amount}</h4>
-
-                    <h4 class="right-0 m-auto justify-end text-mnkz-red">
+                    <h4 class="ml-1 text-right text-white bg-mnkz-red box-shadow-custom px-2 py-1 rounded-xl border-2 border-solid border-black">
                       ${itemTotal}
                     </h4>
                   </div>
                 );
               })}
             </div>
-            <hr class="h-[2px] bg-black rounded"></hr>
+            <hr class="h-[4px] bg-black rounded"></hr>
 
             <div class="flex flex-row items-center bottom-0 pt-2 w-[75%]">
               <button
-                class="bottom-6 bg-mnkz-wobo hover:bg-mnkz-tan w-70 border-2 ml-2 px-4 py-2 rounded-xl text-lg hover:text-white hover:cursor-pointer right-0 disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400"
+                class="bottom-6 bg-mnkz-wobo box-shadow-custom hover:bg-mnkz-tan w-70 border-2 ml-2 px-4 py-2 rounded-xl text-lg hover:text-white hover:cursor-pointer right-0 disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400"
                 onClick={() => purchaseItems()}
                 disabled={isMining || !cartItems?.length}
               >
@@ -94,7 +97,7 @@ export default function ShopCart({}) {
               <div class="mx-2">
                 <h3 class="m-auto">
                   Total:{" "}
-                  <span class="text-mnkz-red">
+                  <span class="">
                     $
                     {cartItems.reduce(
                       (sum, obj) => sum + obj.price * obj.amount,

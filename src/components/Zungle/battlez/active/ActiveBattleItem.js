@@ -81,7 +81,7 @@ export default function ActiveBattleItem({
 
         {ZOOG_STATS.map((stat, index) => {
           return (
-            <div class="flex flex-col justify-center">
+            <div class="flex flex-col justify-center" key={index}>
               <img
                 src={`${process.env.PUBLIC_URL}/images/zoogz/stats/${stat}.png`}
                 class="w-5 sm:w-6 md:w-8 lg:w-10"

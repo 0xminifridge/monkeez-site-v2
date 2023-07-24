@@ -5,7 +5,7 @@ import {
 } from "../utils/firebase";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { replaceAll } from "../reducers/zoogzReducer";
+import { replaceAll, setIsLoading } from "../reducers/zoogzReducer";
 import { log } from "../helpers/console-logger";
 import {
   queryZoogLeaderboardAscending,
@@ -31,16 +31,16 @@ import {
 import { parseErrorMessage } from "../utils/wallet";
 
 export function useZoogz(address) {
-  const [zoogz, setZoogz] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const zoogData = useSelector((state) => state.zoogz);
+  const zoogData = useSelector((state) => state.zoogz[address?.toLowerCase()]);
 
   const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
-      setIsLoading(true);
       if (address) {
+        dispatch(
+          setIsLoading({ address: address?.toLowerCase(), isLoading: true })
+        );
         // we need to fetch for the first time from db
         log("ZOOGZ: getting zoogz from db");
         const data = await getZoogzForAddress(address);
@@ -56,13 +56,13 @@ export function useZoogz(address) {
           return parseFloat(a.id) - parseFloat(b.id);
         });
 
-        setZoogz(data);
         if (data) {
           dispatch(
             replaceAll({
               items: data,
               hasFetched: true,
-              address: address,
+              isLoading: false,
+              address: address?.toLowerCase(),
             })
           );
           log("ZOOGZ: dispatched zoogz");
@@ -71,34 +71,38 @@ export function useZoogz(address) {
     } catch (error) {
       console.error("Error fetching NFTs:", error);
     } finally {
-      setIsLoading(false);
+      dispatch(
+        setIsLoading({ address: address?.toLowerCase(), isLoading: false })
+      );
     }
   };
 
   useEffect(() => {
     if (address) {
       try {
-        setIsLoading(true);
-        if (
-          zoogData?.hasFetched &&
-          zoogData?.address?.toLowerCase() === address?.toLowerCase()
-        ) {
-          log("ZOOGZ: getting zoogz from store");
-          // we've already fetched, so pull from redux global state
-          setZoogz(zoogData.items);
-          log("zoogz retrieved");
-        } else {
-          fetchData();
+        if (!zoogData?.isLoading) {
+          dispatch(
+            setIsLoading({ address: address?.toLowerCase(), isLoading: true })
+          );
+          if (zoogData?.hasFetched) {
+            log("ZOOGZ: getting zoogz from store");
+            // we've already fetched, so pull from redux global state
+            log("zoogz retrieved");
+          } else {
+            fetchData();
+          }
         }
       } catch (err) {
         console.error(err);
       } finally {
-        setIsLoading(false);
+        dispatch(
+          setIsLoading({ address: address?.toLowerCase(), isLoading: false })
+        );
       }
     }
   }, [address]);
 
-  return { data: zoogData.items, isLoading, fetchData };
+  return { data: zoogData?.items, isLoading: zoogData?.isLoading, fetchData };
 }
 
 export function useZoogForId(id) {

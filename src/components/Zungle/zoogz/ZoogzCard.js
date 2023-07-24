@@ -61,7 +61,9 @@ export default function ZoogzCard({ item }) {
         </div>
         <div
           class={`absolute bottom-2 left-0 right-0 z-10 flex flex-row justify-center rounded-lg bg-gray-300/80 text-black px-2 py-1 w-[80%] self-center mx-auto ${
-            hovering && item?.energy > 0 ? "flex" : "hidden"
+            hovering && item?.energy > 0 && item?.energy < 10
+              ? "flex"
+              : "hidden"
           }`}
         >
           {daysToReset < 1 ? (

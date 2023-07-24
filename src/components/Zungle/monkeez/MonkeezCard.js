@@ -11,13 +11,16 @@ import CountdownTimer from "../CountdownTimer";
 import AlertSpinner from "../../AlertSpinner";
 import { ThreeDots } from "react-loader-spinner";
 import { useClaimForMonkeez } from "../../../hooks/useMnkz";
+import { useDispatch } from "react-redux";
+import { updateItem, updateStakeInfo } from "../../../reducers/monkeezReducer";
 
-export default function MonkeezCard({ item }) {
+export default function MonkeezCard({ item, address }) {
   const [hovering, setHovering] = useState(false);
   const [daysStaked, setDaysStaked] = useState(null);
   const [loadingStaked, setLoadingStaked] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { stakedTimestamp, tokensClaimable } = useStakedInfo(item.id);
 
@@ -30,14 +33,36 @@ export default function MonkeezCard({ item }) {
 
   useEffect(() => {
     setLoadingStaked(true);
-    if (stakedTimestamp) {
+    if (item?.stakedTs) {
       const now = new Date();
-      const stakeDate = new Date(stakedTimestamp * 1000);
+      const stakeDate = new Date(item?.stakedTs * 1000);
 
       setDaysStaked(Math.floor(Math.abs(now - stakeDate) / 8.64e7));
       setLoadingStaked(false);
     }
-  }, [stakedTimestamp]);
+  }, [item?.stakedTs]);
+
+  useEffect(() => {
+    if (
+      item &&
+      (item?.stakedTs === null ||
+        item?.claimable === undefined ||
+        item?.stakedTs === undefined ||
+        item?.claimable === undefined)
+    ) {
+      // if no data, update with data from custom hook
+      const copyItem = Object.assign({}, item);
+      copyItem.stakedTs = stakedTimestamp;
+      copyItem.claimable = tokensClaimable;
+
+      if (
+        item?.stakedTs !== copyItem?.stakedTs ||
+        item?.claimable !== copyItem.claimable
+      ) {
+        dispatch(updateItem({ item: copyItem, address: address }));
+      }
+    }
+  }, [item, stakedTimestamp, tokensClaimable]);
 
   return (
     <div
@@ -58,21 +83,20 @@ export default function MonkeezCard({ item }) {
         <h3 class="absolute top-2 right-2 z-10 rounded-lg bg-gray-300/50 px-2 py-1 hidden sm:block">
           {item.tribe}
         </h3>
-        {stakedTimestamp > 0 && (
+        {item?.stakedTs > 0 && (
           <div
             class={`absolute bottom-2 left-0 right-0 z-10 flex flex-row justify-center rounded-lg bg-gray-300/80 text-black px-2 py-1 w-[80%] self-center mx-auto ${
-              hovering && tokensClaimable > 0 ? "flex" : "hidden"
+              hovering && item?.claimable > 0 ? "flex" : "hidden"
             }`}
           >
             {daysStaked < 1 ? (
               <CountdownTimer
-                epochTime={stakedTimestamp * 1000 + 24 * 60 * 60 * 1000}
+                epochTime={item?.stakedTs * 1000 + 24 * 60 * 60 * 1000}
               />
             ) : (
               <CountdownTimer
                 epochTime={
-                  stakedTimestamp * 1000 +
-                  24 * 60 * 60 * 1000 * (daysStaked + 1)
+                  item?.stakedTs * 1000 + 24 * 60 * 60 * 1000 * (daysStaked + 1)
                 }
               />
             )}
@@ -93,7 +117,7 @@ export default function MonkeezCard({ item }) {
           </span>
         </div>
         <div
-          class={` ${stakedTimestamp > 0 ? "" : "invisible"}`}
+          class={` ${item?.stakedTs > 0 ? "" : "invisible"}`}
           onClick={(e) => e.stopPropagation()}
         >
           <span
@@ -105,18 +129,18 @@ export default function MonkeezCard({ item }) {
           </span>
         </div>
 
-        {stakedTimestamp > 0 ? (
+        {item?.stakedTs > 0 ? (
           <div class="w-full h-full" onClick={(e) => e.stopPropagation()}>
             <button
               class="max-h-[48px] overflow-hidden bg-mnkz-wobo border-2 px-4 py-2 rounded-xl text-sm sm:text-lg hover:text-white hover:bg-gray-900 hover:cursor-pointer right-0 w-full disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400 box-shadow-custom"
-              disabled={tokensClaimable === 0}
+              disabled={item?.claimable === 0}
               onClick={() => claimTokens([item?.id])}
             >
-              {tokensClaimable > 0 ? (
+              {item?.claimable > 0 ? (
                 <>
-                  <span class="block sm:hidden">Claim {tokensClaimable}</span>
+                  <span class="block sm:hidden">Claim {item?.claimable}</span>
                   <span class="hidden sm:block">
-                    Claim {tokensClaimable} $MNKZ
+                    Claim {item?.claimable} $MNKZ
                   </span>
                 </>
               ) : (
@@ -135,18 +159,18 @@ export default function MonkeezCard({ item }) {
                       />
                     </div>
                   )}
-                  {!loadingStaked && stakedTimestamp > 0 && (
+                  {!loadingStaked && item?.stakedTs > 0 && (
                     <>
                       {daysStaked < 1 ? (
                         <CountdownTimer
                           epochTime={
-                            stakedTimestamp * 1000 + 24 * 60 * 60 * 1000
+                            item?.stakedTs * 1000 + 24 * 60 * 60 * 1000
                           }
                         />
                       ) : (
                         <CountdownTimer
                           epochTime={
-                            stakedTimestamp * 1000 +
+                            item?.stakedTs * 1000 +
                             24 * 60 * 60 * 1000 * (daysStaked + 1)
                           }
                         />

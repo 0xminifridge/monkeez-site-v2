@@ -2,39 +2,68 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const monkeezSlice = createSlice({
   name: "monkeez",
-  initialState: {
-    items: [], // array of ids of monkeez owned
-    hasFetched: false,
-    address: null,
-  },
+  initialState: {},
   reducers: {
     replaceAll: (state, action) => {
-      state.items = action.payload.items;
-      state.hasFetched = action.payload.hasFetched;
-      state.address = action.payload.address;
+      const { address, items, hasFetched, isLoading } = action.payload;
+      state[address] = { items, hasFetched, isLoading };
     },
-    setItems: (state, action) => {
-      state.items = action.payload;
+    setMonkeez: (state, action) => {
+      const { address, items } = action.payload;
+      if (state[address]) {
+        state[address].items = items;
+      } else {
+        state[address] = { items: items };
+      }
     },
     setHasFetched: (state, action) => {
-      state.hasFetched = action.payload;
+      const { address, hasFetched } = action.payload;
+      if (state[address]) {
+        state[address].hasFetched = hasFetched;
+      } else {
+        state[address] = { hasFetched: hasFetched };
+      }
     },
-    setAddress: (state, action) => {
-      state.address = action.payload;
+    setIsLoading: (state, action) => {
+      const { address, isLoading } = action.payload;
+      if (state[address]) {
+        state[address].isLoading = isLoading;
+      } else {
+        state[address] = { isLoading: isLoading };
+      }
+    },
+    updateItem: (state, action) => {
+      const { address, item: updatedItem } = action.payload;
+      const updatedItems = state[address].items?.map((item) =>
+        item?.id === updatedItem?.id ? updatedItem : item
+      );
+      return {
+        ...state,
+        [address]: {
+          ...state[address],
+          items: updatedItems,
+        },
+      };
     },
     updateStakeInfo: (state, action) => {
-      const { itemId, stakeTs, claimable } = action.payload;
-      const updatedItems = state.items.map((item) => {
+      const { itemId, stakedTs, claimable, address } = action.payload;
+      const updatedItems = state[address].items?.map((item) => {
         if (item.id === itemId) {
           return {
             ...item,
-            ...stakeTs,
-            ...claimable,
+            stakedTs: stakedTs,
+            claimable: claimable,
           };
         }
         return item;
       });
-      state.items = updatedItems;
+      return {
+        ...state,
+        [address]: {
+          ...state[address],
+          items: updatedItems,
+        },
+      };
     },
   },
 });
@@ -42,9 +71,10 @@ export const monkeezSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   replaceAll,
-  setItems,
+  setMonkeez,
   setHasFetched,
-  setAddress,
+  setIsLoading,
+  updateItem,
   updateStakeInfo,
 } = monkeezSlice.actions;
 

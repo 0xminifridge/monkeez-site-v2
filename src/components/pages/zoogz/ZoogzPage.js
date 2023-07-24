@@ -150,6 +150,39 @@ export default function ZoogzPage() {
                   startingVisibility={false}
                 />
 
+                {data?.instances?.length !== 0 && (
+                  <>
+                    <div class="flex justify-between items-center px-4">
+                      <div class="flex flex-col justify-center text-center border-mnkz-wobo border-0 border-b-4 border-solid px-4">
+                        <div class="flex flex-row items-center justify-center">
+                          <span class="text-xl ">{data?.wins || 0}</span>
+                        </div>
+                        <span class="">Wins</span>
+                      </div>
+
+                      <div class="flex flex-col justify-center text-center border-mnkz-red border-0 border-b-4 border-solid px-4">
+                        <div class="flex flex-row items-center justify-center">
+                          <span class="text-xl ">
+                            {data?.instances?.filter(
+                              (item) =>
+                                item.result === "win" &&
+                                item.winnerId !== parseInt(id)
+                            ).length || 0}
+                          </span>
+                        </div>
+                        <span class="">Losses</span>
+                      </div>
+
+                      <div class="flex flex-col justify-center text-center border-mnkz-tan border-0 border-b-4 border-solid px-4">
+                        <div class="flex flex-row items-center justify-center">
+                          <span class="text-xl ">{data?.draws || 0}</span>
+                        </div>
+                        <span class="">Draws</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+
                 {battleData && Object?.keys(battleData)?.length > 0 && (
                   <ZoogBattleHistory
                     tribe={data?.type}

@@ -39,7 +39,7 @@ export default function ActiveBattles({ clickActiveInstance, setCreateOpen }) {
 
   return (
     <div
-      class="overflow-y-auto h-[80vh] border-0 border-b-2 md:border-b-4 border-solid border-black"
+      class="overflow-y-auto h-[70vh] border-0 border-b-2 md:border-b-4 border-solid border-black"
       //   onScroll={(event) => handleScroll(event, getZScoreLeaderboard)}
     >
       {data?.length > 0 ? (

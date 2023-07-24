@@ -26,6 +26,10 @@ export default function ZungleScore({ percentage, score, rank }) {
     }
   }, [percentage]);
 
+  if (!score) {
+    return null;
+  }
+
   return (
     <div>
       <div class="flex flex-row justify-between items-center">

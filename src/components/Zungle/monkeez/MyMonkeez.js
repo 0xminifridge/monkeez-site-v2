@@ -7,7 +7,7 @@ import {
 import LoadingSpinner from "../../LoadingSpinner";
 import MonkeezCard from "./MonkeezCard";
 import { ChevronDownIcon } from "../../icons/ChevronDown";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function MyMonkeez() {
   const connectedAccount = useAccount();
@@ -98,7 +98,13 @@ export default function MyMonkeez() {
         {monkeez?.length > 0 ? (
           <div class="py-2 mb-2 grid auto-cols-max auto-rows-max grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 overflow-y-auto h-[77vh] gap-4 m-auto border-0 border-b-4 border-t-4 border-black border-solid">
             {monkeez?.map((item, index) => {
-              return <MonkeezCard key={index} item={item} />;
+              return (
+                <MonkeezCard
+                  key={index}
+                  item={item}
+                  address={connectedAccount?.address?.toLowerCase()}
+                />
+              );
             })}
           </div>
         ) : (

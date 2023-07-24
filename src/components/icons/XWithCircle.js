@@ -9,7 +9,7 @@ export default function XWithCircle({ color }) {
     >
       <g
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
         stroke={color || "#d6303c"}
         strokeLinecap="round"
         strokeLinejoin="round"

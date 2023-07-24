@@ -11,6 +11,8 @@ import cratezReducer from "./reducers/cratezReducer";
 import alertReducer from "./reducers/alertReducer";
 import zscoreLeaderboardReducer from "./reducers/zscoreLeaderboard";
 import popupReducer from "./reducers/popupReducer";
+import filterReducer from "./reducers/filterReducer";
+import battleReducer from "./reducers/battleReducer";
 
 export default configureStore({
   reducer: {
@@ -26,5 +28,7 @@ export default configureStore({
     alerts: alertReducer,
     zscoreLeaderboard: zscoreLeaderboardReducer,
     zunglePopup: popupReducer,
+    filters: filterReducer,
+    battles: battleReducer,
   },
 });

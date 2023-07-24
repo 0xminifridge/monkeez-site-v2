@@ -16,13 +16,14 @@ import { MARKET_PROFILE_LINK } from "../../../utils/markets";
 import { Tooltip } from "flowbite-react";
 import OwnedNFTs from "./OwnedNFTs";
 import ZungleScore from "./ZungleScore";
+import LoadingSpinner from "../../LoadingSpinner";
 
 export default function ProfilePage() {
   const { profile } = useParams();
   const [balanceOpen, setBalanceOpen] = useState(false);
   const balanceRef = useRef();
 
-  const { monkeez, isLoading } = useMonkeezForAddress(profile);
+  const { monkeez, isLoading: monkeezLoading } = useMonkeezForAddress(profile);
 
   const { data: zoogz, isLoading: zoogzLoading } = useZoogz(profile);
 
@@ -172,6 +173,18 @@ export default function ProfilePage() {
                   </div>
                 </div>
                 <OwnedNFTs monkeez={monkeez} zoogz={zoogz} />
+                {/* {monkeezLoading || zoogzLoading ? (
+                  <>
+                    <LoadingSpinner />
+                  </>
+                ) : (
+                  <>
+                    {monkeez?.length > 0 ||
+                      (zoogz?.length > 0 && (
+                        <OwnedNFTs monkeez={monkeez} zoogz={zoogz} />
+                      ))}
+                  </>
+                )} */}
               </div>
             </div>
           </div>

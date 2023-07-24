@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
 import BattleCard from "./BattleCard";
 import { TwitterShareButton } from "react-share";
 import { parseEther, parseUnits } from "viem";
+import { useEffect } from "react";
+import { createSuccess } from "../../../reducers/alertReducer";
 
 export default function BattleResults({
   challenger,
@@ -35,6 +38,14 @@ export default function BattleResults({
       return `Just tied a Zoog battle for ${tokens} $MNKZ!\n\n`;
     }
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (resultConfig) {
+      dispatch(createSuccess("Battle finished!"));
+    }
+  }, [resultConfig]);
 
   if (!resultConfig) {
     return null;

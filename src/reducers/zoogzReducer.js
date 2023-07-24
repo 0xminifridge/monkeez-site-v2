@@ -2,37 +2,54 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const zoogzSlice = createSlice({
   name: "zoogz",
-  initialState: {
-    items: [], // array of ids of monkeez owned
-    hasFetched: false,
-    address: null,
-  },
+  initialState: {},
   reducers: {
     replaceAll: (state, action) => {
-      state.items = action.payload.items;
-      state.hasFetched = action.payload.hasFetched;
-      state.address = action.payload.address;
+      const { address, items, hasFetched, isLoading } = action.payload;
+      state[address] = { items, hasFetched, isLoading };
     },
-    setItems: (state, action) => {
-      state.items = action.payload;
-    },
-    updateItem: (state, action) => {
-      let updatedItem = action.payload;
-      state.items.map((item) =>
-        item?.id === updatedItem?.id ? updatedItem : item
-      );
+    setZoogz: (state, action) => {
+      const { address, items } = action.payload;
+      if (state[address]) {
+        state[address].items = items;
+      } else {
+        state[address] = { items: items };
+      }
     },
     setHasFetched: (state, action) => {
-      state.hasFetched = action.payload;
+      const { address, hasFetched } = action.payload;
+      if (state[address]) {
+        state[address].hasFetched = hasFetched;
+      } else {
+        state[address] = { hasFetched: hasFetched };
+      }
     },
-    setAddress: (state, action) => {
-      state.address = action.payload;
+    setIsLoading: (state, action) => {
+      const { address, isLoading } = action.payload;
+      if (state[address]) {
+        state[address].isLoading = isLoading;
+      } else {
+        state[address] = { isLoading: isLoading };
+      }
+    },
+    updateItem: (state, action) => {
+      const { address, item: updatedItem } = action.payload;
+      const updatedItems = state[address].items?.map((item) =>
+        item?.id === updatedItem?.id ? updatedItem : item
+      );
+      return {
+        ...state,
+        [address]: {
+          ...state[address],
+          items: updatedItems,
+        },
+      };
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { replaceAll, setItems, setHasFetched, setAddress, updateItem } =
+export const { replaceAll, setZoogz, setHasFetched, setIsLoading, updateItem } =
   zoogzSlice.actions;
 
 export default zoogzSlice.reducer;

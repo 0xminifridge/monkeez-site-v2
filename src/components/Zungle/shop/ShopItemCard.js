@@ -115,7 +115,7 @@ export default function ShopItemCard({ item }) {
 
           <div class="flex flex-col md:flex-row justify-center items-center w-full h-full">
             <button
-              class="w-full mt-1 md:mr-1 hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-sm md:text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default "
+              class="w-full my-1 md:mr-1 hover:border-mnkz-wobo border-white border-2 px-4 py-2 rounded-xl text-sm md:text-lg hover:text-mnkz-wobo hover:cursor-pointer right-0 disabled:border-gray-700 disabled:text-gray-700 disabled:cursor-default "
               onClick={() => buyNow()}
               disabled={isMining}
             >

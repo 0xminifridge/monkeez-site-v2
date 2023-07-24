@@ -65,6 +65,7 @@ export default function Battlez() {
           {tabs.map((item, index) => {
             return (
               <div
+                key={index}
                 class={`w-full text-center border-0 border-b-4 border-solid mx-2 mt-2 hover:cursor-pointer hover:text-mnkz-tan hover:border-mnkz-tan ${
                   item === activeTab
                     ? "border-mnkz-wobo text-mnkz-wobo"

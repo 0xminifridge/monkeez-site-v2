@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import XWithCircle from "../../icons/XWithCircle";
 import { useZoogForId, useZoogz } from "../../../hooks/useZoogz";
 import LoadingSpinner from "../../LoadingSpinner";
@@ -26,6 +26,10 @@ import { getZoogBattlerContract } from "../../../utils/contracts";
 import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
 import { updateItem } from "../../../reducers/zoogzReducer";
+import MutedIcon from "../../icons/MutedIcon";
+import SpeakerIcon from "../../icons/SpeakerIcon";
+import { removeActiveBattle } from "../../../reducers/battleReducer";
+import { useAccount } from "wagmi";
 
 export default function AcceptBattle({
   isOpen,
@@ -188,7 +192,7 @@ export function SelectZoog({
                   <div class="flex flex-row justify-between items-center px-4 py-2 bg-black text-white">
                     {ZOOG_STATS?.map((stat, index) => {
                       return (
-                        <div class="flex flex-col justify-center">
+                        <div class="flex flex-col justify-center" key={index}>
                           <span>{item[stat?.toLowerCase()]}</span>
                           <img
                             src={`${
@@ -226,6 +230,45 @@ export function BattlePrep({
   const [battleStart, setBattleStart] = useState(false);
   const [approveMnkz, setApproveMnkz] = useState(false);
   const [approveLink, setApproveLink] = useState(false);
+
+  const [isMuted, setIsMuted] = useState(false);
+
+  const audioRef = useRef(null);
+
+  const connectedAccount = useAccount();
+
+  const playTrack = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
+  const pauseTrack = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+  };
+
+  const handleToggleMute = () => {
+    const audioElement = audioRef.current;
+
+    if (audioElement.muted) {
+      audioElement.muted = false;
+      setIsMuted(false);
+
+      // Play the audio if it is paused or has finished playing
+      if (
+        audioElement.paused ||
+        audioElement.currentTime === audioElement.duration
+      ) {
+        audioElement.currentTime = 0;
+        audioElement.play();
+      }
+    } else {
+      audioElement.muted = true;
+      setIsMuted(true);
+    }
+  };
 
   const dispatch = useDispatch();
 
@@ -363,7 +406,13 @@ export function BattlePrep({
                 },
               };
               setResultConfig(config);
-              dispatch(updateItem(fetchZoog(selectedZoog?.id)));
+              dispatch(
+                updateItem({
+                  address: connectedAccount?.address?.toLowerCase(),
+                  item: await fetchZoog(selectedZoog?.id),
+                })
+              );
+              dispatch(removeActiveBattle({ battleId: Number(battleIndex) }));
               handleNextScreen();
             }
           }
@@ -421,7 +470,13 @@ export function BattlePrep({
                 },
               };
               setResultConfig(config);
-              dispatch(updateItem(fetchZoog(selectedZoog?.id)));
+              dispatch(
+                updateItem({
+                  address: connectedAccount?.address?.toLowerCase(),
+                  item: await fetchZoog(selectedZoog?.id),
+                })
+              );
+              dispatch(removeActiveBattle({ battleId: Number(battleIndex) }));
               handleNextScreen();
             }
           }
@@ -451,11 +506,21 @@ export function BattlePrep({
 
   return (
     <>
+      <audio
+        src={`${process.env.PUBLIC_URL}/audio/zoog_showdown.mp3`}
+        ref={audioRef}
+        onLoadedMetadata={() => audioRef.current.play()}
+        loop
+      />
       <div
         className={`fixed inset-0 flex items-center justify-center z-50 bg-opacity-[0.95] bg-black ${
           isOpen ? "" : "hidden"
         }`}
       >
+        <div class="absolute top-2 left-2" onClick={handleToggleMute}>
+          {isMuted && <MutedIcon />}
+          {!isMuted && <SpeakerIcon />}
+        </div>
         <div
           className=" mx-4 w-[350px] sm:w-[450px] md:w-[550px] lg:w-[625px] shadow-lg relative"
           onClick={(e) => e.stopPropagation()}
@@ -500,40 +565,72 @@ export function BattlePrep({
                 <BattleCard zoog={selectedInstance?.zoog} />
               </div>
             </div>
-            <div class="flex flex-col items-center text-white my-4 ">
-              <span class="font-bold text-2xl">Required</span>
-              <div class="flex flex-row justify-center items-center border-gray-800 border-solid border-2 rounded-xl text-white px-4">
-                <div class="flex flex-row justify-center items-center">
-                  <img
-                    src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}
-                    class="w-full max-w-[50px]"
-                  />
-                  <span
-                    class={`${
-                      parseFloat(mnkzBalance) >= selectedInstance?.tokenAmt
-                        ? "text-mnkz-wobo"
-                        : "text-mnkz-red"
-                    }`}
-                  >
-                    {selectedInstance?.tokenAmt} MNKZ
-                  </span>
-                </div>
-                {selectedInstance?.isVRF && (
-                  <div class="px-4 flex flex-row justify-center items-center">
+            {!battleStart && (
+              <div class="flex flex-col items-center text-white my-4 ">
+                <span class="font-bold text-2xl">Required</span>
+                <div class="flex flex-row justify-center items-center border-gray-800 border-solid border-2 rounded-xl text-white px-4">
+                  <div class="flex flex-row justify-center items-center">
                     <img
-                      src={`${process.env.PUBLIC_URL}/images/icons/link.png`}
-                      class="w-full max-w-[35px]"
+                      src={`${process.env.PUBLIC_URL}/images/mnkz-token.png`}
+                      class="w-full max-w-[50px]"
                     />
                     <span
                       class={`${
-                        linkBalance >= 0.02 ? "text-mnkz-wobo" : "text-mnkz-red"
+                        parseFloat(mnkzBalance) >= selectedInstance?.tokenAmt
+                          ? "text-mnkz-wobo"
+                          : "text-mnkz-red"
                       }`}
                     >
-                      0.02 LINK
+                      {selectedInstance?.tokenAmt} MNKZ
                     </span>
                   </div>
-                )}
+                  {selectedInstance?.isVRF && (
+                    <div class="px-4 flex flex-row justify-center items-center">
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/icons/link.png`}
+                        class="w-full max-w-[35px]"
+                      />
+                      <span
+                        class={`${
+                          linkBalance >= 0.02
+                            ? "text-mnkz-wobo"
+                            : "text-mnkz-red"
+                        }`}
+                      >
+                        0.02 LINK
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
+            )}
+            <div
+              class={`${
+                battleStart ? "block" : "hidden"
+              } text-white flex flex-col justify-start overflow-y-scroll h-[150px] border-gray-800 border-solid border-2 rounded-xl p-4 my-2`}
+            >
+              <span class="text-white font-bold text-xl underline">
+                Battle Log
+              </span>
+              {entries.map((entry, index) => (
+                <div
+                  key={index}
+                  class={`${entry?.color} flex flex-row justify-start items-center`}
+                >
+                  <MdPlayArrow />
+                  <Typewriter
+                    onInit={(typewriter) => {
+                      typewriter
+                        .typeString(entry?.text)
+
+                        .start();
+                    }}
+                    options={{
+                      delay: 30,
+                    }}
+                  />
+                </div>
+              ))}
             </div>
             <div class="flex flex-col justify-center items-center text-black my-2">
               {battleStart && (
@@ -579,34 +676,6 @@ export function BattlePrep({
                   </div>
                 </>
               )}
-            </div>
-            <div
-              class={`${
-                battleStart ? "visible" : "invisible"
-              } text-white flex flex-col justify-start overflow-y-scroll h-[150px] border-gray-800 border-solid border-2 rounded-xl p-4`}
-            >
-              <span class="text-white font-bold text-xl underline">
-                Battle Log
-              </span>
-              {entries.map((entry, index) => (
-                <div
-                  key={index}
-                  class={`${entry?.color} flex flex-row justify-start items-center`}
-                >
-                  <MdPlayArrow />
-                  <Typewriter
-                    onInit={(typewriter) => {
-                      typewriter
-                        .typeString(entry?.text)
-
-                        .start();
-                    }}
-                    options={{
-                      delay: 30,
-                    }}
-                  />
-                </div>
-              ))}
             </div>
           </div>
         </div>

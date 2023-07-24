@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNetwork } from "wagmi";
 import { getTargetNetwork } from "../utils/networks";
 import { useSigner } from "./useAccount";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   createError,
   createProcessing,
@@ -11,19 +11,27 @@ import {
 } from "../reducers/alertReducer";
 import { getContract, getZoogBattlerContract } from "../utils/contracts";
 import { parseErrorMessage } from "../utils/wallet";
+import {
+  addActiveBattles,
+  setActiveBattles,
+  setLastId,
+} from "../reducers/battleReducer";
 
 export function useActiveBattles() {
-  const [data, setData] = useState([]);
-  const [lastId, setLastId] = useState(null);
+  const data = useSelector((state) => state.battles.activeBattles);
+  const lastId = useSelector((state) => state.battles.lastId);
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   const fetchAndSet = async (lastId) => {
     try {
       setIsLoading(true);
       const { battles } = await getLatestActiveBattles("created", lastId);
       if (battles) {
-        setData(battles);
-        setLastId(battles[battles.length - 1].id);
+        // setData(battles);
+        dispatch(setActiveBattles({ battles: battles }));
+        dispatch(setLastId(battles[battles.length - 1].id));
       }
     } catch (err) {
       console.error(err);
@@ -37,8 +45,8 @@ export function useActiveBattles() {
       setIsLoading(true);
       const { battles } = await getLatestActiveBattles("created", lastId);
       if (battles) {
-        setData([...data, ...battles]);
-        setLastId(battles[battles.length - 1].id);
+        dispatch(addActiveBattles({ battles: battles }));
+        dispatch(setLastId(battles[battles.length - 1].id));
       }
     } catch (err) {
       console.error(err);
@@ -46,6 +54,8 @@ export function useActiveBattles() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {});
 
   return { data, lastId, isLoading, fetchAndSet, fetchAndAdd };
 }

@@ -1,7 +1,7 @@
 export default function WelcomeToTheZungle() {
   return (
     <>
-      <div class="h-auto min-h-[100vh] mt-[10vh] flex flex-col md:flex-row items-center container m-auto">
+      <div class="h-auto max-h-[100vh] mt-[10vh] flex flex-col md:flex-row items-center container m-auto ">
         <div class="float-left flex md:hidden justify-center md:w-[50%]">
           <img
             src={`${process.env.PUBLIC_URL}/images/home/zungle-map.png`}

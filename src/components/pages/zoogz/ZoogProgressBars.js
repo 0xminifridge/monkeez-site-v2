@@ -154,11 +154,11 @@ export default function ZoogProgressBars({
                   xpData[`${upgrading?.toLowerCase()}Xp`]}{" "}
             </span>
           </div>
-          <div class=" overflow-x-auto">
+          <div class=" overflow-x-auto bg-gray-300 rounded-lg p-2">
             <div
               class={`grid ${
                 items?.length > 5 ? "grid-rows-2" : "grid-rows-1"
-              } grid-flow-col gap-4`}
+              } grid-flow-col gap-4 auto-cols-max auto-rows-max`}
             >
               {items
                 ?.filter((item) => item[upgrading?.toLowerCase()] === true)

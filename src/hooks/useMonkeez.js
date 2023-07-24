@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMonkeeForId, getMonkeezForAddress } from "../utils/firebase";
 import { log } from "../helpers/console-logger";
-import { replaceAll, updateStakeInfo } from "../reducers/monkeezReducer";
+import {
+  replaceAll,
+  setIsLoading,
+  updateStakeInfo,
+} from "../reducers/monkeezReducer";
 import { getTargetNetwork } from "../utils/networks";
 import { getMonkeezStakerContract } from "../utils/contracts";
 import { useNetwork } from "wagmi";
@@ -16,44 +20,39 @@ import { parseErrorMessage } from "../utils/wallet";
 import { getStakedInfo } from "../contracts/monkeez";
 
 export function useMonkeezForAddress(address) {
-  const [monkeez, setMonkeez] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const monkeezData = useSelector((state) => state.monkeez);
+  // const [monkeez, setMonkeez] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  const monkeezData = useSelector(
+    (state) => state.monkeez[address?.toLowerCase()]
+  );
 
   const dispatch = useDispatch();
 
-  const fetchNFTs = async () => {
+  const fetchData = async () => {
     setIsLoading(true);
 
     try {
       if (address) {
-        if (
-          monkeezData.hasFetched &&
-          monkeezData?.address?.toLowerCase() === address?.toLowerCase()
-        ) {
-          log("MONKEEZ: getting monkeez from store");
-          // we've already fetched, so pull from redux global state
-          setMonkeez(monkeezData.items);
-          log("MONKEEZ: retrieved monkeez");
-        } else {
-          // we need to fetch for the first time from db
-          log("MONKEEZ: getting monkeez from db");
-          const data = await getMonkeezForAddress(address);
-          data.sort(function (a, b) {
-            return parseFloat(a.id) - parseFloat(b.id);
-          });
+        dispatch(
+          setIsLoading({ address: address?.toLowerCase(), isLoading: true })
+        );
+        // we need to fetch for the first time from db
+        log("MONKEEZ: getting monkeez from db");
+        const data = await getMonkeezForAddress(address);
+        data.sort(function (a, b) {
+          return parseFloat(a.id) - parseFloat(b.id);
+        });
 
-          setMonkeez(data);
-          if (data) {
-            dispatch(
-              replaceAll({
-                items: data,
-                hasFetched: true,
-                address: address,
-              })
-            );
-            log("MONKEEZ: dispatching monkeez");
-          }
+        if (data) {
+          dispatch(
+            replaceAll({
+              items: data,
+              hasFetched: true,
+              isLoading: true,
+              address: address?.toLowerCase(),
+            })
+          );
+          log("MONKEEZ: dispatching monkeez");
         }
       }
     } catch (error) {
@@ -65,11 +64,32 @@ export function useMonkeezForAddress(address) {
 
   useEffect(() => {
     if (address) {
-      fetchNFTs();
+      try {
+        if (!monkeezData?.isLoading) {
+          dispatch(
+            setIsLoading({ address: address?.toLowerCase(), isLoading: true })
+          );
+          if (monkeezData?.hasFetched) {
+            log("MONKEEZ: getting monkeez from store");
+          } else {
+            fetchData();
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        dispatch(
+          setIsLoading({ address: address?.toLowerCase(), isLoading: false })
+        );
+      }
     }
   }, [address]);
 
-  return { monkeez, isLoading };
+  return {
+    monkeez: monkeezData?.items,
+    isLoading: monkeezData?.isLoading,
+    fetchData,
+  };
 }
 
 export function useMonkeeForId(id) {
@@ -172,11 +192,15 @@ export function useStakeMonkeez() {
       // TOOD: add monkee to list
       for (const id of ids) {
         const stakedInfo = await getStakedInfo(id);
+        const address = await signer?.getAddress();
+        log(`MONKEEZ: dispatching stake updates for ${id}`);
+        const nowEpoch = Math.floor(Date.now() / 1000);
         dispatch(
           updateStakeInfo({
             itemId: id,
-            stakeTs: stakedInfo?.stakedTs,
-            claimable: stakedInfo?.claimable,
+            stakedTs: Number(nowEpoch),
+            claimable: Number(0),
+            address: address?.toLowerCase(),
           })
         );
       }
@@ -223,11 +247,14 @@ export function useUnstakeMonkeez() {
       // TODO: add monkee to list
       for (const id of ids) {
         const stakedInfo = await getStakedInfo(id);
+        const address = await signer?.getAddress();
+        log(`MONKEEZ: dispatching unstake updates for ${id}`);
         dispatch(
           updateStakeInfo({
             itemId: id,
-            stakeTs: stakedInfo?.stakedTs,
-            claimable: stakedInfo?.claimable,
+            stakedTs: Number(0),
+            claimable: Number(0),
+            address: address?.toLowerCase(),
           })
         );
       }

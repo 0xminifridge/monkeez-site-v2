@@ -109,7 +109,11 @@ export async function getZoogForId(id) {
 
   if (docSnap.exists()) {
     log("Document data:", docSnap.data());
+
     zoogObj = docSnap.data();
+    delete zoogObj.timestamp;
+    delete zoogObj.updated;
+    delete zoogObj.created;
     zoogObj.name = `Zoog #${zoogObj.id}`;
   } else {
     // doc.data() will be undefined in this case
@@ -353,6 +357,9 @@ export async function getLatestActiveBattles(field, lastVisibleId) {
   const docs = querySnapshot.docs.map((doc) => doc.data());
   for (var doc of docs) {
     // get each zoog for id
+    delete doc.timestamp;
+    delete doc.updated;
+    delete doc.created;
     let zoogData = await getZoogForId(doc?.zoogId);
 
     // TODO: remove on go live
