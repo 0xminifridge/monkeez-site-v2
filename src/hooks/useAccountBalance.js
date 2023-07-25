@@ -76,7 +76,7 @@ export function useLinkBalance(address) {
     }
   }, [fetchedBalanceData]);
 
-  return { balance: fetchedBalanceData.formatted, isError, isLoading };
+  return { balance, isError, isLoading };
 }
 
 export function useAllowedBalance(account, contractAddress, spender) {
@@ -104,6 +104,7 @@ export function useAllowedBalance(account, contractAddress, spender) {
 
 export function useApproveAllowance() {
   const [isMining, setIsMining] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const { chain } = useNetwork();
   const configuredNetwork = getTargetNetwork();
@@ -123,6 +124,7 @@ export function useApproveAllowance() {
     }
     try {
       setIsMining(true);
+      setIsError(false);
 
       const contract = await getContract(contractAddress, erc20ABI, signer);
       let tx = await contract.approve(spender, balance);
@@ -132,12 +134,14 @@ export function useApproveAllowance() {
       await tx.wait();
       dispatch(createSuccess("Balance approved"));
     } catch (err) {
+      setIsError(true);
       console.error(err);
       dispatch(createError(parseErrorMessage(err)));
+      throw err;
     } finally {
       setIsMining(false);
     }
   };
 
-  return { writeTx, isMining };
+  return { writeTx, isMining, isError };
 }

@@ -67,7 +67,7 @@ export default function AcceptBattle({
         handleClose={handleClose}
         mnkzBalance={mnkzBalance}
         mnkzAllowance={mnkzAllowance}
-        linkBalance={linkAllowance}
+        linkBalance={linkBalance}
         linkAllowance={linkAllowance}
         setResultConfig={setResultConfig}
       />
@@ -126,7 +126,7 @@ export default function AcceptBattle({
             selectedZoog={selectedZoog}
             mnkzBalance={mnkzBalance}
             mnkzAllowance={mnkzAllowance}
-            linkBalance={linkAllowance}
+            linkBalance={linkBalance}
             linkAllowance={linkAllowance}
           />
         )}
@@ -496,7 +496,7 @@ export function BattlePrep({
     if (selectedInstance?.isVRF && 0.02 > parseFloat(linkAllowance)) {
       setApproveLink(true);
     }
-  }, []);
+  }, [selectedInstance]);
 
   useEffect(() => {
     if (battleError) {

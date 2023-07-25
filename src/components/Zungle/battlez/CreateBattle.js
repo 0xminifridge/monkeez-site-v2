@@ -82,7 +82,7 @@ export default function CreateBattle({
             account={account}
             mnkzBalance={mnkzBalance}
             mnkzAllowance={mnkzAllowance}
-            linkBalance={linkAllowance}
+            linkBalance={linkBalance}
             linkAllowance={linkAllowance}
             selectedZoogId={selectedZoogId}
           />
@@ -193,7 +193,11 @@ export function SelectWager({
   const [approveMnkz, setApproveMnkz] = useState(false);
   const [approveLink, setApproveLink] = useState(false);
 
-  const { writeTx: approveAllowance, isMining } = useApproveAllowance();
+  const {
+    writeTx: approveAllowance,
+    isMining,
+    isError,
+  } = useApproveAllowance();
   const { writeTx: createBattle, isMining: battleCreateMining } =
     useCreateBattle();
 
@@ -205,11 +209,22 @@ export function SelectWager({
     if (parseFloat(formData["mnkz"]) > parseFloat(mnkzAllowance)) {
       // approve mnkz
       setApproveMnkz(true);
+    } else {
+      setApproveMnkz(false);
     }
     if (!formData["isVRF"] && linkToPlay > parseFloat(linkAllowance)) {
       setApproveLink(true);
+    } else {
+      setApproveLink(false);
     }
+    console.log(parseFloat(mnkzAllowance));
   }, [formData]);
+
+  // useEffect(() => {
+  //   if (isError) {
+  //     handleClose();
+  //   }
+  // }, [isError]);
 
   const handleValidation = () => {
     let fields = formData;
@@ -246,32 +261,39 @@ export function SelectWager({
   const handleSubmit = async () => {
     const isFormValid = handleValidation();
 
-    if (isFormValid) {
-      // valid case
-      if (approveMnkz) {
-        // approve mnkz
-        await approveAllowance(
-          getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
-          getTargetNetwork().ZOOG_BATTLER_CONTRACT_ADDRESS,
-          parseEther(parseFloat(formData["mnkz"]))
+    try {
+      if (isFormValid) {
+        // valid case
+        if (approveMnkz) {
+          // approve mnkz
+          await approveAllowance(
+            getTargetNetwork().MNKZ_CONTRACT_ADDRESS,
+            getTargetNetwork().ZOOG_BATTLER_CONTRACT_ADDRESS,
+            parseEther(formData["mnkz"].toString())
+          );
+        }
+
+        if (approveLink) {
+          // approve link
+          await approveAllowance(
+            getTargetNetwork().LINK_TOKEN_CONTRACT_ADDRESS,
+            getTargetNetwork().ZOOG_BATTLER_CONTRACT_ADDRESS,
+            parseEther(linkBalance.toString())
+          );
+        }
+
+        await createBattle(
+          selectedZoogId,
+          parseEther(formData["mnkz"], "wei"),
+          !formData["isVRF"]
         );
+
+        handleClose();
+      } else {
+        console.error("form is not valid");
       }
-      if (approveLink) {
-        // approve link
-        await approveAllowance(
-          getTargetNetwork().LINK_TOKEN_CONTRACT_ADDRESS,
-          getTargetNetwork().ZOOG_BATTLER_CONTRACT_ADDRESS,
-          parseEther(linkBalance)
-        );
-      }
-      await createBattle(
-        selectedZoogId,
-        parseEther(formData["mnkz"], "wei"),
-        !formData["isVRF"]
-      );
-      handleClose();
-    } else {
-      console.error("error");
+    } catch (err) {
+      console.error(err);
     }
   };
 

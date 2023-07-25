@@ -19,7 +19,7 @@ export default function Battlez() {
   const connectedAccount = useAccount();
 
   const { balance: mnkzBalance } = useMnkzBalance(connectedAccount?.address);
-  // const { balance: linkBalance } = useLinkBalance(connectedAccount?.address);
+  const { balance: linkBalance } = useLinkBalance(connectedAccount?.address);
 
   const { allowance: mnkzAllowance } = useAllowedBalance(
     connectedAccount?.address,
@@ -105,7 +105,7 @@ export default function Battlez() {
           account={connectedAccount?.address}
           mnkzBalance={mnkzBalance}
           mnkzAllowance={mnkzAllowance}
-          linkBalance={linkAllowance}
+          linkBalance={linkBalance}
           linkAllowance={linkAllowance}
         />
         <AcceptBattle
