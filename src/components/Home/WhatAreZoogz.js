@@ -11,7 +11,7 @@ export default function WhatAreZoogz() {
             class="flex md:block pr-0 h-max-[100vh] w-min-auto md:w-min-[400px] w-[100%] md:w-[85%] md:pb-[5vh]"
           />
         </div>
-        <div class="md:w-[50%] float-right md:float-left">
+        <div class="md:w-[50%] float-right md:float-left my-10">
           <div class="bg-mnkz-xeba mx-[10px] md:ml-[30px] md:mr-[0px] rounded-[7px] border-solid border-black border-4 p-[10px] box-shadow-custom">
             <span class="text-[3em] pb-[0.3rem] pr-[0.3rem] text-white text-shadow-custom font-bold">
               What are Zoogz?

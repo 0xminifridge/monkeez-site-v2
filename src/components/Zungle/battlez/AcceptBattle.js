@@ -504,6 +504,16 @@ export function BattlePrep({
     }
   }, [battleError]);
 
+  const endOfMessages = useRef(null);
+
+  useEffect(() => {
+    endOfMessages?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [entries]);
+
+  const scrollToBottom = () => {
+    endOfMessages?.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <audio
@@ -622,13 +632,16 @@ export function BattlePrep({
                     onInit={(typewriter) => {
                       typewriter
                         .typeString(entry?.text)
-
+                        .callFunction(() => {
+                          scrollToBottom();
+                        })
                         .start();
                     }}
                     options={{
                       delay: 30,
                     }}
                   />
+                  <div ref={endOfMessages}></div>
                 </div>
               ))}
             </div>

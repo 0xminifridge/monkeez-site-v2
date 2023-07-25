@@ -40,7 +40,7 @@ export function FAQ() {
   };
 
   return (
-    <div className="flex flex-col h-auto min-h-[100vh] items-center mt-[10vh] container m-auto ">
+    <div className="flex flex-col h-auto md:min-h-[100vh] items-center mt-[10vh] container px-2">
       <div class="m-auto flex flex-col justify-center w-full">
         <span
           id="Tribes"

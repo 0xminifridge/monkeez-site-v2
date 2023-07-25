@@ -3,7 +3,7 @@ export default function WhatAreMonkeez(props) {
   return (
     <div
       id="Monkeez"
-      class="flex flex-col md:flex-row h-auto min-h-[100vh] items-center mt-[10vh] container m-auto"
+      class="flex flex-col md:flex-row h-auto md:min-h-[100vh] items-center mt-[10vh] container m-auto"
     >
       <div class="md:w-[50%] flex float-left justify-start mr-4">
         <img
@@ -11,7 +11,7 @@ export default function WhatAreMonkeez(props) {
           className="max-w-[400px] w-[100%]"
         />
       </div>
-      <div class="md:w-[50%] float-right">
+      <div class="md:w-[50%] float-right my-10">
         <div class="bg-mnkz-wobo mx-[10px] md:mr-[30px] md:ml-[0px] rounded-[7px] border-solid border-black border-4 p-[10px] box-shadow-custom">
           <span className="text-[3em] pb-[0.3rem] pr-[0.3rem] text-white text-shadow-custom font-bold">
             What are Monkeez?
