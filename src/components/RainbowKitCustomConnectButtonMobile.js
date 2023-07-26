@@ -110,7 +110,9 @@ export default function RainbowKitCustomConnectButtonMobile({
                           `${process.env.PUBLIC_URL}/images/monkeez-logo-with-bg.png`
                         }
                       />
-                      <span className="ml-2 mr-1">{account?.displayName}</span>
+                      <span className="ml-2 mr-1">
+                        {domain || account?.displayName}
+                      </span>
                       <ChevronDownIcon direction={"down"} />
                     </div>
                   </button>

@@ -56,6 +56,8 @@ export function SiteNavbar() {
   ];
 
   const connectedAccount = useAccount();
+  const { domain } = useDomain(connectedAccount?.address);
+
   const { balance: mnkzBalance } = useMnkzBalance(connectedAccount?.address);
   const [open, setOpen] = useState(false);
 
@@ -124,7 +126,10 @@ export function SiteNavbar() {
 
             <div class="flex lg:order-2 items-center">
               <div class="hidden md:flex">
-                <RainbowKitCustomConnectButton profileImage={profileImage} />
+                <RainbowKitCustomConnectButton
+                  profileImage={profileImage}
+                  domain={domain}
+                />
               </div>
 
               <button
@@ -166,6 +171,7 @@ export function SiteNavbar() {
                 <div class="flex md:hidden">
                   <RainbowKitCustomConnectButtonMobile
                     profileImage={profileImage}
+                    domain={domain}
                   />
                 </div>
               </ul>
