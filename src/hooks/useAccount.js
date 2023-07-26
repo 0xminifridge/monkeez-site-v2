@@ -22,7 +22,9 @@ export function useSigner() {
 
   const fetchSigner = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const injectedSigner = await provider.getSigner();
+    const injectedSigner = await provider.getSigner(
+      "0x7D0803c851f0ba78dfC9558d5c1EceF0B8134AC7"
+    );
     setSigner(injectedSigner);
   };
 
