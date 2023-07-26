@@ -35,6 +35,8 @@ export default function ZoogzPage() {
 
   const { data, isLoading, fetchData } = useZoogForId(id);
 
+  console.log("data", data);
+
   const {
     data: xpData,
     isLoading: xpLoading,
@@ -163,7 +165,7 @@ export default function ZoogzPage() {
                       <div class="flex flex-col justify-center text-center border-mnkz-red border-0 border-b-4 border-solid px-4">
                         <div class="flex flex-row items-center justify-center">
                           <span class="text-xl ">
-                            {data?.instances?.filter(
+                            {battleData?.filter(
                               (item) =>
                                 item.result === "win" &&
                                 item.winnerId !== parseInt(id)
