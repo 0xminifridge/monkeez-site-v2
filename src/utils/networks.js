@@ -20,7 +20,7 @@ export const NETWORKS_EXTRA_DATA = {
     LINK_TOKEN_CONTRACT_ADDRESS: "0x5947BB275c521040051D82396192181b413227A3",
     CAMPFIRE_USERNAMES_CONTRACT_ADDRESS:
       "0x44dd88c210c2052171165573368e13ecde5d9ae7",
-    LOG_ENABLED: true,
+    LOG_ENABLED: false,
   },
   [chains.avalancheFuji.id]: {
     RPC_URL: "https://rpc.ankr.com/avalanche_fuji",

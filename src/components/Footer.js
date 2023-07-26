@@ -94,7 +94,7 @@ export default function Footer() {
                   return (
                     <li key={index} class="mb-4">
                       <a
-                        href={MONKEEZ_MARKET_DATA[item]?.collections}
+                        href={MONKEEZ_MARKET_DATA[item]?.collection}
                         target="_blank"
                         class="text-black hover:text-white hover:cursor-pointer"
                       >
