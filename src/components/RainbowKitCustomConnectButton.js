@@ -14,6 +14,7 @@ import {
 } from "../hooks/useAccount";
 import { useNavigate, Link } from "react-router-dom";
 import { Dropdown } from "flowbite-react";
+import { parseHash } from "../utils/wallet";
 
 /**
  * Custom Wagmi Connect Button (watch balance + custom design)
@@ -110,9 +111,7 @@ export default function RainbowKitCustomConnectButton({
                           `${process.env.PUBLIC_URL}/images/monkeez-logo-with-bg.png`
                         }
                       />
-                      <span className="ml-2 mr-1">
-                        {domain || account?.displayName}
-                      </span>
+                      <span className="ml-2 mr-1">{domain}</span>
                       <ChevronDownIcon direction={"down"} />
                     </div>
                   </button>
