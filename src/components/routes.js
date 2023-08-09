@@ -11,6 +11,7 @@ import ShopCart from "./ShoppingCart";
 import Alert from "./Alert";
 import Landing from "./Landing";
 import ProfilePage from "./pages/profile/ProfilePage";
+import Mint from "./mint/Mint";
 
 function Root() {
   return (
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/zungle",
         element: <ZungleNav title="ZUNGLE | MONKEEZ" />,
+      },
+      {
+        path: "/mint",
+        element: <Mint title="MINT | MONKEEZ" />,
       },
     ],
   },

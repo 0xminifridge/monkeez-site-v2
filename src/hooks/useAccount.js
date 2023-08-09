@@ -22,10 +22,14 @@ export function useSigner() {
 
   const fetchSigner = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    let accounts = await provider.send("eth_requestAccounts", []);
-    let account = accounts[0];
-    const injectedSigner = await provider.getSigner(account);
-    setSigner(injectedSigner);
+    if (provider) {
+      let accounts = await provider.send("eth_requestAccounts", []);
+      if (accounts.length) {
+        let account = accounts[0];
+        const injectedSigner = await provider.getSigner(account);
+        setSigner(injectedSigner);
+      }
+    }
   };
 
   useEffect(() => {

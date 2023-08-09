@@ -47,6 +47,11 @@ export function SiteNavbar() {
       path: "/zungle",
       target: "",
     },
+    {
+      title: "Mint",
+      path: "/mint",
+      target: "",
+    },
     // {
     //   title: "Ticketz",
     //   path: "/ticketz",
@@ -117,9 +122,7 @@ export function SiteNavbar() {
                 src={`${process.env.PUBLIC_URL}/images/monkeez/octopus.png`}
                 alt="Monkeez"
                 class={`absolute ${
-                  open
-                    ? "-bottom-[327px] md:-bottom-[227px] lg:-bottom-[18px]"
-                    : "-bottom-[18px]"
+                  open ? "-bottom-[18px]" : "-bottom-[18px]"
                 } lg:-bottom-[18px] -right-16 w-16 aspect-square block`}
               />
             </div>
@@ -146,7 +149,9 @@ export function SiteNavbar() {
             </div>
             <div
               class={`${
-                open ? "" : "hidden"
+                open
+                  ? "border-t-4 border-black border-solid w-full lg:border-0"
+                  : "hidden"
               } items-center justify-between w-full lg:flex lg:w-auto lg:order-1`}
               id="navbar-sticky"
             >
