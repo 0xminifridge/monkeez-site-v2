@@ -20,10 +20,11 @@ export const NETWORKS_EXTRA_DATA = {
     LINK_TOKEN_CONTRACT_ADDRESS: "0x5947BB275c521040051D82396192181b413227A3",
     CAMPFIRE_USERNAMES_CONTRACT_ADDRESS:
       "0x44dd88c210c2052171165573368e13ecde5d9ae7",
-    LOG_ENABLED: true,
+    ZUNGLE_LANDZ_CONTRACT_ADDRESS: "",
+    LOG_ENABLED: false,
   },
   [chains.avalancheFuji.id]: {
-    RPC_URL: "https://rpc.ankr.com/avalanche_fuji",
+    RPC_URL: "https://api.avax-test.network/ext/bc/C/rpc",
     EXPLORER_URL: "https://testnet.snowtrace.io",
     MONKEEZ_CONTRACT_ADDRESS: "",
     ZOOGZ_CONTRACT_ADDRESS: "",
@@ -33,6 +34,7 @@ export const NETWORKS_EXTRA_DATA = {
     ZOOG_LEVELER_CONTRACT_ADDRESS: "",
     ZOOG_BATTLER_CONTRACT_ADDRESS: "",
     CRATEZ_CONTRACT_ADDRESS: "",
+    ZUNGLE_LANDZ_CONTRACT_ADDRESS: "0x15f0e91Eaf67a9a661DcF86a282416EEb948C547",
     LOG_ENABLED: true,
   },
 };
