@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/mint",
-        element: <Mint title="MINT | MINT" />,
+        element: <Mint title="MINT | MONKEEZ" />,
       },
     ],
   },

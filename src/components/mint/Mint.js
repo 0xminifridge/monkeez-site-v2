@@ -23,7 +23,7 @@ import { ethers } from "ethers";
 import { useAvaxBalance } from "../../hooks/useAccountBalance";
 import { AvaxIcon } from "../icons/TokenIcons";
 
-export default function Mint() {
+export default function Mint({ title }) {
   const connectedAccount = useAccount();
   const { chain } = useNetwork();
   const [amount, setAmount] = useState(null);
@@ -92,6 +92,7 @@ export default function Mint() {
         }
         setOptions(ops);
       }
+      setAmount(null);
     } catch (err) {
       console.error(err);
     }
@@ -129,12 +130,10 @@ export default function Mint() {
 
       // check sale state of contract
       const mintState = await contract.mintState();
-      console.log("mint state:", mintState);
       setSaleState(mintState);
 
       // set maximum purchaseable for each phase
       // set is whitelisted
-      console.log("mint state:", mintState);
       if (mintState === 1) {
         const price = await contract.presalePrice();
         setPrice(price);
@@ -159,12 +158,10 @@ export default function Mint() {
         setAllowedToMint(true);
         setWhitelisted(true);
       } else {
-        console.log("else");
         setAllowedToMint(false);
       }
     };
     if (connectedAccount?.address) {
-      console.log("connected address:", connectedAccount?.address);
       fetchData();
     }
   }, [connectedAccount?.address]);
@@ -180,11 +177,14 @@ export default function Mint() {
   }, []);
 
   useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
     handleOptions(saleState);
   }, [saleState]);
 
   const onMintClicked = async () => {
-    console.log("mint clicked");
     try {
       setIsMining(true);
       console.log("getting contract");
