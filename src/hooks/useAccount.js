@@ -9,7 +9,7 @@ import {
 } from "../utils/firebase";
 import { getTargetNetwork } from "../utils/networks";
 import { MONKEEZ_IMAGE_URL, ZOOGZ_IMAGE_URL } from "../utils/metadata";
-import { lookupDotAvax, lookupDotFire } from "../utils/wallet";
+import { lookupDotAvax, lookupDotFire, parseHash } from "../utils/wallet";
 import { setProfilePfp } from "../reducers/zungleReducer";
 import { addItems, setItems, setLastId } from "../reducers/zscoreLeaderboard";
 
@@ -96,7 +96,7 @@ export function useProfileImage(address) {
 }
 
 export function useDomain(address) {
-  const [domain, setDomain] = useState(address);
+  const [domain, setDomain] = useState(parseHash(address));
 
   const fetchUsername = async () => {
     try {

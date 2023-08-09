@@ -41,7 +41,11 @@ export async function lookupDotFire(address) {
 }
 
 export function parseHash(hash) {
-  return hash?.substring(0, 5) + "..." + hash.substring(hash.length - 4);
+  if (hash) {
+    return hash?.substring(0, 5) + "..." + hash.substring(hash.length - 4);
+  } else {
+    return null;
+  }
 }
 
 export function parseErrorMessage(err) {
