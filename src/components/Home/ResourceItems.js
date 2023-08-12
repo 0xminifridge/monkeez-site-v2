@@ -7,30 +7,38 @@ export default function ResourceItems() {
       name: "Collect",
       description:
         "Extract resources from land, or quest with Monkeez and Zoogz",
-      image: `${process.env.PUBLIC_URL}/images/hut.png`,
+      image: `${process.env.PUBLIC_URL}/images/landz/buildings/resource-extractor.png`,
     },
     {
       name: "Craft",
-      description:
-        "Complete unique recipes to combine resources into equipables",
+      description: "Complete recipes to combine resources into equipables",
       image: `${process.env.PUBLIC_URL}/images/item-shop.png`,
     },
     {
       name: "Upgrade",
       description:
-        "Upgrade land structure levels increasing further functionality",
+        "Upgrade buildings increasing further functionality of the land",
       image: `${process.env.PUBLIC_URL}/images/hut.png`,
     },
   ];
   return (
     <>
-      <div class="container m-auto flex flex-col justify-center lg:h-[80vh]">
+      <div class="container m-auto flex flex-col justify-center md:h-[80vh] py-10">
         <div class="flex justify-center">
           <span class="my-2 text-white text-4xl md:text-5xl font-bold tracking-wider bg-mnkz-wobo rounded-full border-4 border-solid border-black py-2 px-4 box-shadow-custom">
             Resources
           </span>
         </div>
         <div class="bg-white border-solid border-4 border-black rounded-xl p-2 md:p-4 m-2 box-shadow-custom">
+          <div class="bg-mnkz-wobo/60 rounded-xl  ml-[20%] mr-[20%] p-2 text-center mb-2 ">
+            <span>
+              Resources are the back bone of the Zungle, empowering builders to
+              craft, quest, and more! Not all resources are created equal,
+              varying in scarcity and function. Strategize collecting a wide
+              array of resources to have the best options for crafting and
+              activities.
+            </span>
+          </div>
           <div class="grid grid-rows-3 md:grid-rows-1 grid-flow-col justify-center items-center w-full gap-4">
             {resourceUseCases?.map((item, index) => {
               return (
@@ -61,11 +69,11 @@ export default function ResourceItems() {
               recipes for crafting items and leveling structures. Get to work!
             </span>
           </div> */}
-          <div class="grid grid-rows-3 sm:grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-flow-col gap-1">
+          {/* <div class="grid grid-rows-3 sm:grid-rows-3 md:grid-rows-2 lg:grid-rows-1 grid-flow-col gap-1">
             {ZUNGLE_CRAFTABLE_ITEMS?.map((item, index) => {
               return <ResourceItemCard key={index} item={item} />;
             })}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

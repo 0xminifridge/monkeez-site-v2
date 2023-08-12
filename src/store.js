@@ -13,6 +13,7 @@ import zscoreLeaderboardReducer from "./reducers/zscoreLeaderboard";
 import popupReducer from "./reducers/popupReducer";
 import filterReducer from "./reducers/filterReducer";
 import battleReducer from "./reducers/battleReducer";
+import landzReducer from "./reducers/landzReducer";
 
 export default configureStore({
   reducer: {
@@ -30,5 +31,6 @@ export default configureStore({
     zunglePopup: popupReducer,
     filters: filterReducer,
     battles: battleReducer,
+    landz: landzReducer,
   },
 });

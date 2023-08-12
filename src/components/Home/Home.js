@@ -75,16 +75,16 @@ export default function Home({ title }) {
       </div>
 
       <div>
-        {/* <CollectionCards />
-        <TokenInfo />
+        <CollectionCards />
+        {/* <TokenInfo /> */}
         <EcosystemFeatures />
-        <ResourceItems /> */}
-        <WelcomeToTheZungle />
+        <ResourceItems />
+        {/* <WelcomeToTheZungle />
         <WhatAreMonkeez />
         <MonkeezTribes />
         <WhatAreZoogz />
         <ZoogTypes />
-        <FAQ />
+        <FAQ /> */}
         {/* <RoadMap /> */}
         {/* <TeamCardHolder /> */}
         {/* <FAQContainer /> */}

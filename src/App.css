@@ -39,7 +39,7 @@
 }
 
 .home-bg {
-  background-image: url("./images/banana-background.png");
+  background-image: url("./images/item-background.png");
   background-size: contain;
   background-repeat: repeat;
   background-position: center;
@@ -53,6 +53,30 @@
 .box-shadow-custom {
   box-shadow: 5px 5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+.box-shadow-custom-hoverable {
+  box-shadow: 5px 5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.box-shadow-custom-hoverable:hover {
+  box-shadow: 10px 10px 0 #eeca51, 0px 0px 0 #eeca51, 0px 0px 0 #eeca51,
+    0px 0px 0 #eeca51, 0px 0px 0 #eeca51;
+}
+
+.tile-shadow {
+  width: 105%;
+  height: 105%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  border: 2px solid #000;
+  background-color: #477dfd;
+  border-radius: 25px;
+  z-index: -10;
+  -webkit-transition: transform 0.21s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: transform 0.21s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .bg-monkeez-img {

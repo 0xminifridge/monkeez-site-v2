@@ -16,6 +16,7 @@ import CartIcon from "../icons/CartIcon";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
 import Battlez from "./battlez/Battlez";
+import MyLandz from "./landz/MyLandz";
 
 export default function ZungleNav({ title }) {
   const dispatch = useDispatch();
@@ -47,6 +48,18 @@ export default function ZungleNav({ title }) {
           src={`${process.env.PUBLIC_URL}/images/nav/nav-zoogz.png`}
           alt="Zoogz"
           class="w-6 sm:w-8 object-cover py-2 block"
+        />
+      ),
+    },
+    {
+      name: "Landz",
+      color: "bg-mnkz-blue",
+      classes: "text-lg lg:text-2xl xl:text-3xl",
+      component: (
+        <img
+          src={`${process.env.PUBLIC_URL}/images/nav/nav-landz.png`}
+          alt="Zoogz"
+          class="w-10 object-cover py-2 block"
         />
       ),
     },
@@ -114,6 +127,9 @@ export default function ZungleNav({ title }) {
 
       case "Zoogz":
         return <MyZoogz />;
+
+      case "Landz":
+        return <MyLandz />;
 
       case "Shop":
         return <ZungleItemShop />;

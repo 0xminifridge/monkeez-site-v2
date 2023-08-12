@@ -24,7 +24,7 @@ export default function CollectionCards() {
 
   return (
     <>
-      <div class="container m-auto flex flex-col justify-center items-center align-middle md:h-[80vh]">
+      <div class="container m-auto flex flex-col justify-center items-center align-middle md:h-[80vh] py-10">
         <div class="flex justify-center">
           <span class="my-2 text-white text-4xl md:text-5xl font-bold tracking-wider bg-mnkz-wobo rounded-full border-4 border-solid border-black py-2 px-4 box-shadow-custom">
             NFTs

@@ -10,6 +10,7 @@ export default function OwnerDetails({
   const collectionImages = {
     monkeez: "monkeez-logo-with-bg.png",
     zoogz: "zoogz/collection-image-zoogz.png",
+    "zungle landz": "landz/collection-image-land.png",
   };
 
   const { domain: vanityAddress } = useDomain(owner);

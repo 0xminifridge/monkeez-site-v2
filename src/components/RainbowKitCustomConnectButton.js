@@ -146,6 +146,15 @@ export default function RainbowKitCustomConnectButton({
                       <li>
                         <Link
                           onClick={() => toggleCollapse()}
+                          to={`/zungle?selected=Landz`}
+                          class="p-2 mx-1 text-black flex flex-row justify-center my-1 hover:bg-black hover:cursor-pointer hover:text-white rounded"
+                        >
+                          Landz
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          onClick={() => toggleCollapse()}
                           to={`/accounts/${account.address}`}
                           class="p-2 mx-1 text-black flex flex-row justify-center my-1 hover:bg-black hover:cursor-pointer hover:text-white rounded"
                         >

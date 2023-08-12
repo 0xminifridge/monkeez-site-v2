@@ -20,6 +20,12 @@ export const TYPE_MAPPINGS = {
   drip: "bg-zoog-drip",
   lump: "bg-zoog-lump",
   puff: "bg-zoog-puff",
+  dirt: "bg-landz-dirt",
+  cloud: "bg-landz-cloud",
+  aquatic: "bg-landz-aquatic",
+  molten: "bg-landz-molten",
+  cursed: "bg-landz-cursed",
+  blessed: "bg-landz-blessed",
 };
 
 export const OpaqueMappings = {
@@ -346,3 +352,12 @@ export const fifthSet = [
   `2711`,
   `645`,
 ];
+
+export const LAND_MAPPINGS = {
+  dirt: "bg-landz-dirt",
+  cloud: "bg-landz-cloud",
+  aquatic: "bg-landz-aquatic",
+  molten: "bg-landz-molten",
+  cursed: "bg-landz-cursed",
+  blessed: "bg-landz-blessed",
+};

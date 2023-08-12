@@ -421,3 +421,48 @@ export async function queryZoogBattleLog(lastVisibleId) {
 
   return { data: battleList };
 }
+
+// -- LANDZ --
+
+export async function getLandzForAddress(account) {
+  log("getting landz for account: " + account);
+  let data = [];
+
+  try {
+    const collectionRef = collection(db, "landz");
+
+    let q = query(collectionRef, where("owner", "==", account.toLowerCase()));
+
+    let querySnapshot = await getDocs(q);
+
+    const docs = querySnapshot.docs.map((doc) => doc.data());
+    for (var doc of docs) {
+      // messes with redux
+      delete doc.timestamp;
+      delete doc.updated;
+      data.push(doc);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+  return data;
+}
+
+export async function getLandForId(id) {
+  const docRef = doc(db, "landz", id);
+  const docSnap = await getDoc(docRef);
+
+  let obj;
+
+  if (docSnap.exists()) {
+    log(("Document data:", docSnap.data()));
+    obj = docSnap.data();
+    obj.name = `Zungle Land #${obj.id}`;
+  } else {
+    // doc.data() will be undefined in this case
+    log("No such document!");
+  }
+
+  return obj;
+}
