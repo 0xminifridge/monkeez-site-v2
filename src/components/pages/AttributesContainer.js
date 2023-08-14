@@ -11,6 +11,10 @@ export default function AttributesContainer({
   const [attributesOpen, setAttributesOpen] = useState(startingVisibility);
   const attributeRef = useRef(null);
 
+  if (!attributes) {
+    return null;
+  }
+
   return (
     <div
       class={`${
