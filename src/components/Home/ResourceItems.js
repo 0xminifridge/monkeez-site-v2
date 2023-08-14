@@ -17,29 +17,20 @@ export default function ResourceItems() {
     {
       name: "Upgrade",
       description:
-        "Upgrade buildings increasing further functionality of the land",
+        "Upgrade buildings increasing further functionality of the plot",
       image: `${process.env.PUBLIC_URL}/images/hut.png`,
     },
   ];
   return (
     <>
-      <div class="container m-auto flex flex-col justify-center md:h-[80vh] py-10">
+      <div class="container m-auto flex flex-col justify-center py-20">
         <div class="flex justify-center">
           <span class="my-2 text-white text-4xl md:text-5xl font-bold tracking-wider bg-mnkz-wobo rounded-full border-4 border-solid border-black py-2 px-4 box-shadow-custom">
             Resources
           </span>
         </div>
         <div class="bg-white border-solid border-4 border-black rounded-xl p-2 md:p-4 m-2 box-shadow-custom">
-          <div class="bg-mnkz-wobo/60 rounded-xl  ml-[20%] mr-[20%] p-2 text-center mb-2 ">
-            <span>
-              Resources are the back bone of the Zungle, empowering builders to
-              craft, quest, and more! Not all resources are created equal,
-              varying in scarcity and function. Strategize collecting a wide
-              array of resources to have the best options for crafting and
-              activities.
-            </span>
-          </div>
-          <div class="grid grid-rows-3 md:grid-rows-1 grid-flow-col justify-center items-center w-full gap-4">
+          <div class="grid grid-rows-3 md:grid-rows-1 grid-flow-col justify-center items-center w-full gap-4 ">
             {resourceUseCases?.map((item, index) => {
               return (
                 <div class="flex justify-center flex-col w-full">
@@ -47,7 +38,7 @@ export default function ResourceItems() {
                     <img
                       src={item?.image}
                       alt={item?.name}
-                      class="w-full max-w-[150px] md:max-w-[300px] aspect-square object-contain"
+                      class="w-full max-w-[350px] md:max-w-[300px] aspect-square object-contain"
                     />
                   </div>
                   <div class="bg-gray-100 rounded-xl inline-flex align-top flex-col justify-center items-center text-center h-full p-1">

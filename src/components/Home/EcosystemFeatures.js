@@ -30,12 +30,12 @@ export default function EcosystemFeatures() {
       image: `${process.env.PUBLIC_URL}/images/landz/buildings/zungle-hut.png`,
       background: "bg-mnkz-red",
       description:
-        "Build your own adventure! Build structures on top of your land plots for further functionality in the Zungle",
+        "Build your own adventure! Build on top of your land plots expanding further functionality and interactability within the Zungle",
     },
   ];
   return (
     <>
-      <div class="container m-auto flex flex-col justify-center items-center align-middle xl:h-[80vh] py-10">
+      <div class="container m-auto flex flex-col justify-center items-center align-middle py-20">
         <div class="flex flex-row justify-center items-center">
           <div class="flex flex-row items-center my-2 text-white text-4xl md:text-5xl font-bold tracking-wider bg-mnkz-wobo rounded-full border-4 border-solid border-black py-2 px-4 box-shadow-custom">
             <span>Activities {"  "}</span>
