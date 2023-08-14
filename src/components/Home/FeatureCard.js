@@ -5,7 +5,7 @@ export default function FeatureCard({ item }) {
   return (
     <>
       <div
-        class={`border-black border-4 border-solid rounded-xl p-2 md:p-4 m-2 ${item?.background} box-shadow-custom relative overflow-hidden hover:cursor-pointer`}
+        class={`border-black border-4 border-solid rounded-xl p-2 md:p-4 m-2 ${item?.background} box-shadow-custom-hoverable relative overflow-hidden hover:cursor-pointer`}
         onMouseOver={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
       >
@@ -16,7 +16,7 @@ export default function FeatureCard({ item }) {
             <img
               src={item?.image}
               alt={item?.name}
-              class="aspect-square w-[350px]"
+              class="aspect-square w-full max-w-[300px] md:max-w-[400px]"
             />
           </div>
           <div class="flex flex-col justify-center items-center mt-2">
@@ -32,7 +32,7 @@ export default function FeatureCard({ item }) {
         <div
           class={`${
             hovering ? "" : "hidden"
-          } transition duration-500 absolute bottom-0 left-0 w-full h-full flex justify-center items-center text-center bg-gray-300/80 z-5 p-5`}
+          } transition duration-1000 absolute bottom-0 left-0 w-full h-full flex justify-center items-center text-center bg-gray-300/80 z-5 p-5`}
           style={{ animation: "slide-up 0.3s ease-in-out forwards" }}
         >
           <div class="flex flex-col m-auto w-full h-full">

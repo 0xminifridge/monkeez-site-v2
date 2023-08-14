@@ -11,7 +11,6 @@ export const MONKEEZ_THUMBNAIL_URL_LG =
 // ZOOGZ
 export const ZOOGZ_IMAGE_URL = "https://zungle.s3.amazonaws.com/zoogz/images";
 export const ZOOGZ_METADATA_URL = "https://zungle.s3.amazonaws.com/zoogz/json";
-
 export const ZOOGZ_THUMBNAIL_URL_SMALL =
   "https://zungle.s3.amazonaws.com/zoogz/thumbnails_250x250";
 export const ZOOGZ_THUMBNAIL_URL_LG =
@@ -22,3 +21,13 @@ export const ZUNGLE_ITEM_SHOP_IMAGE_URL =
   "https://zungle.s3.amazonaws.com/items/images";
 export const ZUNGLE_ITEM_SHOP_METADATA_URL =
   "https://zungle.s3.amazonaws.com/items/json";
+
+// ZUNGLE LANDZ
+export const ZUNGLE_LANDZ_IMAGE_URL =
+  "https://zungle.s3.amazonaws.com/landz/images";
+export const ZUNGLE_LANDZ_METADATA_URL =
+  "https://zungle.s3.amazonaws.com/landz/json";
+// export const ZOOGZ_THUMBNAIL_URL_SMALL =
+//   "https://zungle.s3.amazonaws.com/zoogz/thumbnails_250x250";
+// export const ZOOGZ_THUMBNAIL_URL_LG =
+//   "https://zungle.s3.amazonaws.com/zoogz/thumbnails_750x750";

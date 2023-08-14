@@ -24,6 +24,12 @@ module.exports = {
         "zoog-drip": "#B8E8FB",
         "zoog-lump": "#9ED9B9",
         "zoog-puff": "#E3E5EE",
+        "landz-dirt": "#77E0A7",
+        "landz-cloud": "#F794C1",
+        "landz-aquatic": "#FFF990",
+        "landz-molten": "#FF687A",
+        "landz-blessed": "#D194ED",
+        "landz-cursed": "#89D8F7",
       },
       textShadow: {
         custom:

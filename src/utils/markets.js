@@ -74,6 +74,44 @@ export const ZOOGZ_MARKET_DATA = {
   },
 };
 
+export const ZUNGLE_LAND_MARKET_DATA = {
+  Joepegs: {
+    collection:
+      "https://joepegs.com/collections/avalanche/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+    asset:
+      "https://joepegs.com/item/avalanche/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+  },
+  Campfire: {
+    collection:
+      "https://campfire.exchange/collections/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+    asset:
+      "https://campfire.exchange/collections/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+  },
+  Salvor: {
+    collection:
+      "https://salvor.io/collections/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+    asset:
+      "https://salvor.io/collections/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+  },
+  NFTrade: {
+    collection:
+      "https://nftrade.com/assets/avalanche/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+    asset:
+      "https://nftrade.com/assets/avalanche/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+  },
+  Kalao: {
+    collection:
+      "https://marketplace.kalao.io/collection/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+    asset:
+      "https://marketplace.kalao.io/collection/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+  },
+  OpenSea: {
+    collection: "https://opensea.io/collection/monkeez-avax",
+    asset:
+      "https://opensea.io/assets/avalanche/0x32c34be7abf63a5ed9344b74916b62d4fe491e1f",
+  },
+};
+
 export const ZUNGLE_ITEM_SHOP_MARKET_DATA = {
   Joepegs:
     "https://joepegs.com/collections/avalanche/0xb42d0f524564cafe2a47ca3331221903eda83b3c",

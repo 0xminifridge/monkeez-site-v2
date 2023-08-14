@@ -12,6 +12,7 @@ import Alert from "./Alert";
 import Landing from "./Landing";
 import ProfilePage from "./pages/profile/ProfilePage";
 import Mint from "./mint/Mint";
+import LandzPage from "./pages/landz/LandzPage";
 
 function Root() {
   return (
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "/zoogz/:id",
         element: <ZoogzPage />,
+      },
+      {
+        path: "/landz/:id",
+        element: <LandzPage />,
       },
       {
         path: "/accounts/:profile",

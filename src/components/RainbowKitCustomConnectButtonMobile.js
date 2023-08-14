@@ -142,6 +142,14 @@ export default function RainbowKitCustomConnectButtonMobile({
                       </li>
                       <li>
                         <Link
+                          to={`/zungle?selected=Landz`}
+                          class="p-2 mx-1 text-black flex flex-row justify-center my-1 hover:bg-black hover:cursor-pointer hover:text-white rounded"
+                        >
+                          Landz
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
                           to={`/accounts/${account.address}`}
                           class="p-2 mx-1 text-black flex flex-row justify-center my-1 hover:bg-black hover:cursor-pointer hover:text-white rounded"
                         >

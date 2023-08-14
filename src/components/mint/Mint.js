@@ -27,8 +27,8 @@ export default function Mint({ title }) {
   const connectedAccount = useAccount();
   const { chain } = useNetwork();
   const [amount, setAmount] = useState(null);
-  const [cost, setCost] = useState(2);
-  const [saleState, setSaleState] = useState(1);
+  const [cost, setCost] = useState(2.2);
+  const [saleState, setSaleState] = useState(3);
   const [allowedToMint, setAllowedToMint] = useState(true);
   const [whitelisted, setWhitelisted] = useState(false);
   const [isMining, setIsMining] = useState(false);
