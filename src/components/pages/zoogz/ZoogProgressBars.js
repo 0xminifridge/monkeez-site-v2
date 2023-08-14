@@ -9,7 +9,7 @@ import ProgressBar from "../ProgessBar";
 import { useZungleItems } from "../../../hooks/useItems";
 import LoadingSpinner from "../../LoadingSpinner";
 import { BackArrowLeft } from "../../icons/BackArrowLeft";
-import { useUpgradeZoog } from "../../../hooks/useZoogz";
+import { useUpgradeZoog, useInitializeZoog } from "../../../hooks/useZoogz";
 import { useDispatch } from "react-redux";
 import { createError } from "../../../reducers/alertReducer";
 import { XP_FOR_LEVELS } from "../../../utils/collection-data";
@@ -34,6 +34,9 @@ export default function ZoogProgressBars({
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const { writeTx, isMining } = useUpgradeZoog();
+
+  const { writeTx: initializeZoog, isMining: initializeMining } =
+    useInitializeZoog();
 
   const dispatch = useDispatch();
 
@@ -189,8 +192,6 @@ export default function ZoogProgressBars({
                 class={`${
                   TYPE_MAPPINGS[data?.type?.toLowerCase()]
                 } bottom-6 hover:bg-mnkz-tan w-70 border-4 ml-2 px-4 py-2 rounded-xl text-lg hover:text-white hover:cursor-pointer right-0 disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400`}
-                // disabled={transactionProcessing || selectedItems.length === 0}
-                // onClick={() => upgradeStat()}
                 onClick={() => upgradeClicked()}
                 disabled={isMining || !selectedItems.length || !maxAllowed}
               >
@@ -202,8 +203,8 @@ export default function ZoogProgressBars({
                 class={`${
                   TYPE_MAPPINGS[data?.type?.toLowerCase()]
                 } bottom-6 hover:bg-mnkz-tan w-70 border-4 ml-2 px-4 py-2 rounded-xl text-lg hover:text-white hover:cursor-pointer right-0 disabled:bg-gray-300 disabled:text-light disabled:cursor-default disabled:hover:text-gray-400`}
-                // disabled={transactionProcessing}
-                // onClick={() => initializeZoog()}
+                disabled={initializeMining}
+                onClick={() => initializeZoog([data?.id])}
               >
                 Initialize
               </button>

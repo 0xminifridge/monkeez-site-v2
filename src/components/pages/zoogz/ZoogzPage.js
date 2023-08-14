@@ -17,6 +17,7 @@ import {
   useZoogForId,
   useZoogXpInfo,
   useZoogEnergy,
+  useInitializeZoog,
 } from "../../../hooks/useZoogz";
 import ZoogBattleHistory from "./ZoogBattleHistory";
 import { useNavigate } from "react-router-dom";

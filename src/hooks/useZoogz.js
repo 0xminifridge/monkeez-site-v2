@@ -365,3 +365,50 @@ export function useUpgradeZoog() {
 
   return { writeTx, isMining };
 }
+
+export function useInitializeZoog() {
+  const [isMining, setIsMining] = useState(false);
+
+  const { chain } = useNetwork();
+  const configuredNetwork = getTargetNetwork();
+
+  const signer = useSigner();
+
+  const dispatch = useDispatch();
+
+  const writeTx = async (ids) => {
+    if (!chain?.id) {
+      dispatch(createError("Please connect your wallet"));
+      return;
+    }
+    if (chain?.id !== configuredNetwork.id) {
+      dispatch(createError("Switch to AVAX C-Chain"));
+      return;
+    }
+    try {
+      setIsMining(true);
+
+      const contract = await getZoogLevelerContract(signer);
+
+      let tx = await contract.initialize(ids);
+      if (tx) {
+        let hash = tx.hash;
+        dispatch(createProcessing(hash));
+        await tx.wait();
+        dispatch(createSuccess("Zoog initialized successfully"));
+      }
+    } catch (err) {
+      console.error(err);
+      const parsedError = parseErrorMessage(err);
+      if (parsedError) {
+        dispatch(createError(parseErrorMessage(err)));
+      } else {
+        dispatch(createError("Error in upgrading zoogz"));
+      }
+    } finally {
+      setIsMining(false);
+    }
+  };
+
+  return { writeTx, isMining };
+}
