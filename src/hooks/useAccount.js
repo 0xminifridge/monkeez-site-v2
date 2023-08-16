@@ -8,7 +8,11 @@ import {
   queryZScore,
 } from "../utils/firebase";
 import { getTargetNetwork } from "../utils/networks";
-import { MONKEEZ_IMAGE_URL, ZOOGZ_IMAGE_URL } from "../utils/metadata";
+import {
+  MONKEEZ_IMAGE_URL,
+  ZOOGZ_IMAGE_URL,
+  ZUNGLE_LANDZ_IMAGE_URL,
+} from "../utils/metadata";
 import { lookupDotAvax, lookupDotFire, parseHash } from "../utils/wallet";
 import { setProfilePfp } from "../reducers/zungleReducer";
 import { addItems, setItems, setLastId } from "../reducers/zscoreLeaderboard";
@@ -69,6 +73,11 @@ export function useProfileImage(address) {
           getTargetNetwork().ZOOGZ_CONTRACT_ADDRESS.toLowerCase()
         ) {
           pfpUrl = `${ZOOGZ_IMAGE_URL}/${tokenId}.png`;
+        } else if (
+          contractAddress?.toLowerCase() ===
+          getTargetNetwork().ZUNGLE_LANDZ_CONTRACT_ADDRESS.toLowerCase()
+        ) {
+          pfpUrl = `${ZUNGLE_LANDZ_IMAGE_URL}/${tokenId}.png`;
         }
 
         setImageUrl(pfpUrl);
