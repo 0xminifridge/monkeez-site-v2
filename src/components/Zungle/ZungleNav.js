@@ -214,7 +214,7 @@ export default function ZungleNav({ title }) {
             );
           })}
         </div>
-        <div class="box-shadow-custom pb-[25px] md:pb-0 mx-1 sm:mx-4 h-[90vh] md:h-[90vh] w-[90vw] bg-white border-4 border-solid border-black rounded-2xl m-auto overflow-hidden">
+        <div class="box-shadow-custom pb-[25px] md:pb-0 mx-1 sm:mx-4 h-[90vh] md:h-[90vh] w-[90vw] bg-white border-4 border-solid border-black rounded-2xl m-auto overflow-hidden overflow-y-auto">
           {renderSwitch(activeTab)}
         </div>
       </div>
