@@ -17,6 +17,8 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
 import Battlez from "./battlez/Battlez";
 import MyLandz from "./landz/MyLandz";
+import Posters from "./posterz/Posters";
+import { BsFillFileImageFill } from "react-icons/bs";
 
 export default function ZungleNav({ title }) {
   const dispatch = useDispatch();
@@ -100,6 +102,19 @@ export default function ZungleNav({ title }) {
         // />
       ),
     },
+    {
+      name: "Posterz",
+      color: "bg-mnkz-pelu",
+      classes: "text-lg lg:text-2xl xl:text-3xl",
+      component: (
+        <BsFillFileImageFill class="text-2xl w-10 text-black" />
+        // <img
+        //   src={`${process.env.PUBLIC_URL}/images/nav/nav-leaderboard.png`}
+        //   alt="Leaderboard"
+        //   class="w-6 sm:w-8 object-cover py-2 block"
+        // />
+      ),
+    },
   ];
 
   const clickTab = (name) => {
@@ -142,6 +157,8 @@ export default function ZungleNav({ title }) {
 
       case "Leaderboard":
         return <Leaderboard />;
+      case "Posterz":
+        return <Posters />;
     }
   };
 

@@ -11,6 +11,7 @@ import { Contract, ethers } from "ethers";
 import { erc20ABI } from "wagmi";
 import { getTargetNetwork } from "./networks";
 import { CAMPFIRE_USERNAMES_CONTRACT_ABI } from "../abi/CampfireUsernamesABI";
+import { ZUNGLE_POSTERZ_ABI } from "../abi/ZunglePosterzABI";
 
 export async function getContract(address, abi, signer) {
   if (address && abi) {
@@ -110,6 +111,14 @@ export async function getCampfireUsernamesContract(signer) {
   return getContract(
     getTargetNetwork().CAMPFIRE_USERNAMES_CONTRACT_ADDRESS,
     CAMPFIRE_USERNAMES_CONTRACT_ABI,
+    signer
+  );
+}
+
+export async function getZunglePosterzContract(signer) {
+  return getContract(
+    getTargetNetwork().ZUNGLE_POSTERZ_ADDRESS,
+    ZUNGLE_POSTERZ_ABI,
     signer
   );
 }

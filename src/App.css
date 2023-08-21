@@ -61,7 +61,7 @@
 }
 
 .box-shadow-custom-hoverable:hover {
-  box-shadow: 10px 10px 0 #eeca51, 0px 0px 0 #eeca51, 0px 0px 0 #eeca51,
+  box-shadow: 10px 10px 0 #eeca51, 0px 0px 0 #000, 0px 0px 0 #eeca51,
     0px 0px 0 #eeca51, 0px 0px 0 #eeca51;
 }
 
