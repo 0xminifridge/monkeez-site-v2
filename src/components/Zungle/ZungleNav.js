@@ -93,28 +93,14 @@ export default function ZungleNav({ title }) {
       name: "Leaderboard",
       color: "bg-mnkz-api",
       classes: "text-sm lg:text-xl",
-      component: (
-        <MdLeaderboard class="text-2xl w-10 text-black" />
-        // <img
-        //   src={`${process.env.PUBLIC_URL}/images/nav/nav-leaderboard.png`}
-        //   alt="Leaderboard"
-        //   class="w-6 sm:w-8 object-cover py-2 block"
-        // />
-      ),
+      component: <MdLeaderboard class="text-2xl w-10 text-black" />,
     },
-    {
-      name: "Posterz",
-      color: "bg-mnkz-pelu",
-      classes: "text-lg lg:text-2xl xl:text-3xl",
-      component: (
-        <BsFillFileImageFill class="text-2xl w-10 text-black" />
-        // <img
-        //   src={`${process.env.PUBLIC_URL}/images/nav/nav-leaderboard.png`}
-        //   alt="Leaderboard"
-        //   class="w-6 sm:w-8 object-cover py-2 block"
-        // />
-      ),
-    },
+    // {
+    //   name: "Posterz",
+    //   color: "bg-mnkz-pelu",
+    //   classes: "text-lg lg:text-2xl xl:text-3xl",
+    //   component: <BsFillFileImageFill class="text-2xl w-10 text-black" />,
+    // },
   ];
 
   const clickTab = (name) => {
@@ -174,6 +160,7 @@ export default function ZungleNav({ title }) {
           {NavItems.map((item, index) => {
             return (
               <Tooltip
+                key={index}
                 content={item?.name}
                 placement="right"
                 trigger="hover"
