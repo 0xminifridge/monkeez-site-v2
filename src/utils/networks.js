@@ -4,7 +4,7 @@ import * as chains from "wagmi/chains";
 export const NETWORKS_EXTRA_DATA = {
   [chains.avalanche.id]: {
     RPC_URL: "https://api.avax.network/ext/bc/C/rpc",
-    EXPLORER_URL: "https://snowtrace.io",
+    EXPLORER_URL: "https://snowscan.xyz/",
     MONKEEZ_CONTRACT_ADDRESS: "0xb42d0f524564cafe2a47ca3331221903eda83b3c",
     ZOOGZ_CONTRACT_ADDRESS: "0xeed9ca646491aac79abb6a74961f9d4d6dc7cf4e",
     MNKZ_CONTRACT_ADDRESS: "0xeFdD9a1B91f164Ea5Ca973eFCe0096fE3f97645a",
